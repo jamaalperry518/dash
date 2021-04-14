@@ -1,0 +1,74 @@
+.single-vault {
+  margin-bottom: 30px;
+  width: 95%;
+  margin: 20px auto;
+  .vault-top {
+    padding: 2%;
+    border: 2px solid $opaque-white;
+    border-bottom: none;
+    .vault-header {
+      padding: 1%;
+      width: 95%;
+      margin: 0 auto;
+      @include flexbox(row, space-between, center);
+      .name-and-logo {
+        display: flex;
+        align-items: center;
+
+        .vault-logo {
+        }
+        .vault-name {
+          margin-left: 15px;
+          font-size: 26px;
+        }
+      }
+    }
+    .vault-stats {
+      @include flexbox(row, space-evenly, center);
+      padding: 1% 2%;
+      width: 90%;
+      margin-left: 50px;
+
+      .vault-stat {
+        width: 35%;
+        .stat-text {
+          font-size: 24px;
+        }
+      }
+    }
+  }
+
+  .withdraw-deposit {
+    padding: 2%;
+    border: 2px solid $lightBlueBackground;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+
+    .balance-info {
+      width: 30%;
+      @include flexbox(column, space-evenly, flex-start);
+      .user-deposit-in-vault {
+        font-size: 24px;
+        margin-top: -10px;
+      }
+      .deposit-fiat-amount {
+        margin-top: 10px;
+      }
+    } //balance-info
+    .withdraw-deposit-buttons {
+      width: 50%;
+      @include flexbox(row, space-between, center);
+
+      button {
+        width: 45%;
+        height: 50px;
+        border-radius: 25px;
+        color: white;
+        font-size: 18px;
+        background: linear-gradient(90deg, #192298 0%, #242eb1 100%);
+        box-shadow: 0px 5px 10px rgba(31, 1, 150, 0.15);
+      }
+    }
+  }
+}

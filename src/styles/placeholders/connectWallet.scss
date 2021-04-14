@@ -1,0 +1,23 @@
+.wallet-connection {
+  background-color: $darkBlueBackground;
+  display: flex;
+  flex-direction: column;
+
+  .title {
+    font-size: 48px;
+    font-family: $main-font;
+    margin-bottom: 36px;
+    color: white;
+    text-align: center;
+  }
+  .connect-wallet {
+    width: 40%;
+    margin: 0 auto;
+    background-color: $lightBlueBackground;
+    color: white;
+    border-radius: 18px;
+    padding: 1% 3%;
+    font-size: 36px;
+    font-family: $main-font;
+  }
+}

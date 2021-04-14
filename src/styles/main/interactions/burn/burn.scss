@@ -1,0 +1,67 @@
+.burn-array-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 3%;
+
+  .burn-input-container {
+    display: flex;
+    flex-direction: column;
+    align-self: flex-start;
+    width: 30%;
+
+    .amount-input {
+      color: white;
+    }
+    .array {
+      font-weight: bold;
+      font-size: 24px;
+      text-align: right;
+      margin-right: 10px;
+      margin-top: 10px;
+    }
+  }
+  .amount-to-burn {
+    border: 2px solid $off-white;
+    padding: 5%;
+    width: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    .amounts-to-receive {
+      width: 50%;
+      .tokens-to-receive {
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        .burn-token {
+          display: flex;
+          align-items: center;
+          margin: 10px 0;
+
+          .burn-token-amount {
+            margin-left: 0px;
+          }
+        }
+      }
+    }
+
+    .fiat-to-receive {
+      width: 60%;
+      .fiat-amount {
+        font-size: 56px;
+      }
+      button {
+        display: inline-block;
+        background-color: $lightBlueBackground;
+        color: white;
+        font-size: 30px;
+        width: 50%;
+        padding: 2% 0;
+        border-radius: 28px;
+        margin: 0 auto;
+      }
+    }
+  }
+}

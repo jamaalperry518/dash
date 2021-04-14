@@ -1,0 +1,32 @@
+.interactions-container {
+  display: flex;
+  justify-content: center;
+  width: 85%;
+  margin: 50px auto;
+  color: white;
+
+  .cards {
+    width: 75%;
+    background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
+    padding: 2%;
+    .section-heading {
+      font-weight: normal;
+      color: $off-white;
+      margin-bottom: 20px;
+    }
+    .asset-name {
+      margin-left: 20px;
+      font-weight: bold;
+      font-size: 18px;
+    }
+    .amount-input {
+      background-color: $darkBlueBackground;
+      border: 1px solid white;
+      border-radius: 6px;
+      font-size: 36px;
+      width: 90%;
+      margin: 0 auto;
+      text-align: right;
+    }
+  }
+}

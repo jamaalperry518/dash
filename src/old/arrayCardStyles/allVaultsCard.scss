@@ -1,0 +1,66 @@
+.all-vaults-card {
+  display: flex;
+  flex-direction: column;
+  color: white;
+  background-color: #081171;
+  position: relative;
+  width: 31%;
+  height: 80%;
+  .title {
+    font-size: 64px;
+    font-family: $main-font;
+  }
+  .view-vaults {
+    margin-top: 40px;
+    width: 100%;
+    border-radius: 18px;
+    background-color: #0f30f5;
+    color: white;
+    font-size: 64px;
+    font-family: $main-font;
+  }
+  .mining-interactions {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+    .subtext {
+      margin: 20px 0;
+      font-size: 22px;
+      text-align: left;
+      font-family: $main-font;
+    }
+    .mining-buttons {
+      width: 90%;
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      .mining-button {
+        width: 100%;
+        border-radius: 12px;
+        background-color: $lightBlueBackground;
+        padding: 1% 3%;
+        color: white;
+        font-family: $main-font;
+        cursor: pointer;
+        margin: 20px 0;
+        .button-text {
+          display: flex;
+          justify-content: space-between;
+          font-size: 48px;
+          .vault-name {
+            width: 85%;
+            text-align: left;
+          }
+          .vault-apy {
+            text-align: right;
+            width: 40%;
+          }
+        }
+        &:hover {
+          background-color: rgba(22, 4, 59, 1);
+          top: 5px;
+        }
+      }
+    }
+  }
+}

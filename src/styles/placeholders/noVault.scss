@@ -1,0 +1,11 @@
+.no-vault {
+  background-color: $darkBlueBackground;
+  color: white;
+
+  position: relative;
+  h1 {
+    font-size: 48px;
+    font-family: $main-font;
+    text-align: center;
+  }
+}

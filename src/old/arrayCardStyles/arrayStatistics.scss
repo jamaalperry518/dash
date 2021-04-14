@@ -1,0 +1,50 @@
+.array-statistics-card {
+  color: white;
+  background-color: #081171;
+  margin-bottom: 20px;
+
+  .title {
+    font-size: 2.4em;
+    margin-bottom: 36px;
+    font-family: $main-font;
+    span {
+      border-bottom: 3px solid $lightBlueBackground;
+    }
+  }
+  .array-statistics {
+    display: grid;
+    grid-gap: 30px;
+
+    grid-template-areas:
+      "array-price array-value-locked"
+      "buy-array array-bonding-price";
+    div {
+      width: 80%;
+      h1 {
+        font-size: 3em;
+        font-family: $main-font;
+      }
+      .subtext {
+        margin-top: 15px;
+        font-size: 1.5em;
+        text-align: right;
+        font-family: $main-font;
+      }
+    }
+
+    .buy-array {
+      button {
+        background-color: $lightBlueBackground;
+        color: white;
+        border-radius: 18px;
+        padding: 2% 3%;
+        font-size: 3em;
+        font-family: $main-font;
+        &:hover {
+          background-color: rgba(22, 4, 59, 1);
+          top: 5px;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,53 @@
+.add-to-bags {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 4% 0;
+  .chart-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 20%;
+
+    .temp {
+      width: 60%;
+      margin: 0 auto;
+    }
+    .asset {
+      display: flex;
+      align-items: center;
+      margin: 25px 0;
+      .color-code {
+        height: 10px;
+        width: 10px;
+
+        &.btc {
+          background-color: $btcColor;
+        }
+        &.eth {
+          background-color: $ethColor;
+        }
+        &.dai {
+          background-color: $daiColor;
+        }
+        &.bnb {
+          background-color: $bnbColor;
+        }
+        &.usdt {
+          background-color: $usdtColor;
+        }
+      }
+    } //color codes
+    p {
+      color: white;
+      font-weight: bold;
+      font-size: 18px;
+    }
+
+    .percentage-of-portfolio {
+      margin-left: 10px;
+    }
+  }
+}
