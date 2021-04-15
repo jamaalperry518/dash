@@ -33,11 +33,23 @@ const TabSwitch = (props) => {
   });
   const tabsArr = Object.values(tabs);
 
+  const selectHandler = (data) => {
+    let copy = { ...tabs };
+    copy["mint"]["selected"] = false;
+    copy["burn"]["selected"] = false;
+    copy["vaults"]["selected"] = false;
+    copy[data.name]["selected"] = true;
+    setTabs(copy);
+  };
+
   return (
     <div className={props.address ? "tab-switch" : "tab-switch inactive"}>
       {tabsArr.map((tab, i) => {
         return (
-          <div className={tab.class}>
+          <div
+            onClick={() => selectHandler(tab)}
+            className={tab.selected ? `${tab.class} selected` : tab.class}
+          >
             <Link to={tab.link}>{tab.image}</Link>
           </div>
         );

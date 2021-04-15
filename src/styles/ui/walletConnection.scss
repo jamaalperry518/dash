@@ -10,10 +10,12 @@
     color: white;
     font-size: 36px;
     border-bottom: 2px solid $lightBlueBackground;
+    position: relative;
 
     &:hover {
-      color: $lightBlueBackground;
-      border-bottom: 2px solid white;
+      color: $hoverBlue;
+      border-bottom: none;
+      top: 3px;
     }
   }
 }
