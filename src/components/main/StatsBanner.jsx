@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { convertStandardNumber } from "../../Redux/actions/currencyActions";
 
 const StatsBanner = () => {
-  const [bannerStats, setStats] = useState({
+  const [bannerStats] = useState({
     arrayPrice: {
       text: "Array token price",
       value: 76.13,
