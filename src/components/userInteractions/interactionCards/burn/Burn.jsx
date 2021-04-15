@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 
-const Burn = () => {
+const Burn = (props) => {
   const [arrayToBurn, setArrayToBurn] = useState(0);
   const [tokensToReceive] = useState({
     BTC: 0.0,
@@ -9,11 +9,11 @@ const Burn = () => {
     UNI: 0.0,
     USDT: 0.0,
   });
+  const tokenArray = Object.entries(tokensToReceive);
   const changeHandler = (e) => {
     setArrayToBurn(e.target.value);
   };
 
-  const tokenArray = Object.entries(tokensToReceive);
   return (
     <div className="burn-array-container">
       <div className="burn-input-container">

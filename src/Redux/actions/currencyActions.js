@@ -10,9 +10,21 @@ export const prettyBalance = (balance) => {
   return currencyFormatter.format(balance / 1000000);
 };
 export const convertStandardNumber = (num) => {
-  return num ? currencyFormatter.format(num) : "$0.00";
+  return num ? currencyFormatter.format(num) : "0.00";
 };
-
+export const getExchangeRates = () => (dispatch) => {
+  axios
+    .get("https://api.ratesapi.io/api/latest?base=USD")
+    .then((res) => {
+      dispatch({
+        type: "GET_EXCHANGE_RATES",
+        payload: res.data.rates,
+      });
+    })
+    .catch((err) => {
+      console.log(err);
+    });
+};
 export const getBigCoinsPrice = () => (dispatch) => {
   const bigCoins = ["bitcoin", "ethereum", "1inch", "curve-dao-token"];
   bigCoins.map((coin) => {

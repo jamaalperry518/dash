@@ -17,7 +17,14 @@ const WalletConnection = (props) => {
         <div className="address-container">
           <img src={networkImage} alt="" className="network-img" />
           <p className="address">
-            {start}....{end}
+            <a
+              target="_blank"
+              rel="noreferrer"
+              href={`https://etherscan.io/address/${props.address}`}
+              className="etherscan"
+            >
+              {start}....{end}
+            </a>
           </p>
         </div>
       ) : (

@@ -1,17 +1,11 @@
-import React, { useState } from "react";
+import React from "react";
+import { convertStandardNumber } from "../../../../Redux/actions/currencyActions";
 //components
 import { FaExternalLinkAlt } from "react-icons/fa";
 import VaultButtons from "./VaultInteraction/VaultButtons";
-import Withdraw from "./VaultInteraction/Withdraw";
-import Deposit from "./VaultInteraction/Deposit";
+
 const SingleVault = (props) => {
   const vault = props.vault;
-
-  const [cardDisplayed, setCardDisplayed] = useState("");
-
-  const setCard = (e) => {
-    setCardDisplayed(e.target.className);
-  };
 
   return (
     <div className="single-vault">
@@ -32,7 +26,7 @@ const SingleVault = (props) => {
         <div className="vault-stats">
           <div className="vault-stat">
             <p className="section-heading">TVL</p>
-            <p className="stat-text">${vault.vaultTvl}</p>
+            <p className="stat-text">{convertStandardNumber(vault.vaultTvl)}</p>
           </div>
 
           <div className="vault-stat">
@@ -50,17 +44,8 @@ const SingleVault = (props) => {
           </div>
         </div>
       </div>
-      {(() => {
-        switch (cardDisplayed) {
-          case "deposit":
-            return <Deposit />;
-          case "withdraw":
-            return <Withdraw />;
 
-          default:
-            return <VaultButtons vault={vault} setCard={setCard} />;
-        }
-      })()}
+      <VaultButtons vault={vault} />
     </div>
   );
 };

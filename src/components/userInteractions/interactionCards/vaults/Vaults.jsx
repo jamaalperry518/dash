@@ -20,6 +20,7 @@ const Vaults = (props) => {
 const mapStateToProps = (state) => {
   return {
     vaults: state.vaults.vaults,
+    address: state.wallet.address,
   };
 };
 export default connect(mapStateToProps)(Vaults);
