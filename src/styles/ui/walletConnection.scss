@@ -1,0 +1,19 @@
+.wallet-connect-container {
+  .address-container {
+    @include flexbox(row, center, center);
+    .address {
+    }
+  }
+
+  .connect-button {
+    background-color: transparent;
+    color: white;
+    font-size: 36px;
+    border-bottom: 2px solid $lightBlueBackground;
+
+    &:hover {
+      color: $lightBlueBackground;
+      border-bottom: 2px solid white;
+    }
+  }
+}

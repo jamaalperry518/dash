@@ -1,6 +1,7 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
-const AssetSelect = () => {
+const AssetSelect = (props) => {
   const [assets] = useState([
     {
       name: "BTC",
@@ -27,7 +28,7 @@ const AssetSelect = () => {
   //   setAssets({ ...assets, [e.target.name]: e.target.value });
   // };
   return (
-    <div className="asset-select">
+    <div className={props.address ? "asset-select" : "asset-select inactive"}>
       <p className="section-heading">Select asset and amount to deposit:</p>
       {assets?.map((asset, i) => {
         return (
@@ -37,6 +38,7 @@ const AssetSelect = () => {
             <input
               type="number"
               className="amount-input"
+
               // name={asset.name}
               // value={assets[i].amount}
               //   onChange={changeHandler}
@@ -48,4 +50,10 @@ const AssetSelect = () => {
   );
 };
 
-export default AssetSelect;
+const mapStateToProps = (state) => {
+  return {
+    address: state.wallet.address,
+  };
+};
+
+export default connect(mapStateToProps)(AssetSelect);

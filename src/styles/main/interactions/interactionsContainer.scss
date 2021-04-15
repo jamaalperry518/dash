@@ -5,6 +5,11 @@
   margin: 50px auto;
   color: white;
 
+  .inactive {
+    opacity: 0.4;
+    pointer-events: none;
+  }
+
   .cards {
     width: 75%;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
