@@ -1,6 +1,6 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import Header from "./components/header/header/Header";
+import Header from "./components/header/Header";
 import Main from "./components/main/Main";
 import { getBigCoinsPrice } from "./Redux/actions/currencyActions";
 import "./styles/global.scss";

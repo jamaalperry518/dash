@@ -1,19 +1,15 @@
 .asset-select {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
+  @include flexbox(column, center, center);
   width: 40%;
   .asset-input {
-    display: flex;
-    justify-content: center;
-    align-items: center;
+    @include flexbox(row, center, center);
     margin: 15px 0;
 
     h1 {
       color: white;
       margin-left: 15px;
-      font-size: 30px;
-      max-width: 60px;
+      font-size: 36px;
+      width: 5px;
     }
     .amount-input {
       background-color: $darkBlueBackground;
@@ -21,7 +17,7 @@
       color: white;
       border-radius: 6px;
       font-size: 36px;
-      width: 35%;
+      width: 40%;
       margin: 0 auto;
       text-align: right;
     }
