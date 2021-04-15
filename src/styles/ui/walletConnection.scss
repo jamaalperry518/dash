@@ -2,6 +2,10 @@
   .address-container {
     @include flexbox(row, center, center);
     .address {
+      .etherscan {
+        text-decoration: none;
+        color: white;
+      }
     }
   }
 

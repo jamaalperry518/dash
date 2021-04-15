@@ -8,6 +8,7 @@ const initialState = {
   btcPrice: 0,
   oneInchPrice: 0,
   crvPrice: 0,
+  exchangeRates: {},
 };
 
 const vaultReducer = (state = initialState, action) => {
@@ -31,6 +32,11 @@ const vaultReducer = (state = initialState, action) => {
       return {
         ...state,
         crvPrice: action.payload,
+      };
+    case "GET_EXCHANGE_RATES":
+      return {
+        ...state,
+        exchangeRates: action.payload,
       };
     default:
       return state;

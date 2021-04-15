@@ -1,0 +1,42 @@
+.vault-interaction-container {
+  @include flexbox(column, center, flex-end);
+  width: 70%;
+  margin: 0 auto;
+  .vault-interaction-input-container {
+    width: 55%;
+    @include flexbox(row, flex-end, center);
+    .amount-input {
+    }
+    .asset-name {
+      margin: 0;
+      width: 5%;
+    }
+  }
+  .vault-interaction-container-buttons {
+    @include flexbox(row, flex-end, center);
+    margin-top: 20px;
+    width: 80%;
+    .vault-interaction-button {
+      width: 30%;
+      height: 50px;
+      margin-right: -15px;
+      border-radius: 25px;
+      color: white;
+      font-size: 18px;
+      background: linear-gradient(90deg, #192298 0%, #242eb1 100%);
+      box-shadow: 0px 5px 10px rgba(31, 1, 150, 0.15);
+    }
+    .cancel {
+      background-color: transparent;
+      color: white;
+      font-size: 22px;
+      text-decoration: underline;
+      position: relative;
+      margin: 0 50px;
+      &:hover {
+        top: 3px;
+        color: $hoverBlue;
+      }
+    }
+  }
+}
