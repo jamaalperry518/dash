@@ -1,6 +1,9 @@
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
+import { assets } from "../../data/assets/tokens";
+import { ERC20_ABI } from "../../data/ABI";
+import axios from "axios";
 
 const web3Modal = new Web3Modal({
   cacheProvider: false, // optional
@@ -14,12 +17,12 @@ const web3Modal = new Web3Modal({
   },
 });
 
-const setProvider = async (provider) => {
-  const eth = new ethers.providers.Web3Provider(provider || window.ethereum);
+const setProvider = async () => {
+  const eth = new ethers.providers.Web3Provider(window.ethereum);
 
   const signer = eth.getSigner();
   let connectDataObject = {
-    provider: provider,
+    provider: eth,
     signer: signer,
     network: await eth.getNetwork(),
   };
@@ -37,7 +40,6 @@ export const connectUserWallet = () => (dispatch) => {
           .enable()
           .then(async (res) => {
             let connectionResponse = await setProvider(provider);
-            console.log(connectionResponse);
             let networkName;
             if (connectionResponse.network.chainId === 100) {
               networkName = "xDai";
@@ -61,4 +63,29 @@ export const connectUserWallet = () => (dispatch) => {
     .catch((err) => {
       console.log(err);
     });
+};
+
+export const getBalance = async (provider, address) => {
+  const assetArray = Object.values(assets);
+  const balance = await provider.getBalance(address);
+  console.log("eth", ethers.utils.formatEther(balance) * 2300);
+  assetArray.map(async (asset) => {
+    const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
+
+    const balance = ethers.utils.formatUnits(await contract.balanceOf(address));
+    if (balance > 0) {
+      console.log(`${asset.name}`, balance);
+
+      axios
+        .get(
+          `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=${asset.address}&vs_currencies=usd`
+        )
+        .then((res) => {
+          console.log(res.data[asset.address.toLowerCase()].usd);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+    }
+  });
 };

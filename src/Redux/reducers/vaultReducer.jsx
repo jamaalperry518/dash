@@ -65,6 +65,12 @@ const initialState = {
       userDeposit: 2.875,
     },
   },
+  balancerPools: {
+    WETH_WBTC: {
+      pool_name: "WETH-BTC",
+      contract_address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
+    },
+  },
 };
 
 const vaultReducer = (state = initialState, action) => {
