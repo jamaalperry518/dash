@@ -28,6 +28,20 @@
 @import "./main/interactions/vaults/singleVault.scss";
 @import "./main/interactions/vaults/vaultComponents/deposit.scss";
 
+#WEB3_CONNECT_MODAL_ID {
+  position: relative;
+  z-index: 1200;
+
+  .web3modal-modal-card {
+    .web3modal-provider-container {
+      .web3modal-provider-description {
+      }
+      &:hover {
+      }
+    }
+  }
+}
+
 html,
 body,
 div,

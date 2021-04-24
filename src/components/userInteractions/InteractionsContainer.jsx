@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect } from "react-redux";
+import { getBalance } from "../../Redux/actions/WalletActions";
 
 //components
 import TabSwitch from "./TabSwitch";
@@ -17,6 +18,12 @@ const InteractionsContainer = (props) => {
     }
     //eslint-disable-next-line
   }, []);
+
+  useEffect(() => {
+    if (props.address && props.provider) {
+      getBalance(props.provider, props.address);
+    }
+  }, [props.address, props.provider]);
   return (
     <div className="interactions-container">
       <TabSwitch />
@@ -34,6 +41,7 @@ const InteractionsContainer = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
+    provider: state.wallet.provider,
   };
 };
 
