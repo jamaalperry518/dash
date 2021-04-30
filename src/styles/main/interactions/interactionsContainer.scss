@@ -8,7 +8,7 @@
   left: 0;
   right: 0;
   top: 22.3rem;
-  margin: 2rem auto;
+  margin: 0 auto;
   color: white;
 
   .inactive {
@@ -17,7 +17,8 @@
   }
 
   .cards {
-    width: 100rem;
+    min-width: 90rem;
+    max-width: 90rem;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
     padding: 3rem;
     .section-heading {

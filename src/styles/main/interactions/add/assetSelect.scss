@@ -1,9 +1,9 @@
 .asset-select {
   @include flexbox(column, flex-start, center);
-  width: 40rem;
+  width: 44rem;
   height: 41rem;
   .asset-inputs {
-    height: 39rem;
+    max-height: 39rem;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 4rem 1rem 0rem 1rem;

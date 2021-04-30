@@ -7,7 +7,7 @@ import uni_logo from "../../assets/uni_logo.png";
 import usdt_logo from "../../assets/usdt_logo.png";
 
 const initialState = {
-  currentVault: "0x9d900ff9222d9733139b17f82c9a54d3cc61fab3",
+  currentVault: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
   currentPool: {},
   assetArray: [],
 
