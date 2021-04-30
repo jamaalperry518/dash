@@ -1,25 +1,51 @@
 .asset-select {
-  @include flexbox(column, center, center);
-  width: 40%;
-  .asset-input {
-    @include flexbox(row, center, center);
-    margin: 1.5rem 0;
+  @include flexbox(column, flex-start, center);
+  width: 40rem;
+  height: 41rem;
+  .asset-inputs {
+    height: 39rem;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    padding: 4rem 1rem 0rem 1rem;
 
-    h1 {
-      color: white;
-      margin-left: 1.5rem;
-      font-size: 3.6rem;
-      width: 0.5rem;
+    @include flexbox(column, center, center);
+
+    .asset-input {
+      width: 40rem;
+      width: 100%;
+      padding: 0 1rem;
+      @include flexbox(row, space-evenly, center);
+      margin: 1rem 0;
+
+      h1 {
+        color: white;
+        margin-left: 1.5rem;
+        font-size: 2.4rem;
+        width: 10rem;
+      }
+      .amount-input {
+        background-color: $darkBlueBackground;
+        border: 0.1rem solid white;
+        color: white;
+        border-radius: 0.6rem;
+        font-size: 2.4rem;
+        width: 14rem;
+        margin: 0 auto;
+        text-align: right;
+      }
     }
-    .amount-input {
-      background-color: $darkBlueBackground;
-      border: 0.1rem solid white;
-      color: white;
-      border-radius: 0.6rem;
-      font-size: 3.6rem;
-      width: 40%;
-      margin: 0 auto;
-      text-align: right;
-    }
+  }
+  .asset-inputs::-webkit-scrollbar {
+    width: 0.1rem;
+  }
+
+  .asset-inputs::-webkit-scrollbar-button {
+    color: linear-gradient(180deg, #020a55 0%, #17043a 100%);
+  }
+
+  .asset-inputs::-webkit-scrollbar-thumb {
+    border-radius: 1rem;
+    background-color: black;
+    background-color: linear-gradient(180deg, #020a55 0%, #17043a 100%);
   }
 }

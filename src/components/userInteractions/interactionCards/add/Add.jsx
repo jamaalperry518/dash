@@ -39,7 +39,7 @@ const Add = (props) => {
                     ></div>
                     <p className="asset-name">{asset.name.toUpperCase()}</p>
                     <p className="percentage-of-portfolio">
-                      {asset.value * 2}%
+                      {asset.value * 100}%
                     </p>
                   </div>
                 );

@@ -28,20 +28,20 @@ export const getPoolInfo = (asset, provider) => async (dispatch) => {
     "#ebf221",
   ];
   let colorIndex = 0;
-  let denormalizedWeights = [];
+  let normalizedWeights = [];
   let ARRAY = [];
   currentTokens.map(async (token) => {
     const tokenContract = new ethers.Contract(token, ERC20_ABI, provider);
     let tokenSymbol = await tokenContract.symbol();
 
-    let result = await contract.getDenormalizedWeight(token);
-    let denormalizedWeight = ethers.utils.formatUnits(result.toString(), 18);
+    let result = await contract.getNormalizedWeight(token);
+    let normalizedWeight = ethers.utils.formatUnits(result.toString(), 18);
 
-    denormalizedWeights.push(denormalizedWeight);
+    normalizedWeights.push(normalizedWeight);
 
     tokensInPool[`${tokenSymbol}`] = {
       name: tokenSymbol,
-      value: parseInt(denormalizedWeight),
+      value: parseFloat(normalizedWeight),
       color: colors[colorIndex],
       amount: 0,
     };

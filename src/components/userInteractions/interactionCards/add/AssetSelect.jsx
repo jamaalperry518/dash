@@ -19,23 +19,25 @@ const AssetSelect = (props) => {
   return (
     <div className={props.address ? "asset-select" : "asset-select inactive"}>
       <p className="section-heading">Select asset and amount to deposit:</p>
-      {assets?.map((asset, i) => {
-        console.log(asset);
-        return (
-          <div key={i} className="asset-input">
-            <input type="radio" name="asset" id={asset.name} />
-            <h1 className="asset-name">{asset.name}</h1>
-            <input
-              type="number"
-              className="amount-input"
-              min={0}
-              name="amount"
-              value={asset.amount}
-              onChange={(e) => changeHandler(e, i)}
-            />
-          </div>
-        );
-      })}
+      <div className="asset-inputs">
+        {assets?.map((asset, i) => {
+          console.log(asset);
+          return (
+            <div key={i} className="asset-input">
+              <input type="radio" name="asset" id={asset.name} />
+              <h1 className="asset-name">{asset.name}</h1>
+              <input
+                type="number"
+                className="amount-input"
+                min={0}
+                name="amount"
+                value={asset.amount}
+                onChange={(e) => changeHandler(e, i)}
+              />
+            </div>
+          );
+        })}
+      </div>
     </div>
   );
 };
