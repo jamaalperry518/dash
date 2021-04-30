@@ -1,15 +1,9 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 const Burn = (props) => {
   const [arrayToBurn, setArrayToBurn] = useState(0);
-  const [tokensToReceive] = useState({
-    BTC: 0.0,
-    ETH: 0.0,
-    DAI: 0.0,
-    UNI: 0.0,
-    USDT: 0.0,
-  });
-  const tokenArray = Object.entries(tokensToReceive);
+
   const changeHandler = (e) => {
     setArrayToBurn(e.target.value);
   };
@@ -30,11 +24,11 @@ const Burn = (props) => {
         <div className="amounts-to-receive">
           <div className="tokens-to-receive">
             <p className="section-heading">This burn will yield:</p>
-            {tokenArray.map((token, i) => {
+            {props.assets?.map((token, i) => {
               return (
                 <div key={i} className="burn-token">
-                  <p className="burn-token-amount asset-name">{token[1]}</p>
-                  <p className="burn-token-name asset-name">{token[0]}</p>
+                  <p className="burn-token-amount asset-name">{token.name}</p>
+                  <p className="burn-token-name asset-name">{token.amount}</p>
                 </div>
               );
             })}
@@ -50,5 +44,9 @@ const Burn = (props) => {
     </div>
   );
 };
-
-export default Burn;
+const mapStateToProps = (state) => {
+  return {
+    assets: state.vaults.assetArray,
+  };
+};
+export default connect(mapStateToProps)(Burn);

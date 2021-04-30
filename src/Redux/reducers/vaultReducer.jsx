@@ -7,16 +7,16 @@ import uni_logo from "../../assets/uni_logo.png";
 import usdt_logo from "../../assets/usdt_logo.png";
 
 const initialState = {
-  currentVault: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
+  currentVault: "0xd9346ab5a2ed5e32f5fc69a5cccf45211307ffc5",
   currentPool: {},
   assetArray: [],
 
   vaults: {
-    BTC: {
+    WBTC: {
       id: 0,
       img: btc_logo,
-      vaultName: "BTC",
-      vaultSymbol: "BTC-Vault",
+      vaultName: "WBTC",
+      vaultSymbol: "WBTC-Vault",
       vaultTvl: 402192,
       vaultApy: 68,
       reinvestedAPY: 7,
