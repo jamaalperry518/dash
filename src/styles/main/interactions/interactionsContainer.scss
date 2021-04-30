@@ -17,8 +17,8 @@
   }
 
   .cards {
-    min-width: 90rem;
-    max-width: 90rem;
+    min-width: 97rem;
+    max-width: 97rem;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
     padding: 3rem;
     .section-heading {
@@ -41,5 +41,8 @@
       margin: 0 auto;
       text-align: right;
     }
+  }
+  @media (max-width: 1280px) {
+    height: 50rem;
   }
 }

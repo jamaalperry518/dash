@@ -4,6 +4,10 @@
   max-height: 53rem;
   scrollbar-color: $lightBlueBackground;
   scrollbar-width: thin;
+
+  @media (max-width: 1280px) {
+    height: 45rem;
+  }
 }
 .vaults-container::-webkit-scrollbar {
   width: 100%;

@@ -12,16 +12,12 @@ const AssetSelect = (props) => {
     newArr[i] = copy;
     setAssets(newArr);
   };
-  useEffect(() => {
-    console.log(assets);
-  }, [assets]);
 
   return (
     <div className={props.address ? "asset-select" : "asset-select inactive"}>
       <p className="section-heading">Select asset and amount to deposit:</p>
       <div className="asset-inputs">
         {assets?.map((asset, i) => {
-          console.log(asset);
           return (
             <div key={i} className="asset-input">
               <input type="radio" name="asset" id={asset.name} />
