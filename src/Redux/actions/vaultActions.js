@@ -56,7 +56,6 @@ export const getPoolInfo = (asset, provider) => async (dispatch) => {
     payload: tokensInPool,
   });
 
-  console.log(ARRAY);
   return dispatch({
     type: "SET_ASSET_ARRAY",
     payload: ARRAY,

@@ -1,6 +1,6 @@
 .asset-select {
   @include flexbox(column, flex-start, center);
-  width: 44rem;
+  width: 47rem;
   height: 41rem;
   .asset-inputs {
     max-height: 39rem;
@@ -21,7 +21,7 @@
         color: white;
         margin-left: 1.5rem;
         font-size: 2.4rem;
-        width: 10rem;
+        width: 15rem;
       }
       .amount-input {
         background-color: $darkBlueBackground;

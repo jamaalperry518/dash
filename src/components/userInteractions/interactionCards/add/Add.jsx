@@ -9,7 +9,6 @@ const Add = (props) => {
 
   useEffect(() => {
     if (props.assets.length >= 2 && props.address) {
-      console.log(props.assets);
       setAssetsToChart(props.assets);
     }
     //eslint-disable-next-line

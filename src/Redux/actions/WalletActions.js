@@ -68,21 +68,16 @@ export const connectUserWallet = () => (dispatch) => {
 export const getBalance = async (provider, address) => {
   const assetArray = Object.values(assets);
   const balance = await provider.getBalance(address);
-  console.log("eth", ethers.utils.formatEther(balance) * 2300);
   assetArray.map(async (asset) => {
     const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
 
     const balance = ethers.utils.formatUnits(await contract.balanceOf(address));
     if (balance > 0) {
-      console.log(`${asset.name}`, balance);
-
       axios
         .get(
           `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=${asset.address}&vs_currencies=usd`
         )
-        .then((res) => {
-          console.log(res.data[asset.address.toLowerCase()].usd);
-        })
+        .then((res) => {})
         .catch((err) => {
           console.log(err);
         });
