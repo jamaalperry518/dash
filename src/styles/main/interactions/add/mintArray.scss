@@ -1,37 +1,46 @@
 .mint-array {
-  width: 20%;
+  width: 30rem;
+  height: 30rem;
+
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
+  align-items: center;
   border: 0.1rem solid white;
   padding: 7%;
   opacity: 0.6;
 
-  .mint-stats {
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    h1 {
+  .mint-content {
+    @include flexbox(column, center, center);
+    .mint-stats {
+      display: flex;
+      flex-direction: column;
+      align-items: flex-start;
+      h1 {
+        color: white;
+        font-size: 1.6rem;
+      }
+      .number-amount {
+        margin-top: 2rem;
+        font-size: 5.6rem;
+        width: 22rem;
+        font-weight: bold;
+      }
+      .asset-name {
+        margin-bottom: 4rem;
+        margin-left: 0.5rem;
+        font-size: 3rem;
+      }
+    }
+    button {
+      display: inline-block;
+      background-color: $lightBlueBackground;
       color: white;
-      font-size: 1.6rem;
+      font-size: 3rem;
+      width: 21rem;
+      height: 5rem;
+      padding: 4% 0;
+      border-radius: 2.8rem;
+      margin: 0 auto;
     }
-    .number-amount {
-      margin-top: 2rem;
-      font-size: 5.6rem;
-    }
-    .asset-name {
-      margin-bottom: 5rem;
-      margin-left: 0.5rem;
-    }
-  }
-  button {
-    display: inline-block;
-    background-color: $lightBlueBackground;
-    color: white;
-    font-size: 3rem;
-    width: 75%;
-    padding: 4% 0;
-    border-radius: 2.8rem;
-    margin: 0 auto;
   }
 }

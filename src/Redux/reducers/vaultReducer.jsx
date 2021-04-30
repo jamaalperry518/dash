@@ -10,7 +10,7 @@ const initialState = {
   currentVault: "0x9d900ff9222d9733139b17f82c9a54d3cc61fab3",
   currentPool: {},
   assetArray: [],
-  selectedVault: {},
+
   vaults: {
     BTC: {
       id: 0,

@@ -24,4 +24,9 @@ export const assets = {
     decimals: 18,
     address: "0xa0246c9032bC3A600820415aE600c6388619A14D",
   },
+  WBTC: {
+    name: "WBTC",
+    decimals: 18,
+    address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
+  },
 };
