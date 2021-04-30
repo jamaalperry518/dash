@@ -1,8 +1,7 @@
 .header {
   padding: 3rem 10rem;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+  @include flexbox(row, space-between, center);
+  max-width: 210rem;
 
   svg {
     height: 5rem;
