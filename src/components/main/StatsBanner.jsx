@@ -26,7 +26,7 @@ const StatsBanner = () => {
     <div className="financial-stats-banner">
       {bannerArray.map((item, i) => {
         return (
-          <div className="banner-stat-container">
+          <div key={i} className="banner-stat-container">
             <p className="banner-title">{item.text}</p>
             <h1 className="banner-stat">
               {convertStandardNumber(item.value)}{" "}

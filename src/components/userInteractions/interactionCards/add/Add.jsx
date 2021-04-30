@@ -1,58 +1,65 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import Chart from "../../../ui/Chart";
 import AssetSelect from "./AssetSelect";
 import Mint from "./Mint";
+import { connect } from "react-redux";
 
-const Add = () => {
-  const assetsToChart = {
-    0: {
-      name: "btc",
-      value: 44.16,
-      color: "#1330f4",
-    },
-    2: {
-      name: "eth",
-      value: 28.22,
-      color: "#13a6f4",
-    },
-    3: {
-      name: "dai",
-      value: 8.16,
-      color: "#bcd57e",
-    },
-    4: {
-      name: "bnb",
-      value: 3.16,
-      color: "#c91a5b",
-    },
-    5: {
-      name: "usdt",
-      value: 16.3,
-      color: "#c95b5b",
-    },
-  };
-  const assetsArray = Object.values(assetsToChart);
+const Add = (props) => {
+  const [assetsToChart, setAssetsToChart] = useState([]);
+
+  useEffect(() => {
+    if (props.assets.length >= 2 && props.address) {
+      console.log(props.assets);
+      setAssetsToChart(props.assets);
+    }
+    //eslint-disable-next-line
+    if (assetsToChart == 0) {
+      const timer = setTimeout(() => {
+        setAssetsToChart(props.assets);
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+    //eslint-disable-next-line
+  }, [props.assets, props.currentPool]);
+
   return (
-    <div className="add-to-bags">
-      <div className="chart-container">
-        <p className="section-heading">Array consist of:</p>
-        <Chart assetsArray={assetsArray} />
-        <div className="asset-by-percentage">
-          {assetsArray?.map((asset) => {
-            return (
-              <div className="asset">
-                <div className={`color-code ${asset.name}`}></div>
-                <p className="asset-name">{asset.name.toUpperCase()}</p>
-                <p className="percentage-of-portfolio">(44.16%)</p>
-              </div>
-            );
-          })}
+    <>
+      {props.assets.length > 1 ? (
+        <div className="add-to-bags">
+          <div className="chart-container">
+            <p className="section-heading">Array consist of:</p>
+            <Chart assetsArray={assetsToChart} />
+            <div className="asset-by-percentage">
+              {assetsToChart?.map((asset, i) => {
+                return (
+                  <div key={i} className="asset">
+                    <div
+                      className="color-code"
+                      style={{ backgroundColor: asset.color }}
+                    ></div>
+                    <p className="asset-name">{asset.name.toUpperCase()}</p>
+                    <p className="percentage-of-portfolio">
+                      {asset.value * 2}%
+                    </p>
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+          <AssetSelect assetsToChart={assetsToChart} />
+          <Mint />{" "}
         </div>
-      </div>
-      <AssetSelect />
-      <Mint />
-    </div>
+      ) : (
+        <h1 className="loading">LOADING</h1>
+      )}
+    </>
   );
 };
-
-export default Add;
+const mapStateToProps = (state) => {
+  return {
+    address: state.wallet.address,
+    currentPool: state.vaults.currentPool,
+    assets: state.vaults.assetArray,
+  };
+};
+export default connect(mapStateToProps)(Add);

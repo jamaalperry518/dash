@@ -1,42 +1,25 @@
 .header {
-  padding: 50px 100px;
+  padding: 5rem 10rem;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  position: relative;
-  z-index: 2;
+
   svg {
-    height: 50px;
-    width: 50px;
+    height: 5rem;
+    width: 5rem;
   }
   p {
     font-family: $main-font;
-    margin-left: 36px;
-    font-size: 30px;
+    margin-left: 3.6rem;
+    font-size: 3rem;
     color: white;
-    border-bottom: 4px solid $lightBlueBackground;
-    padding: 15px;
+    border-bottom: 0.4rem solid $lightBlueBackground;
+    padding: 1.5rem;
     font-weight: bold;
     cursor: pointer;
 
     &:hover {
       color: #1330f4;
     }
-  }
-
-  .top-swoops {
-    width: 12%;
-    left: 15%;
-    top: 0;
-    position: absolute;
-    z-index: 1;
-    @media (min-width: 2800px) {
-      width: 11%;
-    }
-  }
-  .top-dots {
-    position: absolute;
-    width: 10%;
-    right: 25%;
   }
 }

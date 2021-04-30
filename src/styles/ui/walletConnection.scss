@@ -12,14 +12,14 @@
   .connect-button {
     background-color: transparent;
     color: white;
-    font-size: 36px;
-    border-bottom: 2px solid $lightBlueBackground;
+    font-size: 3.6rem;
+    border-bottom: 0.2rem solid $lightBlueBackground;
     position: relative;
 
     &:hover {
       color: $hoverBlue;
       border-bottom: none;
-      top: 3px;
+      top: 0.3rem;
     }
   }
 }

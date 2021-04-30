@@ -1,12 +1,12 @@
 .coin-prices {
   background-color: $darkBlueBackground;
-  margin-top: 20px;
+  margin-top: 2rem;
   display: flex;
   align-items: center;
   justify-content: space-evenly;
   h1 {
     color: white;
     font-family: $main-font;
-    font-size: 2em;
+    font-size: 2rem;
   }
 }

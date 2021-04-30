@@ -47,6 +47,7 @@ const TabSwitch = (props) => {
       {tabsArr.map((tab, i) => {
         return (
           <div
+            key={i}
             onClick={() => selectHandler(tab)}
             className={tab.selected ? `${tab.class} selected` : tab.class}
           >

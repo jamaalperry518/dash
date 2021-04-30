@@ -9,10 +9,10 @@
     align-items: center;
     justify-content: center;
     color: white;
-    font-size: 50px;
-    margin-bottom: 30px;
+    font-size: 5rem;
+    margin-bottom: 3rem;
     cursor: pointer;
-    padding: 8px;
+    padding: 0.8rem;
     a {
       color: white;
       &:hover {
@@ -20,10 +20,10 @@
       }
     }
     &.selected {
-      border-right: 2px solid $lightBlueBackground;
+      border-right: 0.2rem solid $lightBlueBackground;
     }
     &:first-child {
-      font-size: 60px;
+      font-size: 6rem;
     }
   }
 }

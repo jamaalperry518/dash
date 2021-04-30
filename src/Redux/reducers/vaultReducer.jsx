@@ -7,6 +7,9 @@ import uni_logo from "../../assets/uni_logo.png";
 import usdt_logo from "../../assets/usdt_logo.png";
 
 const initialState = {
+  currentVault: "0x9d900ff9222d9733139b17f82c9a54d3cc61fab3",
+  currentPool: {},
+  assetArray: [],
   selectedVault: {},
   vaults: {
     BTC: {
@@ -65,12 +68,6 @@ const initialState = {
       userDeposit: 2.875,
     },
   },
-  balancerPools: {
-    WETH_WBTC: {
-      pool_name: "WETH-BTC",
-      contract_address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
-    },
-  },
 };
 
 const vaultReducer = (state = initialState, action) => {
@@ -84,6 +81,16 @@ const vaultReducer = (state = initialState, action) => {
       return {
         ...state,
         selectedVault: {},
+      };
+    case "SET_CURRENT_POOL":
+      return {
+        ...state,
+        currentPool: action.payload,
+      };
+    case "SET_ASSET_ARRAY":
+      return {
+        ...state,
+        assetArray: action.payload,
       };
     default:
       return state;

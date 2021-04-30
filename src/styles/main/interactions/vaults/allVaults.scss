@@ -1,13 +1,13 @@
 .vaults-container {
   @include flexbox(column, flex-start);
   overflow-y: scroll;
-  max-height: 600px;
+  max-height: 60rem;
   scrollbar-color: $lightBlueBackground;
   scrollbar-width: thin;
 }
 .vaults-container::-webkit-scrollbar {
   width: 100%;
-  width: 2px;
+  width: 0.2rem;
 }
 
 .vaults-container::-webkit-scrollbar-button {
@@ -15,7 +15,7 @@
 }
 
 .vaults-container::-webkit-scrollbar-thumb {
-  border-radius: 10px;
+  border-radius: 1rem;
   background-color: black;
   background-color: linear-gradient(180deg, #020a55 0%, #17043a 100%);
 }

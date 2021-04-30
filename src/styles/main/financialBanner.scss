@@ -1,27 +1,28 @@
 .financial-stats-banner {
-  width: 80%;
+  width: 120rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
-  justify-content: space-evenly;
+  justify-content: flex-start;
   color: $off-white;
 
   .banner-stat-container {
-    width: 20%;
+    width: 25rem;
+    margin-right: 4rem;
     border-right: 1px solid $off-white;
     &:last-child {
       border-right: none;
     }
     .banner-title {
-      font-size: 16px;
+      font-size: 1.6rem;
       color: $off-white;
-      line-height: 19px;
+      line-height: 1.9rem;
     }
     .banner-stat {
       color: white;
-      font-size: 36px;
+      font-size: 3.6rem;
       font-weight: bold;
-      line-height: 44px;
+      line-height: 4.4rem;
     }
   }
 }

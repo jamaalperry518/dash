@@ -1,81 +1,81 @@
-.user-position-card {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  background-color: $darkBlueBackground;
-  color: white;
-  .position-left {
-    border-right: 3px solid $lightBlueBackground;
-    .title {
-      font-family: $main-font;
-      h4 {
-        font-size: 2.4em;
-      }
-    }
-    .tooltip {
-      position: relative;
-      display: inline-block;
-      border-bottom: 1px dotted $lightBlueBackground; /* If you want dots under the hoverable text */
-      .tooltip-text {
-        visibility: hidden;
-        width: max-content;
-        background-color: $lightBlueBackground;
-        color: #fff;
-        padding: 3%;
-        border-radius: 6px;
-        font-size: 1em;
+// .user-position-card {
+//   display: grid;
+//   grid-template-columns: 1fr 1fr;
+//   background-color: $darkBlueBackground;
+//   color: white;
+//   .position-left {
+//     border-right: 3px solid $lightBlueBackground;
+//     .title {
+//       font-family: $main-font;
+//       h4 {
+//         font-size: 2.4em;
+//       }
+//     }
+//     .tooltip {
+//       position: relative;
+//       display: inline-block;
+//       border-bottom: 1px dotted $lightBlueBackground; /* If you want dots under the hoverable text */
+//       .tooltip-text {
+//         visibility: hidden;
+//         width: max-content;
+//         background-color: $lightBlueBackground;
+//         color: #fff;
+//         padding: 3%;
+//         border-radius: 6px;
+//         font-size: 1em;
 
-        /* Position the tooltip text - see examples below! */
-        position: absolute;
-        z-index: 1;
-        top: -20px;
-        left: 5%;
-        a {
-          color: white;
-          text-decoration: none;
-        }
-      }
-    }
-    .tooltip:hover .tooltip-text {
-      visibility: visible;
-    }
+//         /* Position the tooltip text - see examples below! */
+//         position: absolute;
+//         z-index: 1;
+//         top: -20px;
+//         left: 5%;
+//         a {
+//           color: white;
+//           text-decoration: none;
+//         }
+//       }
+//     }
+//     .tooltip:hover .tooltip-text {
+//       visibility: visible;
+//     }
 
-    .user-positions {
-      padding-left: 30px;
-      width: 80%;
-      display: flex;
-      flex-direction: column;
-      align-items: flex-start;
-      margin-top: 60px;
+//     .user-positions {
+//       padding-left: 30px;
+//       width: 80%;
+//       display: flex;
+//       flex-direction: column;
+//       align-items: flex-start;
+//       margin-top: 60px;
 
-      .user-position {
-        width: 100%;
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        margin-bottom: 30px;
-        p {
-          font-size: 24px;
-          font-family: $main-font;
-          text-align: right;
-        }
-      }
-    }
-  }
-  .position-right {
-    display: grid;
-    grid-template-rows: 1fr 1fr;
-    div {
-      width: 75%;
-      margin: 30px auto;
-      .stat {
-        font-size: 3em;
-        font-family: $main-font;
-      }
-      .subtext {
-        font-size: 1.5em;
-        text-align: right;
-        font-family: $main-font;
-      }
-    }
-  }
-}
+//       .user-position {
+//         width: 100%;
+//         display: flex;
+//         align-items: center;
+//         justify-content: space-between;
+//         margin-bottom: 30px;
+//         p {
+//           font-size: 24px;
+//           font-family: $main-font;
+//           text-align: right;
+//         }
+//       }
+//     }
+//   }
+//   .position-right {
+//     display: grid;
+//     grid-template-rows: 1fr 1fr;
+//     div {
+//       width: 75%;
+//       margin: 30px auto;
+//       .stat {
+//         font-size: 3em;
+//         font-family: $main-font;
+//       }
+//       .subtext {
+//         font-size: 1.5em;
+//         text-align: right;
+//         font-family: $main-font;
+//       }
+//     }
+//   }
+// }
