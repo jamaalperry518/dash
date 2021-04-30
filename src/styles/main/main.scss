@@ -1,7 +1,7 @@
 .main {
   height: 100%;
-  width: 80%;
+  width: 170rem;
   margin: 0 auto;
-  padding: 2.5% 5%;
-  @include flexbox(column, flex-start, center);
+  padding: 2rem 0;
+  @include flexbox(column, center, center);
 }

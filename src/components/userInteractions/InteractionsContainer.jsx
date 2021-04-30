@@ -1,8 +1,9 @@
 import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import { getBalance } from "../../Redux/actions/WalletActions";
+import { getPoolInfo } from "../../Redux/actions/vaultActions";
 
 //components
 import TabSwitch from "./TabSwitch";
@@ -12,17 +13,22 @@ import Vaults from "./interactionCards/vaults/Vaults";
 
 const InteractionsContainer = (props) => {
   const history = useHistory();
+  const dispatch = useDispatch();
   useEffect(() => {
     if (props.address === "") {
       history.push("/");
+    } else {
     }
+
     //eslint-disable-next-line
   }, []);
 
   useEffect(() => {
     if (props.address && props.provider) {
       getBalance(props.provider, props.address);
+      dispatch(getPoolInfo(props.vault, props.provider));
     }
+    //eslint-disable-next-line
   }, [props.address, props.provider]);
   return (
     <div className="interactions-container">
@@ -42,6 +48,8 @@ const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
     provider: state.wallet.provider,
+    vault: state.vaults.currentVault,
+    currentPool: state.vaults.currentPool,
   };
 };
 

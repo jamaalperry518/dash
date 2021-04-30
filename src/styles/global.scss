@@ -29,8 +29,8 @@
 @import "./main/interactions/vaults/vaultComponents/deposit.scss";
 
 #WEB3_CONNECT_MODAL_ID {
-  position: relative;
-  z-index: 1200;
+  position: absolute;
+  z-index: 500;
 
   .web3modal-modal-card {
     .web3modal-provider-container {
@@ -126,7 +126,6 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font-size: 62.5%;
   font: inherit;
   vertical-align: baseline;
 }
@@ -146,6 +145,15 @@ section {
 }
 body {
   line-height: 1;
+}
+html {
+  box-sizing: border-box;
+  font-size: 62.5%;
+  background: #1330f4;
+  background: linear-gradient(180deg, #020a55 0%, #17043a 100%);
+  height: 100vh;
+  width: 100vw;
+  overflow-y: hidden;
 }
 ol,
 ul {
@@ -168,12 +176,10 @@ table {
 }
 
 .App {
-  background: #1330f4;
-  background: linear-gradient(180deg, #020a55 0%, #17043a 100%);
-  height: 100vh;
-  width: 100%;
+  max-width: 250rem;
+  margin: 0 auto;
   font-family: $main-font;
-  overflow-y: hidden;
+
   button {
     border: none;
     position: relative;

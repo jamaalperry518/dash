@@ -1,36 +1,26 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 const AssetSelect = (props) => {
-  const [assets] = useState([
-    {
-      name: "BTC",
-      amount: 0,
-    },
-    {
-      name: "ETH",
-      amount: 0,
-    },
-    {
-      name: "DAI",
-      amount: 0,
-    },
-    {
-      name: "BNB",
-      amount: 0,
-    },
-    {
-      name: "USDT",
-      amount: 0,
-    },
-  ]);
-  // const changeHandler = (e) => {
-  //   setAssets({ ...assets, [e.target.name]: e.target.value });
-  // };
+  const [assets, setAssets] = useState(props.assets);
+  const changeHandler = (e, i) => {
+    console.log(assets[i].amount);
+    let copy = assets[i];
+    copy.amount = e.target.value;
+    console.log(copy);
+    let newArr = [...assets];
+    newArr[i] = copy;
+    setAssets(newArr);
+  };
+  useEffect(() => {
+    console.log(assets);
+  }, [assets]);
+
   return (
     <div className={props.address ? "asset-select" : "asset-select inactive"}>
       <p className="section-heading">Select asset and amount to deposit:</p>
       {assets?.map((asset, i) => {
+        console.log(asset);
         return (
           <div key={i} className="asset-input">
             <input type="radio" name="asset" id={asset.name} />
@@ -38,10 +28,10 @@ const AssetSelect = (props) => {
             <input
               type="number"
               className="amount-input"
-
-              // name={asset.name}
-              // value={assets[i].amount}
-              //   onChange={changeHandler}
+              min={0}
+              name="amount"
+              value={asset.amount}
+              onChange={(e) => changeHandler(e, i)}
             />
           </div>
         );
@@ -53,6 +43,7 @@ const AssetSelect = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
+    assets: state.vaults.assetArray,
   };
 };
 
