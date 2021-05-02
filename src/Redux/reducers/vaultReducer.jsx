@@ -12,11 +12,11 @@ const initialState = {
   assetArray: [],
 
   vaults: {
-    BTC: {
+    WBTC: {
       id: 0,
       img: btc_logo,
-      vaultName: "BTC",
-      vaultSymbol: "BTC-Vault",
+      vaultName: "WBTC",
+      vaultSymbol: "WBTC-Vault",
       vaultTvl: 402192,
       vaultApy: 68,
       reinvestedAPY: 7,
