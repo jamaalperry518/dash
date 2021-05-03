@@ -3,7 +3,10 @@ import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { getBalance } from "../../Redux/actions/WalletActions";
-import { getCurrentPoolInfo,getPoolInfo } from "../../Redux/actions/vaultActions";
+import {
+  getCurrentPoolInfo,
+  getPoolInfo,
+} from "../../Redux/actions/vaultActions";
 
 //components
 import TabSwitch from "./TabSwitch";
@@ -24,22 +27,19 @@ const InteractionsContainer = (props) => {
   }, []);
 
   useEffect(() => {
-    const poolArray = Object.values(props.pools)
-    
+    const poolArray = Object.values(props.pools);
+
     if (props.address && props.provider) {
       getBalance(props.provider, props.address);
       dispatch(getCurrentPoolInfo(poolArray[0].address, props.provider));
-      
-      poolArray.map(pool => {
-      
-        dispatch(getPoolInfo(pool.name,pool.address, props.provider));
-        
-      })
+      //eslint-disable-next-line
+      poolArray.map((pool) => {
+        dispatch(getPoolInfo(pool.name, pool.address, props.provider));
+      });
     }
-    
-    //eslint-disable-next-line
-  }, [props.address, props.provider,]);
 
+    //eslint-disable-next-line
+  }, [props.address, props.provider]);
 
   return (
     <div className="interactions-container">
@@ -61,7 +61,7 @@ const mapStateToProps = (state) => {
     provider: state.wallet.provider,
     vault: state.vaults.currentVault,
     currentPool: state.vaults.currentPool,
-    pools: state.vaults.pools
+    pools: state.vaults.pools,
   };
 };
 
