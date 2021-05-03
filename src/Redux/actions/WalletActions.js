@@ -84,3 +84,20 @@ export const getBalance = async (provider, address) => {
     }
   });
 };
+
+export const getTokenPrice = (token) => {
+  
+  axios
+        .get(
+          `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=${token}&vs_currencies=usd`
+        )
+        .then((res) => {
+         
+          let price = res.data[`${token.toLowerCase()}`]["usd"]
+          console.log(price)
+          return price
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+}

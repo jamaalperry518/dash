@@ -10,6 +10,7 @@ const initialState = {
   currentVault: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
   currentPool: {},
   assetArray: [],
+  swapFee: 0,
 
   vaults: {
     WBTC: {
@@ -68,7 +69,35 @@ const initialState = {
       userDeposit: 2.875,
     },
   },
+  pools: {
+    0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5 : {
+      address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
+      name: "wETH-wBTC",
+      tokens: {}
+    },
+    0x59a19d8c652fa0284f44113d0ff9aba70bd46fb4: {
+      address: "0x59a19d8c652fa0284f44113d0ff9aba70bd46fb4",
+      name: "BAL-wETH",
+      tokens: {}
+    },
+    // 0x5b2dc8c02728e8fb6aea03a622c3849875a48801 : {      
+    //   address: "0x5b2dc8c02728e8fb6aea03a622c3849875a48801",
+    //   name: "wPE_GIFT_IMPACT_YFU_PIXEL_NFTS_LIFT_STR",
+    //   tokens: {}
+    // },
+    0x221bf20c2ad9e5d7ec8a9d1991d8e2edcfcb9d6c: {
+      address: "0x221bf20c2ad9e5d7ec8a9d1991d8e2edcfcb9d6c",
+      name: "wETH-wBTC",
+      tokens: {}
+    },
+    0xe42237f32708bd5c04d69cc77e1e36c8f911a016: {
+      address: "0xe42237f32708bd5c04d69cc77e1e36c8f911a016",
+      name: "GNO-wETH",
+      tokens: {}
+    }
+  }
 };
+
 
 const vaultReducer = (state = initialState, action) => {
   switch (action.type) {
@@ -92,6 +121,14 @@ const vaultReducer = (state = initialState, action) => {
         ...state,
         assetArray: action.payload,
       };
+      case "SET_SWAP_FEE":
+      return {
+        ...state,swapFee: action.payload,
+      };
+      case "GET_ALL_POOLS" :
+        return {
+          ...state,pools: action.payload
+        }
     default:
       return state;
   }

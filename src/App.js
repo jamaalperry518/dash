@@ -9,9 +9,7 @@ import {
 import "./styles/global.scss";
 
 function App() {
-  window.ethereum.on("accountsChanged", () => {
-    window.location.reload();
-  });
+  
   const dispatch = useDispatch();
   useEffect(() => {
     dispatch(getBigCoinsPrice());
