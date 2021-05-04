@@ -17,6 +17,8 @@ const colors = [
   "#ff4300",
   "#f221cf",
   "#ebf221",
+  "#5900ff",
+  "#5900ff",
 ];
 
 export const selectVault = (vault) => (dispatch) => {
@@ -27,9 +29,11 @@ export const selectVault = (vault) => (dispatch) => {
 };
 
 let resultObject = {};
+let colorIndex = 0;
 export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
   const contract = new ethers.Contract(asset, balancerABI.abi, provider);
   let vaultSwapFee = await contract.getSwapFee();
+
   let swapFee = ethers.utils.formatUnits(vaultSwapFee.toString(), 18) * 100;
   dispatch({
     type: "SET_SWAP_FEE",
@@ -39,7 +43,6 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
   let tokensInPool = {};
   let currentTokens = await contract.getCurrentTokens();
 
-  let colorIndex = 0;
   let normalizedWeights = [];
 
   currentTokens.map(async (token) => {
@@ -62,7 +65,7 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
       });
 
     normalizedWeights.push(normalizedWeight);
-
+    colorIndex++;
     tokensInPool[`${tokenSymbol}`] = {
       name: tokenSymbol,
       value: parseFloat(normalizedWeight),
@@ -70,15 +73,17 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
       amount: 0,
       price: await tokenPrice,
     };
-    colorIndex++;
-    if (!resultObject[`${poolName}`]) {
-      resultObject[`${poolName}`] = { address: asset, tokens: tokensInPool };
-    }
+
+    resultObject[`${poolName}`] = {
+      address: asset,
+      name: poolName,
+      tokens: tokensInPool,
+      swapFee: swapFee,
+    };
 
     return resultObject;
   });
 
-  console.log(resultObject);
   dispatch({
     type: "GET_ALL_POOLS",
     payload: resultObject,
@@ -88,6 +93,7 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
 export const getCurrentPoolInfo = (asset, provider) => async (dispatch) => {
   const contract = new ethers.Contract(asset, balancerABI.abi, provider);
   let vaultSwapFee = await contract.getSwapFee();
+  let colorIndex = 0;
   let swapFee = ethers.utils.formatUnits(vaultSwapFee.toString(), 18) * 100;
   dispatch({
     type: "SET_SWAP_FEE",
@@ -97,7 +103,6 @@ export const getCurrentPoolInfo = (asset, provider) => async (dispatch) => {
   let tokensInPool = {};
   let currentTokens = await contract.getCurrentTokens();
 
-  let colorIndex = 0;
   let normalizedWeights = [];
   let ARRAY = [];
   currentTokens.map(async (token) => {
