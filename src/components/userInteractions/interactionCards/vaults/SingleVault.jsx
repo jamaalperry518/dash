@@ -1,23 +1,34 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { convertStandardNumber } from "../../../../Redux/actions/currencyActions";
 //components
 import { FaExternalLinkAlt } from "react-icons/fa";
 import VaultButtons from "./VaultInteraction/VaultButtons";
+import Chart from "../../../ui/Chart";
 
 const SingleVault = (props) => {
   const vault = props.vault;
+  const [poolTokens, setPoolTokens] = useState([]);
+
+  useEffect(() => {
+    let tokenArray = Object.values(vault.tokens);
+    if (vault.tokens && poolTokens.length === 0) {
+      const timer = setTimeout(() => {
+        setPoolTokens(tokenArray);
+      }, 250);
+      return () => clearTimeout(timer);
+    }
+
+    console.log(tokenArray);
+    //eslint-disable-next-line
+  }, [vault.tokens]);
 
   return (
     <div className="single-vault">
       <div className="vault-top">
         <div className="vault-header">
           <div className="name-and-logo">
-            <img
-              src={vault.img}
-              alt={`${vault.name} logo`}
-              className="vault-logo"
-            />
-            <p className="vault-name">{vault.vaultSymbol}</p>
+            <Chart assetsArray={poolTokens} />
+            <p className="vault-name">{vault.name}</p>
           </div>
 
           <FaExternalLinkAlt className="etherscan-link" />
@@ -30,8 +41,8 @@ const SingleVault = (props) => {
           </div>
 
           <div className="vault-stat">
-            <p className="section-heading">APY total</p>
-            <p className="stat-text">{vault.vaultApy}%</p>
+            <p className="section-heading">Swap Fee</p>
+            <p className="stat-text">{vault.swapFee * 10}%</p>
           </div>
 
           <div className="vault-stat">
