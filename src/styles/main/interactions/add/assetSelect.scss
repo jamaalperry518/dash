@@ -2,17 +2,20 @@
   @include flexbox(column, flex-start, center);
   width: 47rem;
   height: 41rem;
+
   .asset-inputs {
     max-height: 39rem;
     overflow-y: scroll;
     overflow-x: hidden;
     padding: 4rem 1rem 0rem 1rem;
+    scrollbar-color: $lightBlueBackground $darkBlueBackground;
+    scrollbar-width: thin;
 
     @include flexbox(column, center, center);
 
     .asset-input {
       width: 40rem;
-      width: 100%;
+
       padding: 0 1rem;
       @include flexbox(row, space-evenly, center);
       margin: 1rem 0;
@@ -23,6 +26,7 @@
         font-size: 2.4rem;
         width: 15rem;
       }
+
       .amount-input {
         background-color: $darkBlueBackground;
         border: 0.1rem solid white;
@@ -30,6 +34,7 @@
         border-radius: 0.6rem;
         font-size: 2.4rem;
         width: 14rem;
+        height: 3.8rem;
         margin: 0 auto;
         text-align: right;
       }

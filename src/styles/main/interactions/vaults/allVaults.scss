@@ -2,7 +2,7 @@
   @include flexbox(column, flex-start);
   overflow-y: scroll;
   max-height: 53rem;
-  scrollbar-color: $lightBlueBackground;
+  scrollbar-color: $lightBlueBackground $darkBlueBackground;
   scrollbar-width: thin;
 
   @media (max-width: 1280px) {
@@ -22,4 +22,5 @@
   border-radius: 1rem;
   background-color: black;
   background-color: linear-gradient(180deg, #020a55 0%, #17043a 100%);
+  background: -moz-linear-gradient(top 180deg, #020a55 0%, #17043a 100%);
 }

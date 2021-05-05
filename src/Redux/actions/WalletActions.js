@@ -67,6 +67,7 @@ export const connectUserWallet = () => (dispatch) => {
 
 export const getBalance = async (provider, address) => {
   const assetArray = Object.values(assets);
+  //eslin-disable-next-line
 
   assetArray.map(async (asset) => {
     const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
