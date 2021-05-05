@@ -7,24 +7,29 @@ const initialState = {
   swapFee: 0,
 
   pools: {
-    "wETH-wBTC": {
+    "WETH-wBTC": {
       address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
-      name: "wETH-wBTC",
+      name: "WETH-WBTC",
       tokens: {},
     },
-    "BAL-wETH": {
+    "BAL-WETH": {
       address: "0x59a19d8c652fa0284f44113d0ff9aba70bd46fb4",
-      name: "BAL-wETH",
+      name: "BAL-WETH",
       tokens: {},
     },
-    "wBTC-wETH": {
+    "WBTC-WETH": {
       address: "0x221bf20c2ad9e5d7ec8a9d1991d8e2edcfcb9d6c",
-      name: "wETH-wBTC",
+      name: "WETH-WBTC",
       tokens: {},
     },
-    "GNO-wETH": {
+    "GNO-WETH": {
       address: "0xe42237f32708bd5c04d69cc77e1e36c8f911a016",
-      name: "GNO-wETH",
+      name: "GNO-WETH",
+      tokens: {},
+    },
+    "WETH-BAL-WBTC": {
+      address: "0x102efb11d588fa03dfc9fb5e0894dd241839d3f8",
+      name: "WETH-BAL-WBTC",
       tokens: {},
     },
   },
