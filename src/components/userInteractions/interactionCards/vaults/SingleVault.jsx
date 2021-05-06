@@ -41,7 +41,7 @@ const SingleVault = (props) => {
 
           <div className="vault-stat">
             <p className="section-heading">Swap Fee</p>
-            <p className="stat-text">{vault.swapFee * 10}%</p>
+            <p className="stat-text">{vault.swapFee}%</p>
           </div>
 
           <div className="vault-stat">

@@ -24,7 +24,7 @@ const Add = (props) => {
     } else {
       const timer = setTimeout(() => {
         dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-      }, 175);
+      }, 50);
       return () => clearTimeout(timer);
     }
   }, [props.currentPool, props.assets, props.pools, dispatch]);
