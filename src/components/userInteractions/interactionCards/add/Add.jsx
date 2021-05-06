@@ -17,7 +17,7 @@ const Add = (props) => {
 
   useEffect(() => {
     // dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-    if (props.assets.length >= 1) {
+    if (props.assets.length >= 2) {
       setAssetsToChart(props.assets);
     }
 
