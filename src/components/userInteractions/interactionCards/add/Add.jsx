@@ -16,17 +16,15 @@ const Add = (props) => {
   // }, [props.addresss, props.pools, dispatch]);
 
   useEffect(() => {
-    if (props.currentPool) {
-      dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-      if (props.assets.length >= 1) {
-        setAssetsToChart(props.assets);
-      }
-    } else {
-      const timer = setTimeout(() => {
-        dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-      }, 50);
-      return () => clearTimeout(timer);
+    // dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+    if (props.assets.length >= 2) {
+      setAssetsToChart(props.assets);
     }
+
+    const timer = setTimeout(() => {
+      dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+    }, 50);
+    return () => clearTimeout(timer);
   }, [props.currentPool, props.assets, props.pools, dispatch]);
 
   return (
@@ -44,7 +42,7 @@ const Add = (props) => {
                       className="color-code"
                       style={{ backgroundColor: asset.color }}
                     ></div>
-                    <p className="asset-name">{asset.name.toUpperCase()}</p>
+                    <p className="asset-name">{asset.symbol}</p>
                     <p className="percentage-of-portfolio">
                       {asset.value * 100}%
                     </p>

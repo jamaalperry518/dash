@@ -26,8 +26,10 @@ const InteractionsContainer = (props) => {
   useEffect(() => {
     const poolArray = Object.values(props.pools);
 
-    if (props.address && props.provider) {
-      getBalance(props.provider, props.address);
+    if (props.provider) {
+      if (props.address !== "") {
+        getBalance(props.provider, props.address);
+      }
 
       poolArray.map((pool) => {
         return dispatch(getPoolInfo(pool.name, pool.address, props.provider));

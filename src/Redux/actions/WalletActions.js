@@ -4,65 +4,76 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 import { assets } from "../../data/assets/tokens";
 import { ERC20_ABI } from "../../data/ABI";
 import axios from "axios";
+import rpcProvider from "../../helpers/provider";
+import Web3 from "web3";
 
 const web3Modal = new Web3Modal({
-  cacheProvider: false, // optional
+  cacheProvider: true, // optional
   providerOptions: {
     walletconnect: {
       package: WalletConnectProvider, // required
       options: {
-        infuraId: "eccb6fa1fa2941bf82abe2b9c543bb14", // required
+        infuraId: process.env.REACT_APP_INFURA_KEY, // required
       },
     },
   },
 });
 
-const setProvider = async () => {
-  const eth = new ethers.providers.Web3Provider(window.ethereum);
+const addProviderEvents = (provider, userData) => {
+  // Subscribe to accounts change
+  provider.on("accountsChanged", (accounts) => {
+    console.log("web3 account changed: ", accounts);
+    if (accounts[0].toLowerCase() !== userData.id.toLowerCase())
+      connectUserWallet();
+  });
 
-  const signer = eth.getSigner();
-  let connectDataObject = {
-    provider: eth,
-    signer: signer,
-    network: await eth.getNetwork(),
-  };
-  return connectDataObject;
+  // Subscribe to chainId change
+  provider.on("chainChanged", (chainId) => {
+    console.log("chain changed: ", chainId);
+  });
+
+  // Subscribe to provider connection
+  provider.on("connect", (info) => {
+    console.log("web3 connection changed: ", info.chainId);
+  });
+
+  // Subscribe to provider disconnection
+  provider.on("disconnect", (error) => {
+    console.log("web3 connection interrupted: ", error);
+  });
 };
-export const connectUserWallet = () => (dispatch) => {
-  web3Modal
-    .connect()
-    .then(async () => {
-      const provider = await web3Modal.connect();
-      if (!provider) {
-        console.log("No Provider");
-      } else {
-        window.ethereum
-          .enable()
-          .then(async (res) => {
-            let connectionResponse = await setProvider(provider);
-            let networkName;
-            if (connectionResponse.network.chainId === 100) {
-              networkName = "xDai";
-            } else {
-              networkName = connectionResponse.network.name;
-            }
+let signer;
+const getUserAccount = async (provider) => {
+  let eth;
+  let account;
+  if (provider || window.ethereum) {
+    eth = new ethers.providers.Web3Provider(provider || window.ethereum);
+    const accounts = await eth.listAccounts();
+    signer = await eth.getSigner();
+    account = accounts[0];
+  }
 
-            dispatch({
-              type: "CONNECT_WALLET",
-              address: res[0],
-              provider: connectionResponse.provider,
-              signer: connectionResponse.signer,
-              network: networkName,
-            });
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-      }
-    })
-    .catch((err) => {
-      console.log(err);
-    });
+  return account || undefined;
+};
+export const connectUserWallet = () => async (dispatch) => {
+  const provider = await web3Modal.connect();
+  if (window.ethereum) {
+    window.web3 = new Web3(window.ethereum);
+  } else {
+    window.web3 = new Web3(rpcProvider);
+  }
+
+  const userData = await getUserAccount(provider);
+  if (provider.isMetaMask) addProviderEvents(provider, userData);
+  console.log(window.ethereum);
+
+  console.log(signer);
+  dispatch({
+    type: "CONNECT_WALLET",
+    address: userData,
+    provider: signer.provider,
+    signer: signer,
+  });
 };
 
 export const getBalance = async (provider, address) => {

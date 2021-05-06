@@ -1,6 +1,7 @@
+import rpcProvider from "../../helpers/provider";
 const initialState = {
   address: "",
-  provider: undefined,
+  provider: rpcProvider,
   signer: undefined,
   network: undefined,
 };

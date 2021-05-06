@@ -27,8 +27,8 @@ const Burn = (props) => {
             {props.assets?.map((token, i) => {
               return (
                 <div key={i} className="burn-token">
-                  <p className="burn-token-amount asset-name">{token.name}</p>
-                  <p className="burn-token-name asset-name">{token.amount}</p>
+                  <p className="burn-token-amount asset-name">{token.symbol}</p>
+                  <p className="burn-token-name asset-name">0</p>
                 </div>
               );
             })}

@@ -25,7 +25,7 @@ const AssetSelect = (props) => {
         {assets?.map((asset, i) => {
           return (
             <div key={i} className="asset-input">
-              <input type="radio" name="asset" id={asset.name} />
+              <input type="radio" name="asset" id={asset.symbol} />
               <h1 className="asset-name">{asset.symbol}</h1>
               <input
                 type="number"
