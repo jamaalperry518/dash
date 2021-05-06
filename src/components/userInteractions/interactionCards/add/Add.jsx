@@ -17,21 +17,21 @@ const Add = (props) => {
 
   useEffect(() => {
     if (props.currentPool) {
-      const timer = setTimeout(() => {
+      dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+      if (props.assets.length >= 1) {
         setAssetsToChart(props.assets);
-      }, 100);
-      return () => clearTimeout(timer);
+      }
     } else {
       const timer = setTimeout(() => {
         dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-      }, 200);
+      }, 175);
       return () => clearTimeout(timer);
     }
   }, [props.currentPool, props.assets, props.pools, dispatch]);
 
   return (
     <>
-      {props.currentPool !== undefined && props.currentPool !== null ? (
+      {props.currentPool ? (
         <div className="add-to-bags">
           <div className="chart-container">
             <p className="section-heading">Array consist of:</p>
