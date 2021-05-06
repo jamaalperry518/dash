@@ -3,10 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { getBalance } from "../../Redux/actions/WalletActions";
-import {
-  getCurrentPoolInfo,
-  getPoolInfo,
-} from "../../Redux/actions/vaultActions";
+import { getPoolInfo } from "../../Redux/actions/vaultActions";
 
 //components
 import TabSwitch from "./TabSwitch";
@@ -31,7 +28,7 @@ const InteractionsContainer = (props) => {
 
     if (props.address && props.provider) {
       getBalance(props.provider, props.address);
-      dispatch(getCurrentPoolInfo(poolArray[0].address, props.provider));
+      // dispatch(getCurrentPoolInfo(poolArray[0].address, props.provider));
       //eslint-disable-next-line
       poolArray.map((pool) => {
         dispatch(getPoolInfo(pool.name, pool.address, props.provider));

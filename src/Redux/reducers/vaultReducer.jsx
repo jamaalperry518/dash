@@ -1,7 +1,6 @@
 import { SELECT_VAULT, CLEAR_VAULT } from "../types/vaultTypes";
 
 const initialState = {
-  currentVault: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
   currentPool: {},
   assetArray: [],
   swapFee: 0,
@@ -15,11 +14,6 @@ const initialState = {
     "BAL-WETH": {
       address: "0x59a19d8c652fa0284f44113d0ff9aba70bd46fb4",
       name: "BAL-WETH",
-      tokens: {},
-    },
-    "WBTC-WETH": {
-      address: "0x221bf20c2ad9e5d7ec8a9d1991d8e2edcfcb9d6c",
-      name: "WETH-WBTC",
       tokens: {},
     },
     "GNO-WETH": {
