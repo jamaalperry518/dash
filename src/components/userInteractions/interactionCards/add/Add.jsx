@@ -2,28 +2,36 @@ import React, { useState, useEffect } from "react";
 import Chart from "../../../ui/Chart";
 import AssetSelect from "./AssetSelect";
 import Mint from "./Mint";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { setCurrentPool } from "../../../../Redux/actions/vaultActions";
 
 const Add = (props) => {
+  const dispatch = useDispatch();
   const [assetsToChart, setAssetsToChart] = useState([]);
 
+  // useEffect(() => {
+  //   //eslint-disable-next-line
+
+  //   dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+  // }, [props.addresss, props.pools, dispatch]);
+
   useEffect(() => {
-    if (props.assets.length >= 2 && props.address) {
-      setAssetsToChart(props.assets);
-    }
-    //eslint-disable-next-line
-    if (assetsToChart == 0) {
+    if (props.currentPool) {
       const timer = setTimeout(() => {
         setAssetsToChart(props.assets);
-      }, 250);
+      }, 100);
+      return () => clearTimeout(timer);
+    } else {
+      const timer = setTimeout(() => {
+        dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+      }, 200);
       return () => clearTimeout(timer);
     }
-    //eslint-disable-next-line
-  }, [props.assets, props.currentPool]);
+  }, [props.currentPool, props.assets, props.pools, dispatch]);
 
   return (
     <>
-      {props.assets.length > 1 ? (
+      {props.currentPool !== undefined && props.currentPool !== null ? (
         <div className="add-to-bags">
           <div className="chart-container">
             <p className="section-heading">Array consist of:</p>
@@ -59,6 +67,8 @@ const mapStateToProps = (state) => {
     address: state.wallet.address,
     currentPool: state.vaults.currentPool,
     assets: state.vaults.assetArray,
+    pools: state.vaults.pools,
+    loaded: state.vaults.loaded,
   };
 };
 export default connect(mapStateToProps)(Add);

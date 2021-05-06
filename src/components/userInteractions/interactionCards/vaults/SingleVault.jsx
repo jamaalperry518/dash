@@ -14,11 +14,10 @@ const SingleVault = (props) => {
     if (vault.tokens && poolTokens.length === 0) {
       const timer = setTimeout(() => {
         setPoolTokens(tokenArray);
-      }, 250);
+      }, 50);
       return () => clearTimeout(timer);
     }
 
-    console.log(tokenArray);
     //eslint-disable-next-line
   }, [vault.tokens]);
 

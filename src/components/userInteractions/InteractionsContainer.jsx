@@ -28,10 +28,9 @@ const InteractionsContainer = (props) => {
 
     if (props.address && props.provider) {
       getBalance(props.provider, props.address);
-      // dispatch(getCurrentPoolInfo(poolArray[0].address, props.provider));
-      //eslint-disable-next-line
+
       poolArray.map((pool) => {
-        dispatch(getPoolInfo(pool.name, pool.address, props.provider));
+        return dispatch(getPoolInfo(pool.name, pool.address, props.provider));
       });
     }
 
@@ -56,9 +55,10 @@ const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
     provider: state.wallet.provider,
-    vault: state.vaults.currentVault,
+    assets: state.vaults.assetArray,
     currentPool: state.vaults.currentPool,
     pools: state.vaults.pools,
+    vaults: state.vaults,
   };
 };
 

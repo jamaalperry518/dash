@@ -1,10 +1,7 @@
-import { SELECT_VAULT, CLEAR_VAULT } from "../types/vaultTypes";
-
 const initialState = {
-  currentPool: {},
+  currentPool: null,
   assetArray: [],
-  swapFee: 0,
-
+  loaded: false,
   pools: {
     "WETH-wBTC": {
       address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
@@ -31,35 +28,27 @@ const initialState = {
 
 const vaultReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SELECT_VAULT:
-      return {
-        ...state,
-        selectedVault: action.payload,
-      };
-    case CLEAR_VAULT:
-      return {
-        ...state,
-        selectedVault: {},
-      };
     case "SET_CURRENT_POOL":
       return {
         ...state,
         currentPool: action.payload,
       };
+
     case "SET_ASSET_ARRAY":
       return {
         ...state,
         assetArray: action.payload,
       };
-    case "SET_SWAP_FEE":
-      return {
-        ...state,
-        swapFee: action.payload,
-      };
+
     case "GET_ALL_POOLS":
       return {
         ...state,
         pools: action.payload,
+      };
+    case "ALL_LOADED":
+      return {
+        ...state,
+        loaded: action.payload,
       };
     default:
       return state;
