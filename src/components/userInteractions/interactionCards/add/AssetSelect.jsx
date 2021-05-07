@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { connect } from "react-redux";
 
 const AssetSelect = (props) => {
-  const [assets, setAssets] = useState([]);
+  const [assets, setAssets] = useState(props.assets);
 
   const changeHandler = (e, i) => {
     console.log(assets[i].amount);

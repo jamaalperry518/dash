@@ -8,21 +8,6 @@ const initialState = {
       name: "WETH-WBTC",
       tokens: {},
     },
-    // "BAL-WETH": {
-    //   address: "0x59a19d8c652fa0284f44113d0ff9aba70bd46fb4",
-    //   name: "BAL-WETH",
-    //   tokens: {},
-    // },
-    // "GNO-WETH": {
-    //   address: "0xe42237f32708bd5c04d69cc77e1e36c8f911a016",
-    //   name: "GNO-WETH",
-    //   tokens: {},
-    // },
-    "WETH-BAL-WBTC": {
-      address: "0x102efb11d588fa03dfc9fb5e0894dd241839d3f8",
-      name: "WETH-BAL-WBTC",
-      tokens: {},
-    },
   },
 };
 

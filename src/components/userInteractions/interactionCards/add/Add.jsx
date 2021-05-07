@@ -12,14 +12,7 @@ const Add = (props) => {
   const dispatch = useDispatch();
   const [assetsToChart, setAssetsToChart] = useState([]);
 
-  // useEffect(() => {
-  //   //eslint-disable-next-line
-
-  //   dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-  // }, [props.addresss, props.pools, dispatch]);
-
   useEffect(() => {
-    // dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
     if (props.assets.length >= 2) {
       setAssetsToChart(props.assets);
     }
@@ -32,7 +25,7 @@ const Add = (props) => {
 
   return (
     <>
-      {props.currentPool ? (
+      {props.currentPool && props.assets.length > 1 ? (
         <div className="add-to-bags">
           <div className="chart-container">
             <p className="section-heading">Array consist of:</p>
