@@ -1,0 +1,7 @@
+@import "../../styles/mixins.scss";
+
+.loading-container {
+  @include flexbox(column, center, center);
+  height: 100%;
+  width: 100%;
+}

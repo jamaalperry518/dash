@@ -1,9 +1,12 @@
 import React, { useState, useEffect } from "react";
+import { connect, useDispatch } from "react-redux";
+import { setCurrentPool } from "../../../../Redux/actions/vaultActions";
+
+//components
 import Chart from "../../../ui/Chart";
 import AssetSelect from "./AssetSelect";
 import Mint from "./Mint";
-import { connect, useDispatch } from "react-redux";
-import { setCurrentPool } from "../../../../Redux/actions/vaultActions";
+import Loading from "../../../ui/Loading";
 
 const Add = (props) => {
   const dispatch = useDispatch();
@@ -55,7 +58,7 @@ const Add = (props) => {
           <Mint />{" "}
         </div>
       ) : (
-        <h1 className="loading">LOADING</h1>
+        <Loading />
       )}
     </>
   );
