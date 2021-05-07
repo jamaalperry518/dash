@@ -66,8 +66,6 @@ export const setCurrentPool = (pool) => (dispatch) => {
   }
 };
 
-export const setCurrentAssets = (assets) => (dispatch) => {};
-
 export const setLoaded = () => (dispatch) => {
   dispatch({
     type: "ALL_LOADED",
