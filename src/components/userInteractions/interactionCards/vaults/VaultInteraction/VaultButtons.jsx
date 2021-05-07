@@ -3,12 +3,14 @@ import { convertStandardNumber } from "../../../../../Redux/actions/currencyActi
 //components
 import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
+import Stake from "./Stake";
 const VaultButtons = (props) => {
   const vault = props.vault;
   const [cardDisplayed, setCardDisplayed] = useState("");
 
   const setCard = (e) => {
-    setCardDisplayed(e.target.className);
+    console.log(e.target);
+    setCardDisplayed(e.target.value);
   };
 
   return (
@@ -29,16 +31,30 @@ const VaultButtons = (props) => {
             return <Deposit vault={props.vault} setCard={setCard} />;
           case "withdraw":
             return <Withdraw vault={props.vault} setCard={setCard} />;
+          case "stake":
+            return <Stake vault={props.vault} setCard={setCard} />;
 
           default:
             return (
               <div className="withdraw-deposit-buttons">
-                <button className="withdraw" onClick={(e) => setCard(e)}>
-                  Withdraw
-                </button>
-                <button className="deposit" onClick={(e) => setCard(e)}>
-                  Deposit
-                </button>
+                <select
+                  onClick={(e) => setCard(e)}
+                  name="vault-actions"
+                  id="actions"
+                >
+                  <option value="" className="action">
+                    Actions
+                  </option>
+                  <option value="deposit" className="action">
+                    Deposit
+                  </option>
+                  <option value="stake" className="action">
+                    Stake
+                  </option>
+                  <option value="withdraw" className="action">
+                    Withdraw
+                  </option>
+                </select>
               </div>
             );
         }
