@@ -2,8 +2,9 @@ import React, { useEffect } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
-import { getBalance } from "../../Redux/actions/WalletActions";
+import { getBalance, setProvider } from "../../Redux/actions/WalletActions";
 import { getPoolInfo } from "../../Redux/actions/vaultActions";
+import { delay } from "../../helpers/utils";
 
 //components
 import TabSwitch from "./TabSwitch";
@@ -15,6 +16,8 @@ const InteractionsContainer = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
+    delay(500);
+    dispatch(setProvider());
     if (props.address === "") {
       history.push("/");
     } else {

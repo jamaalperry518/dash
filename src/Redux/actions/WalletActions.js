@@ -19,6 +19,12 @@ const web3Modal = new Web3Modal({
   },
 });
 
+export const setProvider = () => (dispatch) => {
+  dispatch({
+    type: "SET_PROVIDER",
+  });
+};
+
 const addProviderEvents = (provider, userData) => {
   // Subscribe to accounts change
   provider.on("accountsChanged", (accounts) => {
@@ -28,9 +34,9 @@ const addProviderEvents = (provider, userData) => {
   });
 
   // Subscribe to chainId change
-  provider.on("chainChanged", (chainId) => {
-    console.log("chain changed: ", chainId);
-  });
+  // provider.on("chainChanged", (chainId) => {
+  //   console.log("chain changed: ", chainId);
+  // });
 
   // Subscribe to provider connection
   provider.on("connect", (info) => {
@@ -64,10 +70,10 @@ export const connectUserWallet = () => async (dispatch) => {
   }
 
   const userData = await getUserAccount(provider);
-  if (provider.isMetaMask) addProviderEvents(provider, userData);
-  console.log(window.ethereum);
+  if (provider.isMetaMask) {
+    addProviderEvents(provider, userData);
+  }
 
-  console.log(signer);
   dispatch({
     type: "CONNECT_WALLET",
     address: userData,

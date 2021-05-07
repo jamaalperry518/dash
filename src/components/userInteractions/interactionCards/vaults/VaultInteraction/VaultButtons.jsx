@@ -8,7 +8,8 @@ const VaultButtons = (props) => {
   const [cardDisplayed, setCardDisplayed] = useState("");
 
   const setCard = (e) => {
-    setCardDisplayed(e.target.className);
+    console.log(e.target);
+    setCardDisplayed(e.target.value);
   };
 
   return (
@@ -33,12 +34,24 @@ const VaultButtons = (props) => {
           default:
             return (
               <div className="withdraw-deposit-buttons">
-                <button className="withdraw" onClick={(e) => setCard(e)}>
-                  Withdraw
-                </button>
-                <button className="deposit" onClick={(e) => setCard(e)}>
-                  Deposit
-                </button>
+                <select
+                  onClick={(e) => setCard(e)}
+                  name="vault-actions"
+                  id="actions"
+                >
+                  <option value="" className="action">
+                    Actions
+                  </option>
+                  <option value="deposit" className="action">
+                    Deposit
+                  </option>
+                  <option value="stake" className="action">
+                    Stake
+                  </option>
+                  <option value="withdraw" className="action">
+                    Withdraw
+                  </option>
+                </select>
               </div>
             );
         }

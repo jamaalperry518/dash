@@ -62,18 +62,33 @@
       width: 70%;
       @include flexbox(row, flex-end, center);
 
-      button {
-        width: 35%;
+      #actions {
+        width: 20rem;
         height: 5rem;
-        border-radius: 2.5rem;
+        border-radius: 0.8rem;
         color: white;
-        font-size: 1.8rem;
+        font-size: 2.4rem;
         background: linear-gradient(90deg, #192298 0%, #242eb1 100%);
         box-shadow: 0px 0.5rem 1rem rgba(31, 1, 150, 0.15);
-        &:first-child {
-          margin-right: 3rem;
+        .action {
+          color: white;
+          font-size: 2.4rem;
+          background: $darkBlueBackground;
         }
       }
+
+      // button {
+      //   width: 35%;
+      //   height: 5rem;
+      //   border-radius: 2.5rem;
+      //   color: white;
+      //   font-size: 1.8rem;
+      //   background: linear-gradient(90deg, #192298 0%, #242eb1 100%);
+      //   box-shadow: 0px 0.5rem 1rem rgba(31, 1, 150, 0.15);
+      //   &:first-child {
+      //     margin-right: 3rem;
+      //   }
+      // }
     }
   }
 }
