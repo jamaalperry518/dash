@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
@@ -7,16 +7,17 @@ import { getPoolInfo } from "../../Redux/actions/vaultActions";
 import { delay } from "../../helpers/utils";
 
 //components
+import Loading from "../ui/Loading";
 import TabSwitch from "./TabSwitch";
 import Add from "./interactionCards/add/Add";
-import Burn from "./interactionCards/burn/Burn";
-import Vaults from "./interactionCards/vaults/Vaults";
+const Burn = lazy(() => import("./interactionCards/burn/Burn"));
+const Vaults = lazy(() => import("./interactionCards/vaults/Vaults"));
 
 const InteractionsContainer = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-    delay(500);
+    delay(250);
     dispatch(setProvider());
     if (props.address === "") {
       history.push("/");
@@ -24,7 +25,7 @@ const InteractionsContainer = (props) => {
     }
 
     //eslint-disable-next-line
-  }, []);
+  }, [props.provider]);
 
   useEffect(() => {
     const poolArray = Object.values(props.pools);
@@ -46,11 +47,13 @@ const InteractionsContainer = (props) => {
     <div className="interactions-container">
       <TabSwitch />
       <div className="cards">
-        <Switch>
-          <Route exact path="/" component={Add} />
-          <Route exact path="/burn" component={Burn} />
-          <Route exact path="/vaults" component={Vaults} />
-        </Switch>
+        <Suspense fallback={<Loading />}>
+          <Switch>
+            <Route exact path="/" component={Add} />
+            <Route exact path="/burn" component={Burn} />
+            <Route exact path="/vaults" component={Vaults} />
+          </Switch>
+        </Suspense>
       </div>
     </div>
   );
