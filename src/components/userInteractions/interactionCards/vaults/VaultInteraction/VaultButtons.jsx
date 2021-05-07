@@ -3,6 +3,7 @@ import { convertStandardNumber } from "../../../../../Redux/actions/currencyActi
 //components
 import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
+import Stake from "./Stake";
 const VaultButtons = (props) => {
   const vault = props.vault;
   const [cardDisplayed, setCardDisplayed] = useState("");
@@ -30,6 +31,8 @@ const VaultButtons = (props) => {
             return <Deposit vault={props.vault} setCard={setCard} />;
           case "withdraw":
             return <Withdraw vault={props.vault} setCard={setCard} />;
+          case "stake":
+            return <Stake vault={props.vault} setCard={setCard} />;
 
           default:
             return (
