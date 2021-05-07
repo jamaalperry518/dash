@@ -4,20 +4,24 @@ import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { getBalance, setProvider } from "../../Redux/actions/WalletActions";
 import { getPoolInfo } from "../../Redux/actions/vaultActions";
-import { delay } from "../../helpers/utils";
 
 //components
 import Loading from "../ui/Loading";
 import TabSwitch from "./TabSwitch";
 import Add from "./interactionCards/add/Add";
-const Burn = lazy(() => import("./interactionCards/burn/Burn"));
-const Vaults = lazy(() => import("./interactionCards/vaults/Vaults"));
+const Burn = lazy(async () => {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  return import("./interactionCards/burn/Burn");
+});
+const Vaults = lazy(async () => {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  return import("./interactionCards/vaults/Vaults");
+});
 
 const InteractionsContainer = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-    delay(250);
     dispatch(setProvider());
     if (props.address === "") {
       history.push("/");
