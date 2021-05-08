@@ -66,9 +66,21 @@ export const setCurrentPool = (pool) => (dispatch) => {
   }
 };
 
-export const setLoaded = () => (dispatch) => {
-  dispatch({
-    type: "ALL_LOADED",
-    payload: true,
-  });
+export const mintArray = async (address, amount, token, pool) => {
+  if (amount > 0) {
+    // const tokenInLp = await pool.isTokenInLp(token);
+    // const tokenInVirtualLp = await pool.isTokenInVirutalLp(token);
+    const allowance = await pool._token.allowance(address, pool.address);
+    let formattedAmount = ethers.utils.parseUnits(amount.toString(), 18);
+    if (allowance.lt(formattedAmount))
+      await pool._token.approve(pool.address, amount);
+    await pool._token.mint(address, amount);
+  }
+};
+
+export const calculateArrayFromTokens = (token, amount, pool) => {
+  if (amount > 0) {
+    //amount will be formatted amount.
+    pool.calculateArrayTokensGivenERC20Tokens(token, amount);
+  }
 };
