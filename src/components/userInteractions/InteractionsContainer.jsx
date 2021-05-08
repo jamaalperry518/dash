@@ -8,7 +8,11 @@ import { getPoolInfo } from "../../Redux/actions/vaultActions";
 //components
 import Loading from "../ui/Loading";
 import TabSwitch from "./TabSwitch";
-import Add from "./interactionCards/add/Add";
+// import Add from "./interactionCards/add/Add";
+const Add = lazy(async () => {
+  await new Promise((resolve) => setTimeout(resolve, 800));
+  return import("./interactionCards/add/Add");
+});
 const Burn = lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, 800));
   return import("./interactionCards/burn/Burn");
@@ -38,10 +42,11 @@ const InteractionsContainer = (props) => {
       if (props.address !== "") {
         getBalance(props.provider, props.address);
       }
-
-      poolArray.map((pool) => {
-        return dispatch(getPoolInfo(pool.name, pool.address, props.provider));
-      });
+      if (poolArray.length !== 0) {
+        poolArray.map((pool) => {
+          return dispatch(getPoolInfo(pool.name, pool.address, props.provider));
+        });
+      }
     }
 
     //eslint-disable-next-line

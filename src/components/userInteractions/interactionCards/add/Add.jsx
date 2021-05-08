@@ -12,23 +12,18 @@ const Add = (props) => {
   const dispatch = useDispatch();
   const [assetsToChart, setAssetsToChart] = useState([]);
 
-  // useEffect(() => {
-  //   //eslint-disable-next-line
-
-  //   dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-  // }, [props.addresss, props.pools, dispatch]);
-
   useEffect(() => {
-    // dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-    if (props.assets.length >= 2) {
-      setAssetsToChart(props.assets);
-    }
-
     const timer = setTimeout(() => {
       dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
     }, 50);
     return () => clearTimeout(timer);
-  }, [props.currentPool, props.assets, props.pools, dispatch]);
+  }, [props.currentPool, props.pools, dispatch]);
+
+  useEffect(() => {
+    if (props.assets.length >= 2) {
+      setAssetsToChart(props.assets);
+    }
+  }, [props.assets]);
 
   return (
     <>

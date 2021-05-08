@@ -1,0 +1,38 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
+
+.checkbox-container {
+  .checkbox {
+    cursor: pointer;
+
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    border: 1px solid white;
+
+    .little-circle {
+    }
+  }
+
+  &:hover {
+    background-color: dodgerblue;
+  }
+
+  .checkbox-checked {
+    @include flexbox(column, center, center);
+    cursor: pointer;
+
+    height: 1.5rem;
+    width: 1.5rem;
+    border-radius: 50%;
+    background-color: transparent;
+    border: 1px solid white;
+    .little-circle {
+      height: 0.5rem;
+      width: 0.5rem;
+      border-radius: 50%;
+      background-color: white;
+      border: 0.1rem solid white;
+    }
+  }
+}
