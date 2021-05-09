@@ -44,26 +44,24 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
     tokens: tokensInPool,
     swapFee: swapFee,
   };
-
+  console.log(" set pools here");
   dispatch({
     type: "GET_ALL_POOLS",
     payload: resultObject,
   });
+  dispatch({
+    type: "SET_CURRENT_POOL",
+    payload: resultObject["WETH-WBTC"],
+  });
 };
 
 export const setCurrentPool = (pool) => (dispatch) => {
+  let arr = Object.values(pool["tokens"]);
+  console.log("set assets");
   dispatch({
-    type: "SET_CURRENT_POOL",
-    payload: pool,
+    type: "SET_ASSET_ARRAY",
+    payload: arr,
   });
-  if (pool) {
-    let arr = Object.values(pool["tokens"]);
-
-    dispatch({
-      type: "SET_ASSET_ARRAY",
-      payload: arr,
-    });
-  }
 };
 
 export const mintArray = async (address, amount, token, pool) => {

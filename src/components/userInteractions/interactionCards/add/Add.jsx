@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { setCurrentPool } from "../../../../Redux/actions/vaultActions";
+import { delay } from "../../../../helpers/utils";
 
 //components
 import Chart from "../../../ui/Chart";
@@ -23,11 +24,11 @@ const Add = (props) => {
     if (props.assets.length >= 2) {
       setAssetsToChart(props.assets);
     }
-  }, [props.assets]);
+  }, [props.assets, props.pools]);
 
   return (
     <>
-      {props.currentPool ? (
+      {props.currentPool && assetsToChart.length ? (
         <div className="add-to-bags">
           <div className="chart-container">
             <p className="section-heading">Array consist of:</p>

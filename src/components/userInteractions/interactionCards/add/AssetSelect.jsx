@@ -9,7 +9,7 @@ const AssetSelect = (props) => {
       <p className="section-heading">Select asset and amount to deposit:</p>
       <div className="asset-inputs">
         {props.assets?.map((asset, i) => {
-          return <AssetInput asset={asset} />;
+          return <AssetInput key={i} asset={asset} />;
         })}
       </div>
     </div>
