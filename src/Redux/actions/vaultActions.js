@@ -44,7 +44,7 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
     tokens: tokensInPool,
     swapFee: swapFee,
   };
-  console.log(" set pools here");
+
   dispatch({
     type: "GET_ALL_POOLS",
     payload: resultObject,
@@ -57,7 +57,7 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
 
 export const setCurrentPool = (pool) => (dispatch) => {
   let arr = Object.values(pool["tokens"]);
-  console.log("set assets");
+
   dispatch({
     type: "SET_ASSET_ARRAY",
     payload: arr,

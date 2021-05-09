@@ -1,7 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { setCurrentPool } from "../../../../Redux/actions/vaultActions";
-import { delay } from "../../../../helpers/utils";
 
 //components
 import Chart from "../../../ui/Chart";
@@ -24,7 +23,7 @@ const Add = (props) => {
       }, 50);
       return () => clearTimeout(timer);
     }
-  }, [props.assets, props.pools]);
+  }, [props.assets, props.pools, dispatch]);
 
   return (
     <>
