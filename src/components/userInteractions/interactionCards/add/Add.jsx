@@ -12,22 +12,22 @@ const Add = (props) => {
   const dispatch = useDispatch();
   const [assetsToChart, setAssetsToChart] = useState([]);
 
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
-    }, 50);
-    return () => clearTimeout(timer);
-  }, [props.currentPool, props.pools, dispatch]);
+  useEffect(() => {}, [props.currentPool, props.pools, dispatch]);
 
   useEffect(() => {
-    if (props.assets.length >= 2) {
+    if (props.assets.length > 1) {
       setAssetsToChart(props.assets);
+    } else {
+      const timer = setTimeout(() => {
+        dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+      }, 50);
+      return () => clearTimeout(timer);
     }
-  }, [props.assets]);
+  }, [props.assets, props.pools, dispatch]);
 
   return (
     <>
-      {props.currentPool ? (
+      {props.currentPool && assetsToChart.length > 1 ? (
         <div className="add-to-bags">
           <div className="chart-container">
             <p className="section-heading">Array consist of:</p>
