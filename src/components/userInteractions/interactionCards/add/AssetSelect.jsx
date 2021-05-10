@@ -19,7 +19,7 @@ const AssetSelect = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
-    assets: state.vaults.assetArray,
+    assets: state.pools.assetArray,
   };
 };
 

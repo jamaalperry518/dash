@@ -5,7 +5,7 @@ import { connect } from "react-redux";
 import SingleVault from "./SingleVault";
 
 const Vaults = (props) => {
-  const allVaults = Object.values(props.pools);
+  const allVaults = Object.values(props.vaults);
 
   return (
     <div className="vaults-container">
@@ -19,9 +19,8 @@ const Vaults = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    vaults: state.vaults.vaults,
+    vaults: state.vaults,
     address: state.wallet.address,
-    pools: state.vaults.pools,
   };
 };
 export default connect(mapStateToProps)(Vaults);
