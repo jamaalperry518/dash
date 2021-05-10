@@ -110,7 +110,7 @@ export const getTokenPrice = (token) => {
     )
     .then((res) => {
       let price = res.data[`${token.toLowerCase()}`]["usd"];
-      console.log(price);
+
       return price;
     })
     .catch((err) => {

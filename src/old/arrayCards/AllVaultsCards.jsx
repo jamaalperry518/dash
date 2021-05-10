@@ -1,6 +1,6 @@
 import React from "react";
 import { connect, useDispatch } from "react-redux";
-import { selectVault } from "../../Redux/actions/vaultActions";
+import { selectVault } from "../../Redux/actions/poolActions";
 
 const AllVaultsCards = (props) => {
   const vaults = Object.values(props.state.vaults);
@@ -42,7 +42,7 @@ const AllVaultsCards = (props) => {
 };
 const mapStateToProps = (state) => {
   return {
-    state: state.vaults,
+    state: state.pools.vaults,
   };
 };
 

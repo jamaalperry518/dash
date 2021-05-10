@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 //components
 import AssetInput from "./AssetInput";
@@ -19,7 +19,7 @@ const AssetSelect = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
-    assets: state.vaults.assetArray,
+    assets: state.pools.assetArray,
   };
 };
 

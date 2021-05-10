@@ -1,10 +1,12 @@
 import { combineReducers } from "redux";
-import vaultReducer from "./vaultReducer";
+import poolReducer from "./poolReducer";
 import walletReducer from "./walletReducer";
 import currencyReducer from "./curencyReducer";
+import vaultReducer from "./vaultReducer";
 
 export default combineReducers({
   wallet: walletReducer,
-  vaults: vaultReducer,
+  pools: poolReducer,
   currency: currencyReducer,
+  vaults: vaultReducer,
 });

@@ -14,9 +14,14 @@
       .name-and-logo {
         display: flex;
         align-items: center;
-
-        .vault-logo {
+        .logo-container {
+          .vault-logo {
+            height: 8rem;
+            width: 8rem;
+            border-radius: 50%;
+          }
         }
+
         .vault-name {
           margin-left: 1.5rem;
           font-size: 2.6rem;

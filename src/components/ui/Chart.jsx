@@ -1,5 +1,4 @@
 import React from "react";
-import { connect } from "react-redux";
 import { PieChart } from "react-minimal-pie-chart";
 import scss from "./chart.module.scss";
 const Chart = (props) => {
@@ -10,10 +9,4 @@ const Chart = (props) => {
   );
 };
 
-const mapStateToProps = (state) => {
-  return {
-    currentPool: state.vaults.currentPool,
-  };
-};
-
-export default connect(mapStateToProps)(Chart);
+export default Chart;

@@ -3,7 +3,7 @@ import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
 import { getBalance, setProvider } from "../../Redux/actions/WalletActions";
-import { getPoolInfo } from "../../Redux/actions/vaultActions";
+import { getPoolInfo } from "../../Redux/actions/poolActions";
 
 //components
 import Loading from "../ui/Loading";
@@ -72,10 +72,9 @@ const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
     provider: state.wallet.provider,
-    assets: state.vaults.assetArray,
-    currentPool: state.vaults.currentPool,
-    pools: state.vaults.pools,
-    vaults: state.vaults,
+    assets: state.pools.assetArray,
+    currentPool: state.pools.currentPool,
+    pools: state.pools.pools,
   };
 };
 

@@ -46,7 +46,7 @@ const Burn = (props) => {
 };
 const mapStateToProps = (state) => {
   return {
-    assets: state.vaults.assetArray,
+    assets: state.pools.assetArray,
   };
 };
 export default connect(mapStateToProps)(Burn);

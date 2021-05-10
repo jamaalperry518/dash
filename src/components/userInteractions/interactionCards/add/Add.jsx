@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
-import { setCurrentPool } from "../../../../Redux/actions/vaultActions";
+import { setCurrentPool } from "../../../../Redux/actions/poolActions";
 
 //components
 import Chart from "../../../ui/Chart";
@@ -61,10 +61,9 @@ const Add = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
-    currentPool: state.vaults.currentPool,
-    assets: state.vaults.assetArray,
-    pools: state.vaults.pools,
-    loaded: state.vaults.loaded,
+    currentPool: state.pools.currentPool,
+    assets: state.pools.assetArray,
+    pools: state.pools.pools,
   };
 };
 export default connect(mapStateToProps)(Add);

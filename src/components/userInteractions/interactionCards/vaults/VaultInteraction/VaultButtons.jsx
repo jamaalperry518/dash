@@ -1,5 +1,6 @@
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { convertStandardNumber } from "../../../../../Redux/actions/currencyActions";
+import axios from "axios";
 //components
 import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
@@ -7,22 +8,30 @@ import Stake from "./Stake";
 const VaultButtons = (props) => {
   const vault = props.vault;
   const [cardDisplayed, setCardDisplayed] = useState("");
+  const [price, setPrice] = useState(0);
 
   const setCard = (e) => {
-    console.log(e.target);
     setCardDisplayed(e.target.value);
   };
-
+  useEffect(() => {
+    axios
+      .get(
+        `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=${vault.address}&vs_currencies=usd`
+      )
+      .then((res) => {
+        setPrice(res.data[`${vault.address.toLowerCase()}`]["usd"]);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  }, [vault.address]);
   return (
     <div className="withdraw-deposit">
       <div className="balance-info">
         <p className="section-heading">Your deposit in this vault</p>
-        <p className="user-deposit-in-vault">
-          {" "}
-          {vault.vaultName} {vault.userDeposit}
-        </p>
+        <p className="user-deposit-in-vault"> {vault.depositInVault}</p>
         <p className="deposit-fiat-amount">
-          ( ~ {convertStandardNumber(888888)})
+          ( ~ {convertStandardNumber(price * vault.depositInVault)})
         </p>
       </div>
       {(() => {
