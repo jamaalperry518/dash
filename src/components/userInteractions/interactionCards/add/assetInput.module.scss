@@ -2,6 +2,7 @@
 @import "../../../../styles/mixins.scss";
 
 .checkbox-container {
+  @include flexbox(row, center, center);
   .checkbox {
     cursor: pointer;
 
@@ -34,5 +35,17 @@
       background-color: white;
       border: 0.1rem solid white;
     }
+  }
+}
+.set-max {
+  width: 2rem;
+  position: absolute;
+  right: 50rem;
+
+  .max-button {
+    background-color: $lightBlueBackground;
+    border: 1px solid white;
+    border-radius: 4px;
+    color: white;
   }
 }

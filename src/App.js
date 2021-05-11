@@ -1,23 +1,27 @@
 import { useEffect } from "react";
+import { connect } from "react-redux";
 import { useDispatch } from "react-redux";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
 import { getExchangeRates } from "./Redux/actions/currencyActions";
+import { getCurrentBlock } from "./Redux/actions/WalletActions";
 import "./styles/global.scss";
 
-function App() {
+function App(props) {
   const dispatch = useDispatch();
   useEffect(() => {
     // dispatch(getBigCoinsPrice());
     dispatch(getExchangeRates());
+
     //eslint-disable-next-line
   }, []);
-  // useEffect(() => {
-  //   const timer = setTimeout(() => {
-  //     dispatch(getBigCoinsPrice());
-  //   }, 30000);
-  //   return () => clearTimeout(timer);
-  // });
+  useEffect(() => {
+    if (props.provider) {
+      dispatch(getCurrentBlock(props.provider));
+    }
+    console.log(props.currentBlock, props.lastBlock);
+  }, [props.provider]);
+
   return (
     <div className="App">
       <Header />
@@ -25,5 +29,12 @@ function App() {
     </div>
   );
 }
+const mapStateToProps = (state) => {
+  return {
+    provider: state.wallet.provider,
+    currentBlock: state.wallet.currentBlock,
+    lastBlock: state.wallet.lastBlock,
+  };
+};
 
-export default App;
+export default connect(mapStateToProps)(App);
