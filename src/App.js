@@ -4,6 +4,7 @@ import { useDispatch } from "react-redux";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
 import { getExchangeRates } from "./Redux/actions/currencyActions";
+import { getTotalTvl } from "./Redux/actions/ArrayActions";
 import "./styles/global.scss";
 
 function App(props) {
@@ -11,7 +12,7 @@ function App(props) {
   useEffect(() => {
     // dispatch(getBigCoinsPrice());
     dispatch(getExchangeRates());
-
+    dispatch(getTotalTvl(props.vaults));
     //eslint-disable-next-line
   }, []);
   useEffect(() => {
@@ -31,6 +32,7 @@ const mapStateToProps = (state) => {
     provider: state.wallet.provider,
     currentBlock: state.wallet.currentBlock,
     lastBlock: state.wallet.lastBlock,
+    vaults: state.vaults,
   };
 };
 
