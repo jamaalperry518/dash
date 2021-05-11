@@ -1,5 +1,5 @@
 .financial-stats-banner {
-  width: 109rem;
+  width: 110rem;
   margin: 0 auto;
   display: flex;
   align-items: center;
@@ -7,7 +7,8 @@
   color: $off-white;
 
   .banner-stat-container {
-    width: 20rem;
+    width: max-content;
+    padding: 0 1rem;
     margin-right: 4rem;
     border-right: 1px solid $off-white;
     &:last-child {

@@ -24,6 +24,13 @@ export const setProvider = () => (dispatch) => {
     type: "SET_PROVIDER",
   });
 };
+export const getGasPrice = (provider) => async (dispatch) => {
+  let currentGas = await provider.getGasPrice();
+  dispatch({
+    type: "SET_GAS_PRICE",
+    gasPrice: parseFloat(ethers.utils.formatUnits(currentGas.toString(), 9)),
+  });
+};
 
 const addProviderEvents = (provider, userData) => {
   // Subscribe to accounts change

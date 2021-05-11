@@ -2,7 +2,11 @@ import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
-import { getBalance, setProvider } from "../../Redux/actions/WalletActions";
+import {
+  getBalance,
+  setProvider,
+  getGasPrice,
+} from "../../Redux/actions/WalletActions";
 import { getPoolInfo } from "../../Redux/actions/poolActions";
 
 //components
@@ -28,6 +32,8 @@ const InteractionsContainer = (props) => {
   useEffect(() => {
     if (!props.provider) {
       dispatch(setProvider());
+    } else {
+      dispatch(getGasPrice(props.provider));
     }
 
     if (props.address === "") {
