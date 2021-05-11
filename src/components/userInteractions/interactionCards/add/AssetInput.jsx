@@ -1,10 +1,12 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 import scss from "./assetInput.module.scss";
 import { formatInput } from "../../../../helpers/utils";
 
 const AssetInput = (props) => {
   const [checked, setChecked] = useState(false);
   const [depositAmount, setDeposit] = useState();
+  const [isMax, setIsMax] = useState(false);
   const changeHandler = (e) => {
     setDeposit(e.target.value);
   };
@@ -13,6 +15,18 @@ const AssetInput = (props) => {
   };
   const blurHandler = (e) => {
     console.log(formatInput(e.target.value));
+  };
+
+  const setMax = () => {
+    if (props.vaults[props.asset.name].user_balance > 0) {
+      setIsMax(true);
+      setDeposit(props.vaults[props.asset.name].user_balance);
+    }
+  };
+  const clear = () => {
+    setIsMax(false);
+
+    setDeposit(0);
   };
   return (
     <div className="asset-input">
@@ -30,7 +44,15 @@ const AssetInput = (props) => {
 
       {checked ? (
         <div className={scss["set-max"]}>
-          <button className={scss["max-button"]}>max</button>
+          {depositAmount > 0 || isMax ? (
+            <button className={scss["max-button"]} onClick={clear}>
+              clear
+            </button>
+          ) : (
+            <button className={scss["max-button"]} onClick={setMax}>
+              max
+            </button>
+          )}
         </div>
       ) : (
         <div className={scss["set-max"]}></div>
@@ -47,5 +69,9 @@ const AssetInput = (props) => {
     </div>
   );
 };
-
-export default AssetInput;
+const mapStateToProps = (state) => {
+  return {
+    vaults: state.vaults.state,
+  };
+};
+export default connect(mapStateToProps)(AssetInput);

@@ -9,7 +9,7 @@ const Loading = () => {
         animate={{
           opacity: [0.3, 0.7, 1, 0.7, 0.8, 1, 0.5],
           scale: [1.5, 1.8, 1.5, 1.6, 1.5, 1.6, 1.5],
-          transition: { duration: 5 },
+          transition: { duration: 3.5 },
         }}
       >
         {logo}

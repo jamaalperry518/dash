@@ -1,7 +1,7 @@
 .vaults-container {
   @include flexbox(column, flex-start);
   overflow-y: scroll;
-  max-height: 53rem;
+
   scrollbar-color: $lightBlueBackground $darkBlueBackground;
   scrollbar-width: thin;
 

@@ -19,7 +19,7 @@ const Vaults = (props) => {
 
 const mapStateToProps = (state) => {
   return {
-    vaults: state.vaults,
+    vaults: state.vaults.state,
     address: state.wallet.address,
   };
 };

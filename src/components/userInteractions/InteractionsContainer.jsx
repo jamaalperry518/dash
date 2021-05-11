@@ -49,7 +49,7 @@ const InteractionsContainer = (props) => {
 
     if (props.provider) {
       if (props.address !== "") {
-        getBalance(props.provider, props.address);
+        dispatch(getBalance(props.vaults, props.provider, props.address));
       }
       if (poolArray.length !== 0) {
         poolArray.map((pool) => {
@@ -85,6 +85,7 @@ const mapStateToProps = (state) => {
     currentPool: state.pools.currentPool,
     pools: state.pools.pools,
     signer: state.wallet.signer,
+    vaults: state.vaults,
   };
 };
 

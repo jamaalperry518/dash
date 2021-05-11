@@ -12,7 +12,7 @@ function App(props) {
   useEffect(() => {
     // dispatch(getBigCoinsPrice());
     dispatch(getExchangeRates());
-    dispatch(getTotalTvl(props.vaults));
+    dispatch(getTotalTvl(props.vaults, props.provider));
     //eslint-disable-next-line
   }, []);
   useEffect(() => {

@@ -17,6 +17,7 @@ const initialState = {
     depositInVault: 2.4,
     tokenPrice: 0,
     supplyRate: 8,
+    user_balance: 0,
   },
   WBTC: {
     address: "0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599",
@@ -36,6 +37,7 @@ const initialState = {
     depositInVault: 0.354,
     tokenPrice: 0,
     supplyRate: 5.5,
+    user_balance: 0,
   },
   DAI: {
     address: "0x6B175474E89094C44Da98b954EedeAC495271d0F",
@@ -55,6 +57,7 @@ const initialState = {
     depositInVault: 115.45,
     tokenPrice: 0,
     supplyRate: 3,
+    user_balance: 0,
   },
   "1inch": {
     address: "0x111111111117dC0aa78b770fA6A738034120C302",
@@ -74,6 +77,7 @@ const initialState = {
     depositInVault: 27.432,
     tokenPrice: 0,
     supplyRate: 9,
+    user_balance: 0,
   },
   UNI: {
     address: "0x1f9840a85d5aF5bf1D1762F925BDADdC4201F984",
@@ -93,11 +97,16 @@ const initialState = {
     depositInVault: 4,
     tokenPrice: 0,
     supplyRate: 2,
+    user_balance: 0,
   },
 };
 
 const vaultReducer = (state = initialState, action) => {
   switch (action.type) {
+    case "UPDATE_VAULTS":
+      return {
+        state: action.payload,
+      };
     default:
       return state;
   }

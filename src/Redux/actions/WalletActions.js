@@ -1,7 +1,6 @@
 import { ethers } from "ethers";
 import Web3Modal from "web3modal";
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { assets } from "../../data/assets/tokens";
 import { ERC20_ABI } from "../../data/ABI";
 import axios from "axios";
 import rpcProvider from "../../helpers/provider";
@@ -89,24 +88,27 @@ export const connectUserWallet = () => async (dispatch) => {
   });
 };
 
-export const getBalance = async (provider, address) => {
-  const assetArray = Object.values(assets);
+export const getBalance = (vaults, provider, address) => async (dispatch) => {
+  let result = {};
+  const assetArray = Object.values(vaults);
   //eslin-disable-next-line
 
   assetArray.map(async (asset) => {
     const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
-
+    console.log(asset);
     const balance = ethers.utils.formatUnits(await contract.balanceOf(address));
     if (balance > 0) {
-      axios
-        .get(
-          `https://api.coingecko.com/api/v3/simple/token_price/ethereum?contract_addresses=${asset.address}&vs_currencies=usd`
-        )
-        .then((res) => {})
-        .catch((err) => {
-          console.log(err);
-        });
+      result[`${asset.name}`] = asset;
+      result[`${asset.name}`]["user_balance"] = balance;
+      console.log((asset.symbol, balance));
+    } else {
+      result[`${asset.name}`] = asset;
     }
+  });
+  return dispatch({
+    type: "UPDATE_VAULTS",
+    item: result.symbol,
+    payload: result,
   });
 };
 
