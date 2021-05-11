@@ -5,6 +5,9 @@
   @include flexbox(row, center, center);
   .checkbox {
     cursor: pointer;
+    &:hover {
+      background-color: dodgerblue;
+    }
 
     height: 1.5rem;
     width: 1.5rem;
@@ -13,10 +16,6 @@
 
     .little-circle {
     }
-  }
-
-  &:hover {
-    background-color: dodgerblue;
   }
 
   .checkbox-checked {

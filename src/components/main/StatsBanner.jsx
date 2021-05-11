@@ -18,6 +18,12 @@ const StatsBanner = (props) => {
         );
       })}
       <div className="banner-stat-container">
+        <p className="banner-title">TVL total</p>
+        <h1 className="banner-stat">
+          {props.gasPrice === 0 ? "---" : convertStandardNumber(props.tvl)}
+        </h1>
+      </div>
+      <div className="banner-stat-container">
         <p className="banner-title">Gas Price</p>
         <h1 className="banner-stat">
           {props.gasPrice === 0 ? "---" : props.gasPrice.toFixed()} gw
@@ -30,6 +36,7 @@ const mapStateToProps = (state) => {
   return {
     gasPrice: state.wallet.gasPrice,
     financials: state.array.financialStats,
+    tvl: state.array.tvl,
   };
 };
 
