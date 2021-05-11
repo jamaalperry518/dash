@@ -1,27 +1,10 @@
-import React, { useState } from "react";
+import React from "react";
+import { connect } from "react-redux";
 import { convertStandardNumber } from "../../Redux/actions/currencyActions";
 
-const StatsBanner = () => {
-  const [bannerStats] = useState({
-    arrayPrice: {
-      text: "Array token price",
-      value: 76.13,
-    },
-    collateralPrice: {
-      text: "Collateral price",
-      value: 1.0023,
-    },
-    tvlCollateral: {
-      text: "Tvl as collateral",
-      value: 44456.04,
-    },
-    totalTvl: {
-      text: "Tvl total",
-      value: 102479.33,
-    },
-  });
+const StatsBanner = (props) => {
+  const bannerArray = Object.values(props.financials);
 
-  const bannerArray = Object.values(bannerStats);
   return (
     <div className="financial-stats-banner">
       {bannerArray.map((item, i) => {
@@ -34,8 +17,20 @@ const StatsBanner = () => {
           </div>
         );
       })}
+      <div className="banner-stat-container">
+        <p className="banner-title">Gas Price</p>
+        <h1 className="banner-stat">
+          {props.gasPrice === 0 ? "---" : props.gasPrice.toFixed()} gw
+        </h1>
+      </div>
     </div>
   );
 };
+const mapStateToProps = (state) => {
+  return {
+    gasPrice: state.wallet.gasPrice,
+    financials: state.array.financialStats,
+  };
+};
 
-export default StatsBanner;
+export default connect(mapStateToProps)(StatsBanner);

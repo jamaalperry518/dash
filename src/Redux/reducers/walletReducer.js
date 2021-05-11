@@ -6,6 +6,7 @@ const initialState = {
   network: undefined,
   currentBlock: 0,
   lastBlock: 0,
+  gasPrice: 0,
 };
 
 const walletReducer = (state = initialState, action) => {
@@ -23,6 +24,11 @@ const walletReducer = (state = initialState, action) => {
       return {
         ...state,
         provider: rpcProvider,
+      };
+    case "SET_GAS_PRICE":
+      return {
+        ...state,
+        gasPrice: action.gasPrice,
       };
     case "SET_CURRENT_BLOCK":
       return {
