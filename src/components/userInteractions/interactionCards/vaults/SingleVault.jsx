@@ -1,10 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { convertStandardNumber } from "../../../../Redux/actions/currencyActions";
 import { calculateAPY } from "../../../../helpers/utils";
-import {
-  getSupplyAtCurrentBlock,
-  getSupplyAtLastBlock,
-} from "../../../../Redux/actions/vaultActions";
 
 //components
 import { FaExternalLinkAlt } from "react-icons/fa";
@@ -19,6 +15,7 @@ const SingleVault = (props) => {
   });
   useEffect(() => {
     setApy(calculateAPY(vault.supplyRate));
+    //eslint-disable-next-line
   }, []);
   return (
     <div className="single-vault">

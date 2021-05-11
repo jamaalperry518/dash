@@ -38,7 +38,7 @@ const InteractionsContainer = (props) => {
     //eslint-disable-next-line
   }, [props.provider]);
 
-  useEffect(async () => {
+  useEffect(() => {
     const poolArray = Object.values(props.pools);
 
     if (props.provider) {
@@ -50,7 +50,6 @@ const InteractionsContainer = (props) => {
           return dispatch(getPoolInfo(pool.name, pool.address, props.provider));
         });
       }
-      console.log(await props.provider);
     }
 
     //eslint-disable-next-line

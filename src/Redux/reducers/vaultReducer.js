@@ -10,7 +10,7 @@ const initialState = {
     hasIcon: true,
     logoUrl:
       "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0xC02aaA39b223FE8D0A0e5C4F27eAD9083C756Cc2/logo.png",
-    tvl: 50000,
+    tvl: 525650,
     totalAPY: 0,
     mintedAPY: 0,
     reinvestedAPY: 0,
@@ -29,7 +29,7 @@ const initialState = {
     hasIcon: true,
     logoUrl:
       "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x2260FAC5E5542a773Aa44fBCfeDf7C193bc2C599/logo.png",
-    tvl: 1000000,
+    tvl: 988432,
     totalAPY: 0,
     mintedAPY: 0,
     reinvestedAPY: 0,
@@ -48,7 +48,7 @@ const initialState = {
     hasIcon: true,
     logoUrl:
       "https://raw.githubusercontent.com/trustwallet/assets/master/blockchains/ethereum/assets/0x6B175474E89094C44Da98b954EedeAC495271d0F/logo.png",
-    tvl: 1000000,
+    tvl: 250000,
     totalAPY: 0,
     mintedAPY: 0,
     reinvestedAPY: 0,

@@ -9,6 +9,7 @@ const Deposit = (props) => {
   };
   const blurHandler = (e) => {
     console.log(formatInput(e.target.value));
+    console.log(deposit);
   };
   return (
     <div className="vault-interaction-container">

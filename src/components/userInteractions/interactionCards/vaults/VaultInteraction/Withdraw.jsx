@@ -8,7 +8,7 @@ const Withdraw = (props) => {
     setDeposit(e.target.value);
   };
   const blurHandler = (e) => {
-    console.log(formatInput(e.target.value));
+    setDeposit(formatInput(e.target.value));
   };
   return (
     <div className="vault-interaction-container">
@@ -18,6 +18,7 @@ const Withdraw = (props) => {
           type="number"
           onChange={changeHandler}
           onBlur={blurHandler}
+          placeholder={deposit}
           className="amount-input"
         />
         <h1 className="asset-name">{vault.vaultName}</h1>

@@ -1,5 +1,5 @@
 import { ethers } from "ethers";
-import { BigNumber } from "bignumber.js";
+
 // import {jsonToGrapQLQuery} from 'json-to-graphql-query';
 // import {abi as multicallAbi} from '../data/ABI/multiCall.json';
 
@@ -56,7 +56,6 @@ export const formatInput = (amount) => {
 };
 
 export const calculateAPY = (supplyRate) => {
-  const blocksPerDay = 4 * 60 * 24;
   //supplyRate = (totalSupply - totalsupply last block) * blocksPerDay
   let APY = Math.floor((1 + supplyRate / 4) ** 4 - 1);
   let reinvested = APY * 0.7;

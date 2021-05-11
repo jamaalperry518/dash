@@ -4,7 +4,6 @@ import { useDispatch } from "react-redux";
 import Header from "./components/header/Header";
 import Main from "./components/main/Main";
 import { getExchangeRates } from "./Redux/actions/currencyActions";
-import { getCurrentBlock } from "./Redux/actions/WalletActions";
 import "./styles/global.scss";
 
 function App(props) {
@@ -17,9 +16,7 @@ function App(props) {
   }, []);
   useEffect(() => {
     if (props.provider) {
-      dispatch(getCurrentBlock(props.provider));
     }
-    console.log(props.currentBlock, props.lastBlock);
   }, [props.provider]);
 
   return (

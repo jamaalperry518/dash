@@ -8,7 +8,8 @@ const Stake = (props) => {
     setStake(e.target.value);
   };
   const blurHandler = (e) => {
-    console.log(formatInput(e.target.value));
+    console.log();
+    setStake(formatInput(stake));
   };
 
   return (
