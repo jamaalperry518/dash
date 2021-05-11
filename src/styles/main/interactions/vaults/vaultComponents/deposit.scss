@@ -6,7 +6,9 @@
     width: 55%;
     @include flexbox(row, flex-end, center);
     .amount-input {
+      color: white;
     }
+
     .asset-name {
       margin: 0;
       width: 5%;
@@ -17,9 +19,9 @@
     margin-top: 2rem;
     width: 80%;
     .vault-interaction-button {
-      width: 30%;
+      width: 10rem;
       height: 5rem;
-      margin-right: -1.5rem;
+      margin-right: 0.5rem;
       border-radius: 2.5rem;
       color: white;
       font-size: 1.8rem;

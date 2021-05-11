@@ -1,4 +1,5 @@
-// import {Interface, Contract, getAddress} from ethers;
+import { ethers } from "ethers";
+import { BigNumber } from "bignumber.js";
 // import {jsonToGrapQLQuery} from 'json-to-graphql-query';
 // import {abi as multicallAbi} from '../data/ABI/multiCall.json';
 
@@ -49,3 +50,23 @@ export const delay = (ms) => {
 //   }
 //   return metadata.logoUrl;
 // }
+
+export const formatInput = (amount) => {
+  return ethers.utils.parseUnits(amount.toString(), 18);
+};
+
+export const calculateAPY = (supplyRate) => {
+  const blocksPerDay = 4 * 60 * 24;
+  //supplyRate = (totalSupply - totalsupply last block) * blocksPerDay
+  let APY = Math.floor((1 + supplyRate / 4) ** 4 - 1);
+  let reinvested = APY * 0.7;
+  let minted = APY * 0.3;
+
+  let result = {
+    APY: APY.toFixed(1),
+    reinvested: reinvested.toFixed(1),
+    minted: minted.toFixed(1),
+  };
+
+  return result;
+};

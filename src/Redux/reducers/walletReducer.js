@@ -4,6 +4,8 @@ const initialState = {
   provider: undefined,
   signer: undefined,
   network: undefined,
+  currentBlock: 0,
+  lastBlock: 0,
 };
 
 const walletReducer = (state = initialState, action) => {
@@ -21,6 +23,12 @@ const walletReducer = (state = initialState, action) => {
       return {
         ...state,
         provider: rpcProvider,
+      };
+    case "SET_CURRENT_BLOCK":
+      return {
+        ...state,
+        currentBlock: action.currentBlock,
+        lastBlock: action.lastBlock,
       };
     default:
       return state;

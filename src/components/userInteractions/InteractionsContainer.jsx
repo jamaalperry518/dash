@@ -26,7 +26,10 @@ const InteractionsContainer = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-    dispatch(setProvider());
+    if (!props.provider) {
+      dispatch(setProvider());
+    }
+
     if (props.address === "") {
       history.push("/");
     } else {
@@ -35,7 +38,7 @@ const InteractionsContainer = (props) => {
     //eslint-disable-next-line
   }, [props.provider]);
 
-  useEffect(() => {
+  useEffect(async () => {
     const poolArray = Object.values(props.pools);
 
     if (props.provider) {
@@ -47,6 +50,7 @@ const InteractionsContainer = (props) => {
           return dispatch(getPoolInfo(pool.name, pool.address, props.provider));
         });
       }
+      console.log(await props.provider);
     }
 
     //eslint-disable-next-line
@@ -75,6 +79,7 @@ const mapStateToProps = (state) => {
     assets: state.pools.assetArray,
     currentPool: state.pools.currentPool,
     pools: state.pools.pools,
+    signer: state.wallet.signer,
   };
 };
 

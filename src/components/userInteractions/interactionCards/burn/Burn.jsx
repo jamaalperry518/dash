@@ -1,11 +1,15 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { formatInput } from "../../../../helpers/utils";
 
 const Burn = (props) => {
   const [arrayToBurn, setArrayToBurn] = useState(0);
 
   const changeHandler = (e) => {
     setArrayToBurn(e.target.value);
+  };
+  const blurHandler = (e) => {
+    console.log(formatInput(e.target.value));
   };
 
   return (
@@ -17,6 +21,7 @@ const Burn = (props) => {
           className="amount-input"
           value={arrayToBurn}
           onChange={changeHandler}
+          onBlur={blurHandler}
         />
         <h1 className="array">Array</h1>
       </div>

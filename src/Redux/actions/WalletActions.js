@@ -117,3 +117,15 @@ export const getTokenPrice = (token) => {
       console.log(err);
     });
 };
+
+export const getCurrentBlock = (provider) => async (dispatch) => {
+  const blocksPerDay = 4 * 60 * 24;
+  let currentBlock = await provider.getBlockNumber();
+
+  let lastBlock = currentBlock - blocksPerDay;
+  dispatch({
+    type: "SET_CURRENT_BLOCK",
+    currentBlock: currentBlock,
+    lastBlock: lastBlock,
+  });
+};

@@ -29,7 +29,10 @@ const VaultButtons = (props) => {
     <div className="withdraw-deposit">
       <div className="balance-info">
         <p className="section-heading">Your deposit in this vault</p>
-        <p className="user-deposit-in-vault"> {vault.depositInVault}</p>
+        <p className="user-deposit-in-vault">
+          {" "}
+          {vault.depositInVault} {vault.symbol}
+        </p>
         <p className="deposit-fiat-amount">
           ( ~ {convertStandardNumber(price * vault.depositInVault)})
         </p>
