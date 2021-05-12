@@ -1,11 +1,11 @@
 .header {
   padding: 3rem 10rem;
   @include flexbox(row, space-between, center);
-  max-width: 210rem;
+  max-width: 220rem;
 
   svg {
-    height: 5rem;
-    width: 5rem;
+    height: 6rem;
+    width: 6rem;
   }
   p {
     font-family: $main-font;

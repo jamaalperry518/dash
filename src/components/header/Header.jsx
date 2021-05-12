@@ -6,7 +6,10 @@ import WalletConnection from "./WalletConnection";
 const Header = () => {
   return (
     <div className="header">
-      {logo} <WalletConnection />
+      <a href="http://array.finance" target="_blank" rel="noopener noreferrer">
+        {logo}
+      </a>
+      <WalletConnection />
     </div>
   );
 };

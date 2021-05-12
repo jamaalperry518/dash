@@ -1,6 +1,6 @@
 .financial-stats-banner {
   width: 110rem;
-  margin: 0 auto;
+  margin: 6.5rem auto;
   display: flex;
   align-items: center;
   justify-content: flex-start;
@@ -26,5 +26,8 @@
       font-weight: bold;
       line-height: 4.4rem;
     }
+  }
+  @media (max-width: 1280px) {
+    margin: 0 auto;
   }
 }
