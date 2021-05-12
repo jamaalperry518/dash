@@ -4,7 +4,7 @@ import { formatInput } from "../../../../helpers/utils";
 
 const Burn = (props) => {
   const [arrayToBurn, setArrayToBurn] = useState(0);
-
+  const [isMax, setIsMax] = useState(false);
   const changeHandler = (e) => {
     setArrayToBurn(e.target.value);
   };
@@ -12,10 +12,29 @@ const Burn = (props) => {
     console.log(formatInput(e.target.value));
   };
 
+  const setMax = () => {
+    setIsMax(true);
+    setArrayToBurn(props.arrayBalance);
+  };
+  const clear = () => {
+    setIsMax(false);
+
+    setArrayToBurn(0);
+  };
+
   return (
     <div className="burn-array-container">
       <div className="burn-input-container">
         <p className="section-heading">Choose an amount of array to burn</p>
+        {arrayToBurn > 0 || isMax ? (
+          <button className="max-button" onClick={clear}>
+            clear
+          </button>
+        ) : (
+          <button className="max-button" onClick={setMax}>
+            max
+          </button>
+        )}
         <input
           type="number"
           className="amount-input"
@@ -52,6 +71,7 @@ const Burn = (props) => {
 const mapStateToProps = (state) => {
   return {
     assets: state.pools.assetArray,
+    arrayBalance: state.wallet.arrayBalance,
   };
 };
 export default connect(mapStateToProps)(Burn);

@@ -1,4 +1,10 @@
 .wallet-connect-container {
+  @include flexbox(row, space-evenly, center);
+  .array-balance {
+    color: $off-white;
+    margin-right: 5rem;
+    font-size: 2.4rem;
+  }
   .address-container {
     @include flexbox(row, center, center);
     .address {

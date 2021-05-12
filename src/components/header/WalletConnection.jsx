@@ -14,6 +14,9 @@ const WalletConnection = (props) => {
   return (
     <div className="wallet-connect-container">
       {props.address ? (
+        <p className="array-balance">{props.arrayBalance} ARRAY</p>
+      ) : null}
+      {props.address ? (
         <div className="address-container">
           <img src={networkImage} alt="" className="network-img" />
           <p className="address">
@@ -41,6 +44,7 @@ const WalletConnection = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
+    arrayBalance: state.wallet.arrayBalance,
   };
 };
 

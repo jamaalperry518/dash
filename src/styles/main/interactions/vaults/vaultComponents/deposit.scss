@@ -5,8 +5,13 @@
   .vault-interaction-input-container {
     width: 55%;
     @include flexbox(row, flex-end, center);
+
     .amount-input {
       color: white;
+      max-width: max-content;
+      min-width: 32rem;
+      font-size: 3rem;
+      padding: 1rem;
     }
 
     .asset-name {

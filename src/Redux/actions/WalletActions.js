@@ -51,6 +51,7 @@ const addProviderEvents = (provider, userData) => {
 
   // Subscribe to provider disconnection
   provider.on("disconnect", (error) => {
+    window.location.reload();
     console.log("web3 connection interrupted: ", error);
   });
 };
@@ -97,9 +98,13 @@ export const getBalance = (vaults, provider, address) => async (dispatch) => {
     const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
     console.log(asset);
     const balance = ethers.utils.formatUnits(await contract.balanceOf(address));
-    if (balance > 0) {
+    if (balance > 0 && balance < 1) {
       result[`${asset.name}`] = asset;
       result[`${asset.name}`]["user_balance"] = balance;
+      console.log((asset.symbol, balance));
+    } else if (balance > 1) {
+      result[`${asset.name}`] = asset;
+      result[`${asset.name}`]["user_balance"] = parseFloat(balance);
       console.log((asset.symbol, balance));
     } else {
       result[`${asset.name}`] = asset;
