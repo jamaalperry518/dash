@@ -2,6 +2,20 @@
   margin-bottom: 3rem;
   width: 95%;
   margin: 2rem auto;
+  .close-vault {
+    height: 3rem;
+    width: 3rem;
+    position: absolute;
+    cursor: pointer;
+    top: 8rem;
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    color: $opaque-white;
+    &:hover {
+      color: $off-white;
+    }
+  }
   .vault-top {
     padding: 2%;
     border: 0.2rem solid $opaque-white;
@@ -77,6 +91,7 @@
         font-size: 2.4rem;
         margin-top: -1rem;
       }
+
       .deposit-fiat-amount {
         margin-top: 1rem;
         font-size: 1.6rem;
