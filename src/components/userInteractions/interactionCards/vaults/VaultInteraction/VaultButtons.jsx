@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { convertStandardNumber } from "../../../../../Redux/actions/currencyActions";
 import axios from "axios";
+import { FaAngleUp } from "react-icons/fa";
 //components
 import Withdraw from "./Withdraw";
 import Deposit from "./Deposit";
@@ -26,7 +27,7 @@ const VaultButtons = (props) => {
       });
   }, [vault.address]);
   return (
-    <div className="withdraw-deposit">
+    <div className={props.show ? "withdraw-deposit show" : "withdraw-deposit"}>
       <div className="balance-info">
         <p className="section-heading">Your deposit in this vault</p>
         <p className="user-deposit-in-vault">
@@ -37,6 +38,7 @@ const VaultButtons = (props) => {
           ( ~ {convertStandardNumber(price * vault.depositInVault)})
         </p>
       </div>
+      <FaAngleUp onClick={props.vaultCloseHandler} className="close-vault" />
       {(() => {
         switch (cardDisplayed) {
           case "deposit":
