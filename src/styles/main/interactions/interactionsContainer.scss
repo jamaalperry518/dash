@@ -9,6 +9,7 @@
   top: 28rem;
   margin: 0 auto;
   color: white;
+  padding-bottom: 10rem;
 
   .inactive {
     opacity: 0.4;
@@ -18,7 +19,7 @@
   .cards {
     min-width: 97rem;
     max-width: 97rem;
-    min-height: 43rem;
+    min-height: 48rem;
     border: 1px solid rgba(0, 0, 0, 0.3);
     border-radius: 0.4rem;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
@@ -44,6 +45,18 @@
       width: 90%;
       margin: 0 auto;
       text-align: right;
+      color: white;
+    }
+    .max-button {
+      background-color: $lightBlueBackground;
+      border: 1px solid white;
+      position: absolute;
+      right: 32rem;
+      border-radius: 4px;
+      color: white;
+    }
+    @media (max-width: 1280px) {
+      min-height: 43rem;
     }
   }
   @media (max-width: 1280px) {

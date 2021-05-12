@@ -9,10 +9,16 @@
     flex-direction: column;
     align-self: flex-start;
     width: 30%;
-
-    .amount-input {
+    .max-button {
+      background-color: $lightBlueBackground;
+      border: 1px solid white;
+      position: absolute;
+      left: 10rem;
+      top: 11rem;
+      border-radius: 4px;
       color: white;
     }
+
     .array {
       font-weight: bold;
       font-size: 2.4rem;

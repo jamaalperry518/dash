@@ -5,7 +5,12 @@
   .vault-top {
     padding: 2%;
     border: 0.2rem solid $opaque-white;
-    border-bottom: none;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    &:hover {
+      border: 0.2rem solid $off-white;
+    }
+
     .vault-header {
       padding: 1%;
       width: 95%;
@@ -43,12 +48,26 @@
     }
   }
 
+  .top-show {
+    border-bottom: none;
+    transition: all 0.3s ease;
+    &:hover {
+      border: 0.2rem solid $off-white;
+      border-bottom: none;
+    }
+  }
+
   .withdraw-deposit {
     padding: 2%;
     border: 0.2rem solid $lightBlueBackground;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
+    display: none;
+    transition: all 0.4s ease;
+    position: absolute;
+    width: 87.56rem;
+    background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
 
     .balance-info {
       width: 25%;
@@ -95,5 +114,9 @@
       //   }
       // }
     }
+  }
+  .show {
+    display: flex;
+    transition: all 0.4s ease;
   }
 }

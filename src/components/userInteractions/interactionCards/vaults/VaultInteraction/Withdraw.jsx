@@ -3,25 +3,43 @@ import { formatInput } from "../../../../../helpers/utils";
 
 const Withdraw = (props) => {
   const { vault, setCard } = props;
-  const [deposit, setDeposit] = useState(0);
+  const [withdrawal, setWithdrawal] = useState(0);
+  const [isMax, setIsMax] = useState(false);
   const changeHandler = (e) => {
-    setDeposit(e.target.value);
+    setWithdrawal(e.target.value);
   };
   const blurHandler = (e) => {
-    setDeposit(formatInput(e.target.value));
+    setWithdrawal(formatInput(e.target.value));
+  };
+  const setMax = () => {
+    setIsMax(true);
+    setWithdrawal(vault.depositInVault);
+  };
+  const clear = () => {
+    setIsMax(false);
+
+    setWithdrawal(0);
   };
   return (
     <div className="vault-interaction-container">
       <p className="section-heading">Choose an amount to deposit:</p>
       <div className="vault-interaction-input-container">
+        {withdrawal > 0 || isMax ? (
+          <button className="max-button" onClick={clear}>
+            clear
+          </button>
+        ) : (
+          <button className="max-button" onClick={setMax}>
+            max
+          </button>
+        )}
         <input
           type="number"
           onChange={changeHandler}
           onBlur={blurHandler}
-          placeholder={deposit}
           className="amount-input"
+          value={withdrawal}
         />
-        <h1 className="asset-name">{vault.vaultName}</h1>
       </div>
       <div className="vault-interaction-container-buttons">
         <button

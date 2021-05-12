@@ -8,18 +8,27 @@ import VaultButtons from "./VaultInteraction/VaultButtons";
 
 const SingleVault = (props) => {
   const vault = props.vault;
+  const [selected, setSelected] = useState(false);
   const [apyObj, setApy] = useState({
     APY: 0,
     reinvested: 0,
     minted: 0,
   });
+  const vaultSelectHandler = () => {
+    if (!selected) {
+      setSelected(true);
+    }
+  };
+  const vaultCloseHandler = () => {
+    setSelected(false);
+  };
   useEffect(() => {
     setApy(calculateAPY(vault.supplyRate));
     //eslint-disable-next-line
   }, []);
   return (
-    <div className="single-vault">
-      <div className="vault-top">
+    <div onClick={vaultSelectHandler} className="single-vault">
+      <div className={selected ? "vault-top top-show" : "vault-top"}>
         <div className="vault-header">
           <div className="name-and-logo">
             <div className="logo-container">
@@ -54,7 +63,11 @@ const SingleVault = (props) => {
         </div>
       </div>
 
-      <VaultButtons vault={vault} />
+      <VaultButtons
+        show={selected}
+        vaultCloseHandler={vaultCloseHandler}
+        vault={vault}
+      />
     </div>
   );
 };

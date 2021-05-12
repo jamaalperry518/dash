@@ -7,6 +7,7 @@ const initialState = {
   currentBlock: 0,
   lastBlock: 0,
   gasPrice: 0,
+  arrayBalance: 420,
 };
 
 const walletReducer = (state = initialState, action) => {
