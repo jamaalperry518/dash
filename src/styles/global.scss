@@ -126,7 +126,7 @@ video {
   margin: 0;
   padding: 0;
   border: 0;
-  font: inherit;
+
   vertical-align: baseline;
 }
 /* HTML5 display-role reset for older browsers */
@@ -148,13 +148,11 @@ body {
 }
 html {
   box-sizing: border-box;
-  background-size: cover;
-  -webkit-background-size: cover;
-  -moz-background-size: cover;
+
   font-size: 62.5%;
   background: linear-gradient(180deg, #020a55 0%, #17043a 100%) fixed;
-  background: -moz-linear-gradient(to bottom, #020a55 0%, #17043a 100%) fixed;
-
+  background: -moz-linear-gradient(to bottom, #020a55, #17043a) fixed;
+  font-family: $main-font;
   min-height: 100%;
   width: 100vw;
   overflow-x: hidden;
@@ -182,7 +180,6 @@ table {
 .App {
   max-width: 250rem;
   margin: 0 auto;
-  font-family: $main-font;
 
   button {
     border: none;

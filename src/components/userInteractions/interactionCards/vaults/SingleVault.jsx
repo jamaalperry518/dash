@@ -15,9 +15,7 @@ const SingleVault = (props) => {
     minted: 0,
   });
   const vaultSelectHandler = () => {
-    if (!selected) {
-      setSelected(true);
-    }
+    setSelected(!selected);
   };
   const vaultCloseHandler = () => {
     setSelected(false);
@@ -27,8 +25,11 @@ const SingleVault = (props) => {
     //eslint-disable-next-line
   }, []);
   return (
-    <div onClick={vaultSelectHandler} className="single-vault">
-      <div className={selected ? "vault-top top-show" : "vault-top"}>
+    <div className="single-vault">
+      <div
+        onClick={vaultSelectHandler}
+        className={selected ? "vault-top top-show" : "vault-top"}
+      >
         <div className="vault-header">
           <div className="name-and-logo">
             <div className="logo-container">
