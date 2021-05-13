@@ -16,12 +16,16 @@
       color: $off-white;
     }
   }
-  .etherscan-link {
-    height: 2rem;
-    width: 2rem;
-    margin-top: -2rem;
-    &:hover {
-      color: $lightBlueBackground;
+  .etherscan {
+    text-decoration: none;
+    color: inherit;
+    .etherscan-link {
+      height: 2rem;
+      width: 2rem;
+      margin-top: -2rem;
+      &:hover {
+        color: $lightBlueBackground;
+      }
     }
   }
   .vault-top {
