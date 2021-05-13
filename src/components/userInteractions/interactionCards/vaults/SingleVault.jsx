@@ -37,7 +37,12 @@ const SingleVault = (props) => {
 
             <p className="vault-name">{vault.symbol}</p>
           </div>
-          <a href={`https://etherscan./`} className="etherscan">
+          <a
+            href={`https://etherscan.io/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="etherscan"
+          >
             <FaExternalLinkAlt className="etherscan-link" />
           </a>
         </div>
