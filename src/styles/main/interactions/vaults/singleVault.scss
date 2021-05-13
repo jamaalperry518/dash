@@ -16,6 +16,18 @@
       color: $off-white;
     }
   }
+  .etherscan {
+    text-decoration: none;
+    color: inherit;
+    .etherscan-link {
+      height: 2rem;
+      width: 2rem;
+      margin-top: -2rem;
+      &:hover {
+        color: $lightBlueBackground;
+      }
+    }
+  }
   .vault-top {
     padding: 2%;
     border: 0.2rem solid $opaque-white;
