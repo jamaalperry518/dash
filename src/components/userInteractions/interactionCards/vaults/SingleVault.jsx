@@ -37,7 +37,12 @@ const SingleVault = (props) => {
 
             <p className="vault-name">{vault.symbol}</p>
           </div>
-          <a href={`https://etherscan./`} className="etherscan">
+          <a
+            href={`https://etherscan.io/`}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="etherscan"
+          >
             <FaExternalLinkAlt className="etherscan-link" />
           </a>
         </div>
@@ -54,9 +59,7 @@ const SingleVault = (props) => {
           </div>
 
           <div className="vault-stat">
-            <p className="section-heading">
-              APY reinvested/ turned into Array tokens
-            </p>
+            <p className="section-heading">APY reinvested/ minted Array</p>
             <p className="stat-text">
               {apyObj.reinvested}% / {apyObj.minted}%
             </p>

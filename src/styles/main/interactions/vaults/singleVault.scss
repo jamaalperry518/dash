@@ -7,13 +7,15 @@
     width: 3rem;
     position: absolute;
     cursor: pointer;
-    top: 8rem;
+    bottom: 1rem;
     left: 0;
     right: 0;
     margin: 0 auto;
     color: $opaque-white;
     &:hover {
       color: $off-white;
+      background-color: rgba(0, 0, 0, 0.5);
+      border-radius: 50%;
     }
   }
   .etherscan {
@@ -66,7 +68,7 @@
       margin-left: 5rem;
 
       .vault-stat {
-        width: 35%;
+        width: 36%;
         .stat-text {
           font-size: 2.4rem;
         }
@@ -92,7 +94,7 @@
     display: none;
     transition: all 0.4s ease;
     position: absolute;
-    width: 87.56rem;
+    width: 87.7rem;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
 
     .balance-info {
@@ -114,17 +116,24 @@
       @include flexbox(row, flex-end, center);
 
       #actions {
-        width: 20rem;
+        width: 16rem;
+        padding-left: 1rem;
         height: 5rem;
         border-radius: 0.8rem;
         color: white;
         font-size: 2.4rem;
         background: linear-gradient(90deg, #192298 0%, #242eb1 100%);
         box-shadow: 0px 0.5rem 1rem rgba(31, 1, 150, 0.15);
+        -webkit-appearance: none;
+        -moz-appearance: none;
+        cursor: pointer;
         .action {
           color: white;
           font-size: 2.4rem;
           background: $darkBlueBackground;
+          &:hover {
+            background-color: $lightBlueBackground;
+          }
         }
       }
 

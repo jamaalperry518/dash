@@ -108,6 +108,7 @@ export const getBalance = (vaults, provider, address) => async (dispatch) => {
       console.log((asset.symbol, balance));
     } else {
       result[`${asset.name}`] = asset;
+      result[`${asset.name}`]["user_balance"] = 0;
     }
   });
   return dispatch({

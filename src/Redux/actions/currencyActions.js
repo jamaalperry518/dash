@@ -25,28 +25,3 @@ export const getExchangeRates = () => (dispatch) => {
       console.log(err);
     });
 };
-export const getBigCoinsPrice = () => (dispatch) => {
-  const bigCoins = ["bitcoin", "ethereum", "1inch", "curve-dao-token"];
-  bigCoins.map((coin) => {
-    let upper = coin.toUpperCase();
-    if (coin === "curve-dao-token") {
-      upper = "CRV";
-    }
-    if (coin === "1inch") {
-      upper = "ONEINCH";
-    }
-    return axios
-      .get(
-        `https://api.coingecko.com/api/v3/simple/price?ids=${coin}&vs_currencies=usd`
-      )
-      .then((res) => {
-        return dispatch({
-          type: `GET_${upper}_PRICE`,
-          payload: convertStandardNumber(res.data[coin]["usd"]),
-        });
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  });
-};

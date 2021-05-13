@@ -14,6 +14,9 @@ const initialState = {
     },
   },
   tvl: 0,
+  array: {
+    tokens: {},
+  },
 };
 const arrayReducer = (state = initialState, action) => {
   switch (action.type) {

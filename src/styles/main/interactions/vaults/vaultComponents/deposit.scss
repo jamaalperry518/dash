@@ -46,4 +46,12 @@
       }
     }
   }
+  .max-button {
+    background-color: $lightBlueBackground;
+    border: 1px solid white;
+    position: absolute;
+    right: 32rem;
+    border-radius: 4px;
+    color: white;
+  }
 }
