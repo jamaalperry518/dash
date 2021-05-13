@@ -1,15 +1,23 @@
-import React from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 //components
 import AssetInput from "./AssetInput";
 
 const AssetSelect = (props) => {
+  const [active, setActive] = useState("");
   return (
     <div className={props.address ? "asset-select" : "asset-select inactive"}>
       <p className="section-heading">Select asset and amount to deposit:</p>
       <div className="asset-inputs">
         {props.assets?.map((asset, i) => {
-          return <AssetInput key={i} asset={asset} />;
+          return (
+            <AssetInput
+              key={i}
+              active={active}
+              setActive={setActive}
+              asset={asset}
+            />
+          );
         })}
       </div>
     </div>

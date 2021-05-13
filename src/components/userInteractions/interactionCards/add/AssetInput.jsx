@@ -4,14 +4,12 @@ import scss from "./assetInput.module.scss";
 import { formatInput } from "../../../../helpers/utils";
 
 const AssetInput = (props) => {
-  const [checked, setChecked] = useState(false);
   const [depositAmount, setDeposit] = useState();
-  const [isMax, setIsMax] = useState(false);
   const changeHandler = (e) => {
     setDeposit(e.target.value);
   };
-  const checkHandler = () => {
-    setChecked(!checked);
+  const checkHandler = (e) => {
+    props.setActive(e.target.id);
   };
   const blurHandler = (e) => {
     console.log(formatInput(e.target.value));
@@ -19,43 +17,33 @@ const AssetInput = (props) => {
 
   const setMax = () => {
     if (props.vaults[props.asset.name].user_balance > 0) {
-      setIsMax(true);
       setDeposit(props.vaults[props.asset.name].user_balance);
     }
   };
   const clear = () => {
-    setIsMax(false);
-
     setDeposit(0);
   };
 
   return (
     <div className="asset-input">
       <div className={scss["checkbox-container"]}>
-        <div
-          className={checked ? scss["checkbox-checked"] : scss["checkbox"]}
+        <input
+          type="radio"
+          className={scss["checkbox"]}
           name="asset"
-          onClick={checkHandler}
+          checked={props.active === props.asset.symbol}
+          onChange={(e) => checkHandler(e)}
           id={props.asset.symbol}
-        >
-          <div className={scss["little-circle"]}></div>
-        </div>
+        />
+        {/* <div className={scss["little-circle"]}></div>
+        </input> */}
         <h1 className="asset-name">{props.asset.symbol}</h1>
       </div>
 
-      {checked ? (
+      {props.active === props.asset.symbol ? (
         <div className={scss["set-max"]}>
-          {depositAmount > 0 || isMax ? (
-            <button
-              className={
-                scss[
-                  props.vaults[props.asset.name].user_balance > 0
-                    ? "max-button"
-                    : "disabled"
-                ]
-              }
-              onClick={clear}
-            >
+          {depositAmount > 0 ? (
+            <button className={scss["max-button"]} onClick={clear}>
               clear
             </button>
           ) : (
@@ -64,12 +52,14 @@ const AssetInput = (props) => {
             </button>
           )}
         </div>
-      ) : (
-        <div className={scss["set-max"]}></div>
-      )}
+      ) : null}
       <input
         type="number"
-        className={checked ? "amount-input" : "amount-input inactive"}
+        className={
+          props.active === props.asset.symbol
+            ? "amount-input"
+            : "amount-input inactive"
+        }
         min={0}
         name="amount"
         value={depositAmount}
