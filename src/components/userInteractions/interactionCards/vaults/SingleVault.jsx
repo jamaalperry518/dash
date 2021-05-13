@@ -54,9 +54,7 @@ const SingleVault = (props) => {
           </div>
 
           <div className="vault-stat">
-            <p className="section-heading">
-              APY reinvested/ turned into Array tokens
-            </p>
+            <p className="section-heading">APY reinvested/ minted Array</p>
             <p className="stat-text">
               {apyObj.reinvested}% / {apyObj.minted}%
             </p>

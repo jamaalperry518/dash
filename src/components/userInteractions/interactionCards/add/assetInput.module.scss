@@ -47,4 +47,14 @@
     border-radius: 4px;
     color: white;
   }
+  .disabled {
+    border: 1px solid $opaque-white;
+    border-radius: 4px;
+    color: white;
+    opacity: 0.2;
+    pointer-events: none;
+    cursor: none;
+    color: $opaque-white;
+    background-color: $mainBlueBackground;
+  }
 }

@@ -28,6 +28,7 @@ const AssetInput = (props) => {
 
     setDeposit(0);
   };
+
   return (
     <div className="asset-input">
       <div className={scss["checkbox-container"]}>
@@ -45,7 +46,16 @@ const AssetInput = (props) => {
       {checked ? (
         <div className={scss["set-max"]}>
           {depositAmount > 0 || isMax ? (
-            <button className={scss["max-button"]} onClick={clear}>
+            <button
+              className={
+                scss[
+                  props.vaults[props.asset.name].user_balance > 0
+                    ? "max-button"
+                    : "disabled"
+                ]
+              }
+              onClick={clear}
+            >
               clear
             </button>
           ) : (

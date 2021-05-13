@@ -2,19 +2,6 @@ const initialState = {
   currentPool: null,
   assetArray: [],
   loaded: false,
-  vaults: {
-    WETH: {
-      name: "WETH",
-      adress: "",
-      tvl: 0,
-      totalAPY: 0,
-      mintedAPY: 0,
-      reinvestedAPY: 0,
-      depositInVault: 0,
-      icon: "",
-    },
-  },
-  vaultsArray: [],
   pools: {
     "WETH-wBTC": {
       address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",

@@ -47,20 +47,8 @@
       text-align: right;
       color: white;
     }
-    .max-button {
-      background-color: $lightBlueBackground;
-      border: 1px solid white;
-      position: absolute;
-      right: 32rem;
-      border-radius: 4px;
-      color: white;
-    }
-    @media (max-width: 1280px) {
-      min-height: 43rem;
-    }
   }
   @media (max-width: 1280px) {
-    height: 50rem;
     top: 22.3rem;
   }
 }
