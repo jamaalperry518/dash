@@ -26,7 +26,7 @@ const StatsBanner = (props) => {
       <div className="banner-stat-container">
         <p className="banner-title">Gas Price</p>
         <h1 className="banner-stat">
-          {props.gasPrice === 0 ? "---" : props.gasPrice.toFixed()} gw
+          {props.gasPrice === 0 ? "---" : props.gasPrice.toFixed()} gwei
         </h1>
       </div>
     </div>

@@ -5,12 +5,8 @@
 
   .asset-inputs {
     max-height: 39rem;
-    overflow-y: scroll;
     overflow-x: hidden;
     padding: 4rem 1rem 0rem 1rem;
-    scrollbar-color: $lightBlueBackground $darkBlueBackground;
-    scrollbar-width: thin;
-
     @include flexbox(column, center, center);
 
     .asset-input {
@@ -38,18 +34,5 @@
         text-align: right;
       }
     }
-  }
-  .asset-inputs::-webkit-scrollbar {
-    width: 0.1rem;
-  }
-
-  .asset-inputs::-webkit-scrollbar-button {
-    color: linear-gradient(180deg, #020a55 0%, #17043a 100%);
-  }
-
-  .asset-inputs::-webkit-scrollbar-thumb {
-    border-radius: 1rem;
-    background-color: black;
-    background-color: linear-gradient(180deg, #020a55 0%, #17043a 100%);
   }
 }
