@@ -19,11 +19,11 @@
     background-color: transparent;
     color: white;
     font-size: 3.6rem;
-    border-bottom: 0.2rem solid $lightBlueBackground;
+    border-bottom: 0.2rem solid $light-blue-background;
     position: relative;
 
     &:hover {
-      color: $hoverBlue;
+      color: $hover-blue;
       border-bottom: none;
       top: 0.3rem;
     }

@@ -5,17 +5,15 @@
   @include flexbox(row, center, center);
   .checkbox {
     cursor: pointer;
+    background-color: transparent;
     &:hover {
-      background-color: dodgerblue;
+      background-color: $light-blue-background;
     }
 
     height: 1.5rem;
     width: 1.5rem;
     border-radius: 50%;
     border: 1px solid white;
-
-    .little-circle {
-    }
   }
 
   .checkbox-checked {
@@ -42,7 +40,7 @@
   right: 50rem;
 
   .max-button {
-    background-color: $lightBlueBackground;
+    background-color: $light-blue-background;
     border: 1px solid white;
     border-radius: 4px;
     color: white;
@@ -55,6 +53,6 @@
     pointer-events: none;
     cursor: none;
     color: $opaque-white;
-    background-color: $mainBlueBackground;
+    background-color: $main-blue-background;
   }
 }

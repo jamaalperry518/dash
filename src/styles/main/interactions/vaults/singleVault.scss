@@ -27,7 +27,7 @@
       width: 2rem;
       margin-top: -2rem;
       &:hover {
-        color: $lightBlueBackground;
+        color: $light-blue-background;
       }
     }
   }
@@ -89,7 +89,8 @@
 
   .withdraw-deposit {
     padding: 2%;
-    border: 0.2rem solid $lightBlueBackground;
+    border: 0.2rem solid $light-blue-background;
+    border-radius: 0.4rem;
     display: flex;
     align-items: center;
     justify-content: space-evenly;
@@ -130,9 +131,9 @@
         .action {
           color: white;
           font-size: 2.4rem;
-          background: $darkBlueBackground;
+          background: $dark-blue-background;
           &:hover {
-            background-color: $lightBlueBackground;
+            background-color: $light-blue-background;
           }
         }
       }

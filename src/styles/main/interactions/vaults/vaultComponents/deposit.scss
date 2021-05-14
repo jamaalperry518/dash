@@ -42,12 +42,12 @@
       margin: 0 5rem;
       &:hover {
         top: 0.3rem;
-        color: $hoverBlue;
+        color: $hover-blue;
       }
     }
   }
   .max-button {
-    background-color: $lightBlueBackground;
+    background-color: $light-blue-background;
     border: 1px solid white;
     position: absolute;
     right: 32rem;

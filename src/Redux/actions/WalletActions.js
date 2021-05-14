@@ -88,7 +88,7 @@ export const connectUserWallet = () => async (dispatch) => {
     signer: signer,
   });
 };
-
+// this can be moved into poolActions, will make more sense.
 export const getBalance = (vaults, provider, address) => async (dispatch) => {
   let result = {};
   const assetArray = Object.values(vaults);
@@ -131,16 +131,4 @@ export const getTokenPrice = (token) => {
     .catch((err) => {
       console.log(err);
     });
-};
-
-export const getCurrentBlock = (provider) => async (dispatch) => {
-  const blocksPerDay = 4 * 60 * 24;
-  let currentBlock = await provider.getBlockNumber();
-
-  let lastBlock = currentBlock - blocksPerDay;
-  dispatch({
-    type: "SET_CURRENT_BLOCK",
-    currentBlock: currentBlock,
-    lastBlock: lastBlock,
-  });
 };
