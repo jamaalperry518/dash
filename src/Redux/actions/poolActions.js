@@ -33,9 +33,13 @@ export const getPoolInfo = (poolName, asset, provider) => async (dispatch) => {
       .catch((err) => {
         console.log(err);
       });
+    let tokenBalance = ethers.utils.formatUnits(
+      await contract.balanceOf(asset)
+    );
     currentToken = { ...assetObject[token] };
     currentToken.value = parseFloat(normalizedWeight);
     currentToken.price = await tokenPrice;
+    currentToken.user_balance = tokenBalance;
     tokensInPool[`${currentToken.symbol}`] = currentToken;
   });
   resultObject[`${poolName}`] = {
