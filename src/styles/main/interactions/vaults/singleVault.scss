@@ -79,7 +79,6 @@
   }
 
   .top-show {
-    border-bottom: none;
     transition: all 0.3s ease;
     &:hover {
       border: 0.2rem solid $off-white;
@@ -91,11 +90,11 @@
     padding: 2%;
     border: 0.2rem solid $light-blue-background;
     border-radius: 0.4rem;
-    display: flex;
+    margin-top: -1rem;
     align-items: center;
     justify-content: space-evenly;
-    display: none;
-    transition: all 0.4s ease;
+    display: flex;
+    // transition: all 0.4s ease;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
 
     .balance-info {
@@ -151,9 +150,5 @@
       //   }
       // }
     }
-  }
-  .show {
-    display: flex;
-    transition: all 0.4s ease;
   }
 }
