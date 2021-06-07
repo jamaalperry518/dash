@@ -5,9 +5,7 @@
   position: relative;
 
   .tab {
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    @include flexbox(row, center, center);
     color: white;
     font-size: 5rem;
     margin-bottom: 3rem;
@@ -16,11 +14,11 @@
     a {
       color: white;
       &:hover {
-        color: $hoverBlue;
+        color: $hover-blue;
       }
     }
     &.selected {
-      border-right: 0.2rem solid $lightBlueBackground;
+      border-right: 0.2rem solid $light-blue-background;
     }
     &:first-child {
       font-size: 6rem;

@@ -4,8 +4,7 @@ const initialState = {
   provider: undefined,
   signer: undefined,
   network: undefined,
-  currentBlock: 0,
-  lastBlock: 0,
+
   gasPrice: 0,
   arrayBalance: 420,
 };
@@ -30,12 +29,6 @@ const walletReducer = (state = initialState, action) => {
       return {
         ...state,
         gasPrice: action.gasPrice,
-      };
-    case "SET_CURRENT_BLOCK":
-      return {
-        ...state,
-        currentBlock: action.currentBlock,
-        lastBlock: action.lastBlock,
       };
     default:
       return state;

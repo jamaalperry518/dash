@@ -1,9 +1,7 @@
 .financial-stats-banner {
   width: 110rem;
   margin: 6.5rem auto;
-  display: flex;
-  align-items: center;
-  justify-content: flex-start;
+  @include flexbox(row, flex-start, center);
   color: $off-white;
 
   .banner-stat-container {
@@ -11,7 +9,7 @@
     min-width: 11rem;
     padding: 0 1rem;
     margin-right: 4rem;
-    border-right: 1px solid $off-white;
+    border-right: 0.1rem solid $off-white;
     &:last-child {
       border-right: none;
     }

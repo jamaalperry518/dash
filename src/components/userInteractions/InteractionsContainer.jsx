@@ -12,7 +12,6 @@ import { getPoolInfo } from "../../Redux/actions/poolActions";
 //components
 import Loading from "../ui/Loading";
 import TabSwitch from "./TabSwitch";
-// import Add from "./interactionCards/add/Add";
 const Add = lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, 800));
   return import("./interactionCards/add/Add");
@@ -84,7 +83,6 @@ const mapStateToProps = (state) => {
     assets: state.pools.assetArray,
     currentPool: state.pools.currentPool,
     pools: state.pools.pools,
-    signer: state.wallet.signer,
     vaults: state.vaults,
   };
 };

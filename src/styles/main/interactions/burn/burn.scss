@@ -10,7 +10,7 @@
     align-self: flex-start;
     width: 30%;
     .max-button {
-      background-color: $lightBlueBackground;
+      background-color: $light-blue-background;
       border: 1px solid white;
       position: absolute;
       left: 10rem;
@@ -46,7 +46,7 @@
           margin: 1rem 0.5rem;
 
           .burn-token-amount {
-            margin-left: 0px;
+            margin-left: 0;
           }
         }
       }
@@ -59,7 +59,7 @@
       }
       button {
         display: inline-block;
-        background-color: $lightBlueBackground;
+        background-color: $light-blue-background;
         color: white;
         font-size: 3rem;
         width: 21rem;

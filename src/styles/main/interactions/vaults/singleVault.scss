@@ -27,7 +27,7 @@
       width: 2rem;
       margin-top: -2rem;
       &:hover {
-        color: $lightBlueBackground;
+        color: $light-blue-background;
       }
     }
   }
@@ -79,7 +79,6 @@
   }
 
   .top-show {
-    border-bottom: none;
     transition: all 0.3s ease;
     &:hover {
       border: 0.2rem solid $off-white;
@@ -89,12 +88,13 @@
 
   .withdraw-deposit {
     padding: 2%;
-    border: 0.2rem solid $lightBlueBackground;
-    display: flex;
+    border: 0.2rem solid $light-blue-background;
+    border-radius: 0.4rem;
+    margin-top: -1rem;
     align-items: center;
     justify-content: space-evenly;
-    display: none;
-    transition: all 0.4s ease;
+    display: flex;
+    // transition: all 0.4s ease;
     background: linear-gradient(180deg, #050f5b 0%, #130650 100%);
 
     .balance-info {
@@ -130,9 +130,9 @@
         .action {
           color: white;
           font-size: 2.4rem;
-          background: $darkBlueBackground;
+          background: $dark-blue-background;
           &:hover {
-            background-color: $lightBlueBackground;
+            background-color: $light-blue-background;
           }
         }
       }
@@ -150,9 +150,5 @@
       //   }
       // }
     }
-  }
-  .show {
-    display: flex;
-    transition: all 0.4s ease;
   }
 }
