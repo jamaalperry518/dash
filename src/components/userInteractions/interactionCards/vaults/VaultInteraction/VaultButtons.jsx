@@ -48,7 +48,8 @@ const VaultButtons = (props) => {
     },
     exit: {
       opacity: 0,
-      y: "-5rem",
+      scaleY: 0.9,
+      y: "-2rem",
       transition: {
         duration: 0.3,
       },
