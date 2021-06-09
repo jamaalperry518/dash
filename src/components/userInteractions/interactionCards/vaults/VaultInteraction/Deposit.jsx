@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { AnimatePresence } from "framer-motion";
 import { connect } from "react-redux";
 import { formatInput } from "../../../../../helpers/utils";
 
@@ -30,39 +31,42 @@ const Deposit = (props) => {
 
     setDeposit(0);
   };
+
   return (
-    <div className="vault-interaction-container">
-      <p className="section-heading">Choose an amount to deposit:</p>
-      <div className="vault-interaction-input-container">
-        {deposit > 0 || isMax ? (
-          <button className="max-button" onClick={clear}>
-            clear
+    <AnimatePresence>
+      <div className="vault-interaction-container">
+        <p className="section-heading">Choose an amount to deposit:</p>
+        <div className="vault-interaction-input-container">
+          {deposit > 0 || isMax ? (
+            <button className="max-button" onClick={clear}>
+              clear
+            </button>
+          ) : (
+            <button className="max-button" onClick={setMax}>
+              max
+            </button>
+          )}
+          <input
+            type="number"
+            onChange={changeHandler}
+            onBlur={blurHandler}
+            className="amount-input"
+            value={deposit}
+          />
+        </div>
+        <div className="vault-interaction-container-buttons">
+          <button
+            onClick={(e) => {
+              setCard(e);
+            }}
+            className="cancel"
+          >
+            cancel
           </button>
-        ) : (
-          <button className="max-button" onClick={setMax}>
-            max
-          </button>
-        )}
-        <input
-          type="number"
-          onChange={changeHandler}
-          onBlur={blurHandler}
-          className="amount-input"
-          value={deposit}
-        />
+          <button className="vault-interaction-button">Deposit</button>
+        </div>
       </div>
-      <div className="vault-interaction-container-buttons">
-        <button
-          onClick={(e) => {
-            setCard(e);
-          }}
-          className="cancel"
-        >
-          cancel
-        </button>
-        <button className="vault-interaction-button">Deposit</button>
-      </div>
-    </div>
+    </AnimatePresence>
   );
 };
 

@@ -9,12 +9,13 @@
     flex-direction: column;
     align-self: flex-start;
     width: 30%;
+    position: relative;
     .max-button {
       background-color: $light-blue-background;
       border: 1px solid white;
       position: absolute;
-      left: 10rem;
-      top: 11rem;
+      left: 2rem;
+      top: 5rem;
       border-radius: 4px;
       color: white;
     }

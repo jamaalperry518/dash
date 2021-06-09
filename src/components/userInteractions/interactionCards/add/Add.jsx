@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from "react";
 import { connect, useDispatch } from "react-redux";
 import { setCurrentPool } from "../../../../Redux/actions/poolActions";
+import { motion } from "framer-motion";
 
 //components
 import Chart from "../../../ui/Chart";
@@ -25,10 +26,42 @@ const Add = (props) => {
     }
   }, [props.assets, props.pools, dispatch]);
 
+  const variants = {
+    hidden: {
+      y: "-5rem",
+
+      opacity: 0,
+    },
+    visible: {
+      y: 0,
+      opacity: 1,
+      transition: {
+        default: {
+          type: "spring",
+          damping: 15,
+        },
+        duration: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scaleX: 0.98,
+      y: "2rem",
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
+
   return (
     <>
       {props.currentPool && assetsToChart.length > 1 ? (
-        <div className="add-to-bags">
+        <motion.div
+          initial={variants.hidden}
+          animate={variants.visible}
+          exit={variants.exit}
+          className="add-to-bags"
+        >
           <div className="chart-container">
             <p className="section-heading">Array consist of:</p>
             <Chart assetsArray={assetsToChart} />
@@ -51,7 +84,7 @@ const Add = (props) => {
           </div>
           <AssetSelect assetsToChart={assetsToChart} />
           <Mint />{" "}
-        </div>
+        </motion.div>
       ) : (
         <Loading />
       )}

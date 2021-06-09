@@ -48,8 +48,8 @@ const VaultButtons = (props) => {
     },
     exit: {
       opacity: 0,
-      scaleY: 0.9,
-      y: "-2rem",
+      scaleX: 0.98,
+      y: "2rem",
       transition: {
         duration: 0.3,
       },
@@ -81,6 +81,7 @@ const VaultButtons = (props) => {
               onClick={props.vaultCloseHandler}
               className="close-vault"
             />
+
             {(() => {
               switch (cardDisplayed) {
                 case "deposit":
@@ -98,7 +99,7 @@ const VaultButtons = (props) => {
                         name="vault-actions"
                         id="actions"
                       >
-                        <option value="" className="action">
+                        <option hidden value="" className="action">
                           Actions
                         </option>
                         <option value="deposit" className="action">

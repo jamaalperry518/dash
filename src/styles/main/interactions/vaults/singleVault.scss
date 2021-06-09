@@ -129,6 +129,7 @@
         -moz-appearance: none;
         cursor: pointer;
         transition: all 0.3s ease-out;
+        background-position: left;
 
         .action {
           color: white;
@@ -141,26 +142,16 @@
         &:hover {
           background-size: 200% auto;
           color: white;
-          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11),
-            0 1px 3px rgba(0, 0, 0, 0.08);
+          box-shadow: 0 4px 6px rgba(50, 50, 93, 0.11);
+
           background-image: linear-gradient(
             to right,
             transparent 10%,
             $hover-blue 50%,
             transparent 100%
           );
+          background-position: right center;
           transition: 0.5s;
-          &:hover {
-            background-position: right center;
-          }
-        }
-        @keyframes load {
-          from {
-            left: -100%;
-          }
-          to {
-            left: 100%;
-          }
         }
       }
 

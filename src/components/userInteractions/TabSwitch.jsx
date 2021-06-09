@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
+import { motion } from "framer-motion";
 
 //components
 import { HiOutlinePlus } from "react-icons/hi";
@@ -46,13 +47,24 @@ const TabSwitch = (props) => {
     <div className={props.address ? "tab-switch" : "tab-switch inactive"}>
       {tabsArr.map((tab, i) => {
         return (
-          <div
+          <motion.div
+            whileHover={{
+              boxShadow: ".2rem .2rem .6rem rgba(255 255, 255, 0.31)",
+              color: "#1330f4",
+              transition: {
+                duration: 0.3,
+                type: "spring",
+                stiffness: 200,
+              },
+              x: "-.3rem",
+              scale: 1.01,
+            }}
             key={i}
             onClick={() => selectHandler(tab)}
             className={tab.selected ? `${tab.class} selected` : tab.class}
           >
             <Link to={tab.link}>{tab.image}</Link>
-          </div>
+          </motion.div>
         );
       })}
     </div>

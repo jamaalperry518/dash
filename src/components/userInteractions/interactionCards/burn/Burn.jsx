@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect } from "react-redux";
 import { formatInput } from "../../../../helpers/utils";
+import { motion } from "framer-motion";
 
 const Burn = (props) => {
   const [arrayToBurn, setArrayToBurn] = useState(0);
@@ -21,9 +22,40 @@ const Burn = (props) => {
 
     setArrayToBurn(0);
   };
+  const variants = {
+    hidden: {
+      opacity: 0,
+      scale: 0.9,
+    },
+    visible: {
+      opacity: 1,
+      scale: 1,
+      y: 0,
+      transition: {
+        default: {
+          type: "spring",
+          damping: 15,
+        },
+        duration: 0.3,
+      },
+    },
+    exit: {
+      opacity: 0,
+      scaleX: 0.98,
+      y: "2rem",
+      transition: {
+        duration: 0.6,
+      },
+    },
+  };
 
   return (
-    <div className="burn-array-container">
+    <motion.div
+      initial={variants.hidden}
+      animate={variants.visible}
+      exit={variants.exit}
+      className="burn-array-container"
+    >
       <div className="burn-input-container">
         <p className="section-heading">Choose an amount of array to burn</p>
         {arrayToBurn > 0 || isMax ? (
@@ -65,7 +97,7 @@ const Burn = (props) => {
           <button className="burn-button">Burn</button>
         </div>
       </div>
-    </div>
+    </motion.div>
   );
 };
 const mapStateToProps = (state) => {
