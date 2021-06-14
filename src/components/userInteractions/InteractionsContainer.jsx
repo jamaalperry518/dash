@@ -22,7 +22,7 @@ const Burn = lazy(async () => {
 });
 const Vaults = lazy(async () => {
   await new Promise((resolve) => setTimeout(resolve, 800));
-  return import("./interactionCards/vaults/Vaults");
+  return import("./interactionCards/vaults/ComingSoon");
 });
 
 const InteractionsContainer = (props) => {

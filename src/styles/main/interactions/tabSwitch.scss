@@ -13,17 +13,45 @@
     margin-bottom: 3rem;
     cursor: pointer;
     padding: 0.8rem;
-    a {
+    .tab-link {
       color: white;
       &:hover {
         color: $hover-blue;
       }
+    }
+    .disabled {
+      @extend.tab-link;
+      pointer-events: none;
+      color: $off-white;
+      // cursor: not-allowed;
     }
     &.selected {
       border-right: 0.2rem solid $light-blue-background;
     }
     &:first-child {
       font-size: 6rem;
+    }
+  }
+  .inactive-tab {
+    @extend .tab;
+    color: $off-white;
+    opacity: 0.4;
+    // cursor: not-allowed;
+  }
+
+  .soon-popup {
+    position: absolute;
+    width: 12rem;
+    top: 21rem;
+    right: -2.5rem;
+    background: $dark-blue-background;
+    .popup-text {
+      font-size: 1.2rem;
+      text-align: center;
+      padding: 0.5rem;
+      text-shadow: 0.1rem 0.1rem 0.4rem #333;
+      box-shadow: $small-box-shadow;
+      border-radius: 0.8rem;
     }
   }
 }

@@ -1,0 +1,7 @@
+@import "../../../../styles//mixins.scss";
+@import "../../../../styles/variables.scss";
+
+.coming-soon-container {
+  @include flexbox(column, center, center);
+  position: absolute;
+}
