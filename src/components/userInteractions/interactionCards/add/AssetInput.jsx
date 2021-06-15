@@ -1,18 +1,29 @@
 import React, { useState } from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
 import scss from "./assetInput.module.scss";
 import { formatInput } from "../../../../helpers/utils";
+import {
+  selectAsset,
+  setAssetAmount,
+} from "../../../../Redux/actions/WalletActions";
 
 const AssetInput = (props) => {
+  const dispatch = useDispatch();
   const [depositAmount, setDeposit] = useState();
+
   const changeHandler = (e) => {
-    setDeposit(e.target.value);
+    setDeposit(e.target.valueAsNumber || e.target.value);
   };
-  const checkHandler = (e) => {
+  const checkHandler = (e, asset) => {
     props.setActive(e.target.id);
+    dispatch(selectAsset(asset));
   };
   const blurHandler = (e) => {
-    console.log(formatInput(e.target.value));
+    if (e.target.value) {
+      dispatch(
+        setAssetAmount(formatInput(e.target.value, props.asset.decimals))
+      );
+    }
   };
 
   const setMax = () => {
@@ -32,7 +43,7 @@ const AssetInput = (props) => {
           className={scss["checkbox"]}
           name="asset"
           checked={props.active === props.asset.symbol}
-          onChange={(e) => checkHandler(e)}
+          onChange={(e) => checkHandler(e, props.asset)}
           id={props.asset.symbol}
         />
         {/* <div className={scss["little-circle"]}></div>
@@ -53,6 +64,7 @@ const AssetInput = (props) => {
           )}
         </div>
       ) : null}
+
       <input
         type="number"
         className={
@@ -72,6 +84,8 @@ const AssetInput = (props) => {
 const mapStateToProps = (state) => {
   return {
     vaults: state.vaults.state,
+    signer: state.wallet.signer,
+    address: state.wallet.address,
   };
 };
 export default connect(mapStateToProps)(AssetInput);

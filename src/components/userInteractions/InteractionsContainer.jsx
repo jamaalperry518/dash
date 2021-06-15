@@ -8,6 +8,7 @@ import {
   getGasPrice,
 } from "../../Redux/actions/WalletActions";
 import { getPoolInfo } from "../../Redux/actions/poolActions";
+import { checkForApproval } from "../../Redux/actions/WalletActions";
 
 //components
 import Loading from "../ui/Loading";
@@ -52,8 +53,18 @@ const InteractionsContainer = (props) => {
       }
       if (poolArray.length !== 0) {
         poolArray.map((pool) => {
-          return dispatch(getPoolInfo(pool.name, pool.address, props.provider));
+          return dispatch(
+            getPoolInfo(pool.name, pool.address, props.provider, props.address)
+          );
         });
+        dispatch(
+          checkForApproval(
+            props.assets,
+            props.address,
+            props.poolAddress,
+            props.signer
+          )
+        );
       }
     }
 
@@ -80,10 +91,12 @@ const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
     provider: state.wallet.provider,
+    signer: state.wallet.signer,
     assets: state.pools.assetArray,
     currentPool: state.pools.currentPool,
     pools: state.pools.pools,
     vaults: state.vaults,
+    poolAddress: state.wallet.poolAddress,
   };
 };
 

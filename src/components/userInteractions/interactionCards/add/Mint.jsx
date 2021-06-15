@@ -1,7 +1,22 @@
 import React from "react";
-import { connect } from "react-redux";
+import { connect, useDispatch } from "react-redux";
+import { approveAsset } from "../../../../Redux/actions/WalletActions";
 
+import scss from "./mint.module.scss";
 const Mint = (props) => {
+  const dispatch = useDispatch();
+  const handleApprove = () => {
+    dispatch(
+      approveAsset(
+        props.asset,
+        props.signer,
+        props.address,
+        props.poolAddress,
+        props.assetAmount
+      )
+    );
+  };
+
   return (
     <div className={props.address ? "mint-array" : "mint-array inactive"}>
       <div className="mint-content">
@@ -11,7 +26,15 @@ const Mint = (props) => {
           <h1 className="asset-name">Array</h1>
         </div>
 
-        <button className="mint-button">Mint</button>
+        {props.asset ? (
+          parseInt(props.asset.allowance) > 0 ? (
+            <button className="mint-button">Mint</button>
+          ) : (
+            <button className={scss["approve-asset"]} onClick={handleApprove}>
+              Approve
+            </button>
+          )
+        ) : null}
       </div>
     </div>
   );
@@ -20,6 +43,10 @@ const Mint = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
+    poolAddress: state.wallet.poolAddress,
+    signer: state.wallet.signer,
+    asset: state.wallet.selectedAsset,
+    assetAmount: state.wallet.assetAmount,
   };
 };
 

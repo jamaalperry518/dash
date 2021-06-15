@@ -89,34 +89,45 @@ export const connectUserWallet = () => async (dispatch) => {
   });
 };
 // this can be moved into poolActions, will make more sense.
-export const getBalance = (vaults, provider, address) => async (dispatch) => {
-  let result = {};
-  const assetArray = Object.values(vaults);
-  //eslin-disable-next-line
+export const getBalance =
+  (vaults, provider, address, poolAddress) => async (dispatch) => {
+    let result = {};
+    const assetArray = Object.values(vaults);
+    //eslin-disable-next-line
 
-  assetArray.map(async (asset) => {
-    const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
-    console.log(asset);
-    const balance = ethers.utils.formatUnits(await contract.balanceOf(address));
-    if (balance > 0 && balance < 1) {
-      result[`${asset.name}`] = asset;
-      result[`${asset.name}`]["user_balance"] = balance;
-      console.log((asset.symbol, balance));
-    } else if (balance > 1) {
-      result[`${asset.name}`] = asset;
-      result[`${asset.name}`]["user_balance"] = parseFloat(balance);
-      console.log((asset.symbol, balance));
-    } else {
-      result[`${asset.name}`] = asset;
-      result[`${asset.name}`]["user_balance"] = 0;
-    }
-  });
-  return dispatch({
-    type: "UPDATE_VAULTS",
-    item: result.symbol,
-    payload: result,
-  });
-};
+    assetArray.map(async (asset) => {
+      const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
+
+      const balance = ethers.utils.formatUnits(
+        await contract.balanceOf(address)
+      );
+      const allowance = ethers.utils.formatUnits(
+        await contract.allowance(address, asset.address)
+      );
+
+      if (balance > 0 && balance < 1) {
+        result[`${asset.name}`] = asset;
+        result[`${asset.name}`]["user_balance"] = balance;
+        result[`${asset.name}`]["allowance"] = allowance;
+        console.log((asset.symbol, balance));
+      } else if (balance > 1) {
+        result[`${asset.name}`] = asset;
+        result[`${asset.name}`]["user_balance"] = parseInt(balance);
+        result[`${asset.name}`]["allowance"] = allowance;
+        console.log((asset.symbol, balance));
+      } else {
+        result[`${asset.name}`] = asset;
+        result[`${asset.name}`]["user_balance"] = 0;
+        result[`${asset.name}`]["allowance"] = allowance;
+      }
+    });
+
+    return dispatch({
+      type: "UPDATE_VAULTS",
+      item: result.symbol,
+      payload: result,
+    });
+  };
 
 export const getTokenPrice = (token) => {
   axios
@@ -132,3 +143,64 @@ export const getTokenPrice = (token) => {
       console.log(err);
     });
 };
+
+export const approveAsset = async (
+  asset,
+  signer,
+  address,
+  poolAddress,
+  amount
+) => {
+  if (!asset.address) {
+    console.log("Nothing selected");
+  } else {
+    const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
+
+    let allowance = await contract
+      .allowance(address, poolAddress)
+      .catch((err) => {
+        console.log(err);
+      });
+
+    // let approveTx = await contract.approve(poolAddress, amt).catch((err) => {
+    //   console.log(err);
+    // });
+
+    // console.log(await approveTx.wait());
+    console.log(ethers.utils.formatUnits(allowance));
+    asset.allowance = ethers.utils.formatUnits(allowance);
+    console.log(asset);
+  }
+};
+export const selectAsset = (asset) => (dispatch) => {
+  dispatch({
+    type: "SET_SELECTED_ASSET",
+    payload: asset,
+  });
+};
+export const setAssetAmount = (amount) => (dispatch) => {
+  dispatch({
+    type: "SET_SELECTED_ASSET_AMOUNT",
+    payload: amount,
+  });
+};
+
+export const checkForApproval =
+  (assets, address, poolAddress, signer) => (dispatch) => {
+    assets.map(async (asset) => {
+      const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
+      let allowance = await contract
+        .allowance(address, poolAddress)
+        .catch((err) => {
+          console.log(err);
+        });
+      console.log(ethers.utils.formatUnits(allowance));
+      asset.allowance = ethers.utils.formatUnits(allowance);
+      console.log(asset);
+      return dispatch({
+        type: "UPDATE_VAULTS",
+        item: asset.symbol,
+        payload: asset,
+      });
+    });
+  };
