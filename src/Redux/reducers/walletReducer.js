@@ -4,9 +4,11 @@ const initialState = {
   provider: undefined,
   signer: undefined,
   network: undefined,
-
+  selectedAsset: "",
+  assetAmount: 0,
   gasPrice: 0,
   arrayBalance: 420,
+  poolAddress: "",
 };
 
 const walletReducer = (state = initialState, action) => {
@@ -29,6 +31,21 @@ const walletReducer = (state = initialState, action) => {
       return {
         ...state,
         gasPrice: action.gasPrice,
+      };
+    case "SET_POOL_ADDRESS":
+      return {
+        ...state,
+        poolAddress: action.payload,
+      };
+    case "SET_SELECTED_ASSET":
+      return {
+        ...state,
+        selectedAsset: action.payload,
+      };
+    case "SET_SELECTED_ASSET_AMOUNT":
+      return {
+        ...state,
+        assetAmount: action.payload,
       };
     default:
       return state;

@@ -1,0 +1,13 @@
+@import "../../../../styles/variables.scss";
+@import "../../../../styles/mixins.scss";
+
+.approve-asset {
+  background-color: $light-blue-background;
+  color: white;
+  font-size: 2rem;
+  width: 14rem;
+  height: 3rem;
+  padding: 0;
+  border-radius: 2.8rem;
+  margin: 0 auto;
+}

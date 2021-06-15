@@ -51,8 +51,11 @@ export const delay = (ms) => {
 //   return metadata.logoUrl;
 // }
 
-export const formatInput = (amount) => {
-  return ethers.utils.parseUnits(amount.toString(), 18);
+export const formatInput = (amount, decimals) => {
+  return ethers.utils.parseUnits(amount, decimals);
+};
+export const humanFormatInput = (amount, decimals) => {
+  return ethers.utils.formatUnits(amount);
 };
 
 export const calculateAPY = (supplyRate) => {
