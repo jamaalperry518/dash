@@ -78,12 +78,14 @@ export const getPoolInfo =
   };
 
 export const setCurrentPool = (pool) => (dispatch) => {
-  let arr = Object.values(pool["tokens"]);
-  if (arr) {
-    dispatch({
-      type: "SET_ASSET_ARRAY",
-      payload: arr,
-    });
+  if (pool) {
+    let arr = Object.values(pool["tokens"]);
+    if (arr) {
+      dispatch({
+        type: "SET_ASSET_ARRAY",
+        payload: arr,
+      });
+    }
   }
 };
 

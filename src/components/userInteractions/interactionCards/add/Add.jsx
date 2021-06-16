@@ -63,7 +63,7 @@ const Add = (props) => {
           className="add-to-bags"
         >
           <div className="chart-container">
-            <p className="section-heading">Array consist of:</p>
+            <p className="section-heading">Array consists of:</p>
             <Chart assetsArray={assetsToChart} />
             <div className="asset-by-percentage">
               {assetsToChart?.map((asset, i) => {

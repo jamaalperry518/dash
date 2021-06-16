@@ -4,7 +4,7 @@ const initialState = {
   loaded: false,
   pools: {
     "WETH-wBTC": {
-      address: "0x1eff8af5d577060ba4ac8a29a13525bb0ee2a3d5",
+      address: "0x02e1300A7E6c3211c65317176Cf1795f9bb1DaAb",
       name: "WETH-WBTC",
       tokens: {},
     },
