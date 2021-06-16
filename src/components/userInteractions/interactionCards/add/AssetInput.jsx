@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import scss from "./assetInput.module.scss";
 import { formatInput } from "../../../../helpers/utils";
+import { motion } from "framer-motion";
 import {
   selectAsset,
   setAssetAmount,
@@ -35,6 +36,16 @@ const AssetInput = (props) => {
     setDeposit(0);
   };
 
+  const buttonVariants = {
+    initial: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.4 },
+    },
+  };
+
   return (
     <div className="asset-input">
       <div className={scss["checkbox-container"]}>
@@ -54,13 +65,23 @@ const AssetInput = (props) => {
       {props.active === props.asset.symbol ? (
         <div className={scss["set-max"]}>
           {depositAmount > 0 ? (
-            <button className={scss["max-button"]} onClick={clear}>
+            <motion.button
+              className={scss["max-button"]}
+              initial={buttonVariants.initial}
+              animate={buttonVariants.visible}
+              onClick={clear}
+            >
               clear
-            </button>
+            </motion.button>
           ) : (
-            <button className={scss["max-button"]} onClick={setMax}>
+            <motion.button
+              className={scss["max-button"]}
+              initial={buttonVariants.initial}
+              animate={buttonVariants.visible}
+              onClick={setMax}
+            >
               max
-            </button>
+            </motion.button>
           )}
         </div>
       ) : null}
