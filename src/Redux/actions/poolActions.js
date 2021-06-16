@@ -79,11 +79,12 @@ export const getPoolInfo =
 
 export const setCurrentPool = (pool) => (dispatch) => {
   let arr = Object.values(pool["tokens"]);
-
-  dispatch({
-    type: "SET_ASSET_ARRAY",
-    payload: arr,
-  });
+  if (arr) {
+    dispatch({
+      type: "SET_ASSET_ARRAY",
+      payload: arr,
+    });
+  }
 };
 
 export const mintArray = async (address, amount, token, pool) => {

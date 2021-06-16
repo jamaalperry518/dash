@@ -11,3 +11,8 @@
   border-radius: 2.8rem;
   margin: 0 auto;
 }
+.secret-button {
+  @extend .approve-asset;
+  opacity: 0;
+  pointer-events: none;
+}
