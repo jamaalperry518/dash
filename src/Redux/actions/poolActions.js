@@ -49,14 +49,14 @@ export const getPoolInfo =
           await tokenContract.allowance(address, asset)
         );
       }
-      // let tokenBalance = ethers.utils.formatUnits(
-      //   await contract.balanceOf(currentToken.address)
-      // );
+      let tokenBalance = ethers.utils.formatUnits(
+        await contract.balanceOf(currentToken.address)
+      );
 
       currentToken.value = parseFloat(normalizedWeight);
       currentToken.price = await tokenPrice;
       currentToken.allowance = allowance;
-      // currentToken.user_balance = tokenBalance;
+      currentToken.user_balance = tokenBalance;
       console.log(currentToken);
       tokensInPool[`${currentToken.symbol}`] = currentToken;
     });

@@ -144,34 +144,35 @@ export const getTokenPrice = (token) => {
     });
 };
 
-export const approveAsset = async (
-  asset,
-  signer,
-  address,
-  poolAddress,
-  amount
-) => {
-  if (!asset.address) {
-    console.log("Nothing selected");
-  } else {
-    const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
+export const approveAsset =
+  (asset, signer, address, poolAddress, amount) => async (dispatch) => {
+    if (!asset.address) {
+      console.log("Nothing selected");
+    } else {
+      const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
 
-    let allowance = await contract
-      .allowance(address, poolAddress)
-      .catch((err) => {
+      let allowance = await contract
+        .allowance(address, poolAddress)
+        .catch((err) => {
+          console.log(err);
+        });
+      let amt = amount > 0 ? amount : ethers.constants.MaxUint256;
+
+      let approveTx = await contract.approve(poolAddress, amt).catch((err) => {
         console.log(err);
       });
 
-    // let approveTx = await contract.approve(poolAddress, amt).catch((err) => {
-    //   console.log(err);
-    // });
-
-    // console.log(await approveTx.wait());
-    console.log(ethers.utils.formatUnits(allowance));
-    asset.allowance = ethers.utils.formatUnits(allowance);
-    console.log(asset);
-  }
-};
+      console.log(await approveTx.wait());
+      console.log(ethers.utils.formatUnits(allowance));
+      asset.allowance = ethers.utils.formatUnits(allowance);
+      console.log(asset);
+      return dispatch({
+        type: "UPDATE_VAULTS",
+        item: asset.symbol,
+        payload: asset,
+      });
+    }
+  };
 export const selectAsset = (asset) => (dispatch) => {
   dispatch({
     type: "SET_SELECTED_ASSET",

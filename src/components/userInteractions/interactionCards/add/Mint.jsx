@@ -39,9 +39,9 @@ const Mint = (props) => {
           </div>
 
           {props.asset ? (
-            parseInt(props.asset.allowance) > 0 ? (
+            parseFloat(props.asset.allowance) > 0 ? (
               <motion.button
-                className="mint-button"
+                className={scss["mint-button"]}
                 initial={buttonVariants.initial}
                 animate={buttonVariants.visible}
               >
@@ -54,7 +54,7 @@ const Mint = (props) => {
                 initial={buttonVariants.initial}
                 animate={buttonVariants.visible}
               >
-                Approve
+                Approve {props.asset.symbol}
               </motion.button>
             )
           ) : (
