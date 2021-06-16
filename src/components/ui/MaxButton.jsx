@@ -1,38 +1,41 @@
-import React,{useState} from 'react';
+import React from "react";
+import { motion } from "framer-motion";
 
-const MaxButton = (amount, function, state, vault) => {
-    const [amount, setAmount] = useState();
-
-    const setMax = () => {
-        setIsMax(true);
-        if (
-          props.vaults[vault.name].user_balance > 0 &&
-          props.vaults[vault.name].user_balance < 1
-        ) {
-          setDeposit(props.vaults[vault.name].user_balance);
-        } else if (props.vaults[vault.name].user_balance > 1) {
-          setDeposit(props.vaults[vault.name].user_balance.toFixed(6));
-        }
-      };
-      const clear = () => {
-        setIsMax(false);
-    
-        setDeposit(0);
-      };
-
-    return (
-        <>
-            {deposit > 0 || isMax ? (
-          <button className="max-button" onClick={clear}>
-            clear
-          </button>
-        ) : (
-          <button className="max-button" onClick={setMax}>
-            max
-          </button>
-        )}
-        </>
-    );
-}
+const MaxButton = (props) => {
+  const buttonVariants = {
+    initial: {
+      opacity: 0,
+    },
+    visible: {
+      opacity: 1,
+      transition: { duration: 0.4 },
+    },
+  };
+  return (
+    <>
+      {props.amount > 0 ? (
+        <motion.button
+          className="max-button"
+          onClick={clear}
+          className={scss["max-button"]}
+          initial={buttonVariants.initial}
+          animate={buttonVariants.visible}
+        >
+          clear
+        </motion.button>
+      ) : (
+        <motion.button
+          className="max-button"
+          onClick={setMax}
+          className={scss["max-button"]}
+          initial={buttonVariants.initial}
+          animate={buttonVariants.visible}
+        >
+          max
+        </motion.button>
+      )}
+    </>
+  );
+};
 
 export default MaxButton;
