@@ -57,15 +57,17 @@ const InteractionsContainer = (props) => {
             getPoolInfo(pool.name, pool.address, props.provider, props.address)
           );
         });
-        dispatch(
-          checkForApproval(
-            props.assets,
-            props.address,
-            props.poolAddress,
-            props.signer
-          )
-        );
       }
+      const assetArray = Object.values(props.assets);
+
+      dispatch(
+        checkForApproval(
+          assetArray,
+          props.address,
+          props.poolAddress,
+          props.signer
+        )
+      );
     }
 
     //eslint-disable-next-line

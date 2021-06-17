@@ -62,7 +62,7 @@ const getUserAccount = async (provider) => {
   if (provider || window.ethereum) {
     eth = new ethers.providers.Web3Provider(provider || window.ethereum);
     const accounts = await eth.listAccounts();
-    signer = await eth.getSigner();
+    signer = eth.getSigner();
     account = accounts[0];
   }
 
@@ -109,12 +109,10 @@ export const getBalance =
         result[`${asset.name}`] = asset;
         result[`${asset.name}`]["user_balance"] = balance;
         result[`${asset.name}`]["allowance"] = allowance;
-        console.log((asset.symbol, balance));
       } else if (balance > 1) {
         result[`${asset.name}`] = asset;
         result[`${asset.name}`]["user_balance"] = parseInt(balance);
         result[`${asset.name}`]["allowance"] = allowance;
-        console.log((asset.symbol, balance));
       } else {
         result[`${asset.name}`] = asset;
         result[`${asset.name}`]["user_balance"] = 0;
@@ -145,32 +143,41 @@ export const getTokenPrice = (token) => {
 };
 
 export const approveAsset =
-  (asset, signer, address, poolAddress, amount) => async (dispatch) => {
+  (asset, signer, address, poolAddress, amount, assets) => async (dispatch) => {
     if (!asset.address) {
       console.log("Nothing selected");
     } else {
       const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
 
-      let allowance = await contract
-        .allowance(address, poolAddress)
-        .catch((err) => {
-          console.log(err);
-        });
-      let amt = amount > 0 ? amount : ethers.constants.MaxUint256;
-
-      let approveTx = await contract.approve(poolAddress, amt).catch((err) => {
+      // let allowance = await contract
+      //   .allowance(address, poolAddress)
+      //   .catch((err) => {
+      //     console.log(err);
+      //   });
+      let amt = amount >= 0 ? amount : ethers.constants.MaxUint256;
+      // let amt = 0;
+      let approveTx;
+      approveTx = await contract.approve(poolAddress, amt).catch((err) => {
         console.log(err);
       });
-
-      console.log(await approveTx.wait());
-      console.log(ethers.utils.formatUnits(allowance));
-      asset.allowance = ethers.utils.formatUnits(allowance);
-      console.log(asset);
-      return dispatch({
-        type: "UPDATE_VAULTS",
-        item: asset.symbol,
-        payload: asset,
-      });
+      let copy = { ...assets };
+      if (approveTx) {
+        let confirm = await approveTx.wait().catch((err) => {
+          console.log(err);
+        });
+        if (confirm) {
+          copy[`${asset.symbol}`]["allowance"] = ethers.utils.formatUnits(
+            await contract.allowance(address, poolAddress).catch((err) => {
+              console.log(err);
+            })
+          );
+          console.log(copy);
+          return dispatch({
+            type: "SET_ASSET_ARRAY",
+            payload: Object.values(copy),
+          });
+        }
+      }
     }
   };
 export const selectAsset = (asset) => (dispatch) => {
@@ -188,20 +195,22 @@ export const setAssetAmount = (amount) => (dispatch) => {
 
 export const checkForApproval =
   (assets, address, poolAddress, signer) => (dispatch) => {
-    assets.map(async (asset) => {
-      const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
-      let allowance = await contract
-        .allowance(address, poolAddress)
-        .catch((err) => {
-          console.log(err);
-        });
-      console.log(ethers.utils.formatUnits(allowance));
-      asset.allowance = ethers.utils.formatUnits(allowance);
-      console.log(asset);
-      return dispatch({
-        type: "UPDATE_VAULTS",
-        item: asset.symbol,
-        payload: asset,
+    const arr = Object.values(assets);
+    if (address && poolAddress) {
+      arr.map(async (asset) => {
+        const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
+        let allowance = await contract
+          .allowance(address, poolAddress)
+          .catch((err) => {
+            console.log(err);
+          });
+
+        asset.allowance = ethers.utils.formatUnits(allowance);
       });
-    });
+      console.log(assets);
+      dispatch({
+        type: "SET_ASSET_ARRAY",
+        payload: arr,
+      });
+    }
   };

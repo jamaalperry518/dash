@@ -65,7 +65,7 @@ const initialState = {
     name: "USD Coin",
     symbol: "USDC",
     decimals: 6,
-    precision: 3,
+    precision: 2,
     color: "#5d6872",
     hasIcon: true,
     logoUrl:

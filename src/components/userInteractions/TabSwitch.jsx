@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect } from "react-redux";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -57,10 +57,6 @@ const TabSwitch = (props) => {
       setTabs(copy);
     }
   };
-
-  useEffect(() => {
-    console.log(showModal);
-  }, [showModal]);
 
   return (
     <AnimatePresence>

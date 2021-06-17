@@ -16,7 +16,7 @@ const Add = (props) => {
   useEffect(() => {}, [props.currentPool, props.pools, dispatch]);
 
   useEffect(() => {
-    if (props.assets.length > 1) {
+    if (props.assets.length > 4) {
       setAssetsToChart(props.assets);
     } else {
       const timer = setTimeout(() => {
