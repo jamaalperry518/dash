@@ -95,28 +95,34 @@ export const getBalance =
     const assetArray = Object.values(vaults);
     //eslin-disable-next-line
 
-    assetArray.map(async (asset) => {
-      const contract = new ethers.Contract(asset.address, ERC20_ABI, provider);
+    assetArray?.map(async (asset) => {
+      if (asset) {
+        const contract = new ethers.Contract(
+          asset.address,
+          ERC20_ABI,
+          provider
+        );
 
-      const balance = ethers.utils.formatUnits(
-        await contract.balanceOf(address)
-      );
-      const allowance = ethers.utils.formatUnits(
-        await contract.allowance(address, asset.address)
-      );
+        const balance = ethers.utils.formatUnits(
+          await contract.balanceOf(address)
+        );
+        const allowance = ethers.utils.formatUnits(
+          await contract.allowance(address, asset.address)
+        );
 
-      if (balance > 0 && balance < 1) {
-        result[`${asset.name}`] = asset;
-        result[`${asset.name}`]["user_balance"] = balance;
-        result[`${asset.name}`]["allowance"] = allowance;
-      } else if (balance > 1) {
-        result[`${asset.name}`] = asset;
-        result[`${asset.name}`]["user_balance"] = parseInt(balance);
-        result[`${asset.name}`]["allowance"] = allowance;
-      } else {
-        result[`${asset.name}`] = asset;
-        result[`${asset.name}`]["user_balance"] = 0;
-        result[`${asset.name}`]["allowance"] = allowance;
+        if (balance > 0 && balance < 1) {
+          result[`${asset.name}`] = asset;
+          result[`${asset.name}`]["user_balance"] = balance;
+          result[`${asset.name}`]["allowance"] = allowance;
+        } else if (balance > 1) {
+          result[`${asset.name}`] = asset;
+          result[`${asset.name}`]["user_balance"] = parseInt(balance);
+          result[`${asset.name}`]["allowance"] = allowance;
+        } else {
+          result[`${asset.name}`] = asset;
+          result[`${asset.name}`]["user_balance"] = 0;
+          result[`${asset.name}`]["allowance"] = allowance;
+        }
       }
     });
 
@@ -143,7 +149,8 @@ export const getTokenPrice = (token) => {
 };
 
 export const approveAsset =
-  (asset, signer, address, poolAddress, amount, assets) => async (dispatch) => {
+  (asset, signer, address, poolAddress, amount, assets, func) =>
+  async (dispatch) => {
     if (!asset.address) {
       console.log("Nothing selected");
     } else {
@@ -158,7 +165,10 @@ export const approveAsset =
       // let amt = 0;
       let approveTx;
       approveTx = await contract.approve(poolAddress, amt).catch((err) => {
+        func(false);
+
         console.log(err);
+        console.clear();
       });
       let copy = { ...assets };
       if (approveTx) {
@@ -172,6 +182,7 @@ export const approveAsset =
             })
           );
           console.log(copy);
+
           return dispatch({
             type: "SET_ASSET_ARRAY",
             payload: Object.values(copy),

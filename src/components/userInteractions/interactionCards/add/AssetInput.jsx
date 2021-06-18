@@ -21,9 +21,8 @@ const AssetInput = (props) => {
   };
   const blurHandler = (e) => {
     if (e.target.value) {
-      dispatch(
-        setAssetAmount(formatInput(e.target.value, props.asset.decimals))
-      );
+      let input = formatInput(e.target.value, props.asset.decimals);
+      dispatch(setAssetAmount(input));
     }
   };
 
@@ -33,7 +32,7 @@ const AssetInput = (props) => {
     }
   };
   const clear = () => {
-    setDeposit(0);
+    setDeposit("");
   };
 
   const buttonVariants = {

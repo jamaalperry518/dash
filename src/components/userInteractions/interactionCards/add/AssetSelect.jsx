@@ -10,10 +10,10 @@ import {
 const AssetSelect = (props) => {
   const [active, setActive] = useState("");
   let assetArray = Object.values(props.assets);
-  const [currentAssets, setCurrentAssets] = useState(assetArray);
+  const [currentAssets, setCurrentAssets] = useState(props.ARRAY);
   const dispatch = useDispatch();
   useEffect(() => {
-    if (props.address && props.signer) {
+    if (props.address) {
       dispatch(
         checkForApproval(
           props.assets,
@@ -25,12 +25,15 @@ const AssetSelect = (props) => {
       console.log(assetArray);
     }
     //eslint-disable-next-line
-  }, [props.assets, props.ARRAY]);
+  }, [props.assets, props.ARRAY, props.address]);
 
   useEffect(() => {
     setCurrentAssets(props.ARRAY);
-    setActive("");
-    dispatch(selectAsset(""));
+    if (props.selected) {
+      setActive(`${props.selected.symbol}`);
+      console.log(props.assets[`${props.selected.symbol}`]);
+      dispatch(selectAsset(props.assets[`${props.selected.symbol}`]));
+    }
     //eslint-disable-next-line
   }, [props.ARRAY]);
   return (
@@ -59,6 +62,7 @@ const mapStateToProps = (state) => {
     ARRAY: state.pools.assetArray,
     poolAddress: state.pools.poolAddress,
     signer: state.wallet.signer,
+    selected: state.wallet.selectedAsset,
   };
 };
 

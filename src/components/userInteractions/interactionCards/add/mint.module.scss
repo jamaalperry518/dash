@@ -18,6 +18,8 @@
   @extend .approve-asset;
   opacity: 0.6;
   pointer-events: none;
+  cursor: not-allowed;
+  background-color: $dark-blue-background;
 }
 .secret-button {
   @extend .approve-asset;

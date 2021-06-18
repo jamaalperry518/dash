@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { approveAsset } from "../../../../Redux/actions/WalletActions";
 import { motion, AnimatePresence } from "framer-motion";
@@ -16,10 +16,10 @@ const Mint = (props) => {
         props.address,
         props.poolAddress,
         props.assetAmount,
-        props.assets
+        props.assets,
+        setApproving
       )
     );
-    setApproving(false);
   };
 
   const buttonVariants = {
@@ -31,10 +31,6 @@ const Mint = (props) => {
       transition: { duration: 0.4 },
     },
   };
-
-  useEffect(() => {
-    console.log(props.asset);
-  }, [props.asset]);
 
   return (
     <AnimatePresence>
@@ -70,8 +66,9 @@ const Mint = (props) => {
             )
           ) : (
             <motion.button
-              className={scss["secret-button"]}
+              className={scss["mint-button"]}
               initial={buttonVariants.initial}
+              animate={buttonVariants.visible}
             >
               Mint
             </motion.button>
