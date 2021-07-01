@@ -205,6 +205,7 @@ export const setAssetAmount = (amount) => (dispatch) => {
 };
 
 export const checkForApproval =
+  //check for approval when assets are rendered
   (assets, address, poolAddress, signer) => (dispatch) => {
     const arr = Object.values(assets);
     if (address && poolAddress) {

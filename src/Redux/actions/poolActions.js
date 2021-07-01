@@ -4,7 +4,6 @@ import { ERC20_ABI } from "../../data/ABI";
 import { tokenMaster } from "../../data/assets/tokenMaster";
 
 import axios from "axios";
-// import { computeRatioFactor } from "../../data/helpers/ratioFactor";
 
 let resultObject = {};
 let assetObject = tokenMaster.tokens;
@@ -72,19 +71,21 @@ export const getPoolInfo =
     });
     dispatch({
       type: "SET_CURRENT_POOL",
-      payload: resultObject["WETH-WBTC"],
+      payload: resultObject["Array Collateral Pool"],
     });
   };
 
 export const setCurrentPool = (pool) => (dispatch) => {
   if (pool) {
     let arr = Object.values(pool["tokens"]);
-    if (arr) {
-      dispatch({
-        type: "SET_ASSET_ARRAY",
-        payload: arr,
-      });
-    }
+    let result = arr.sort((a, b) => {
+      return b.value - a.value;
+    });
+
+    dispatch({
+      type: "SET_ASSET_ARRAY",
+      payload: result,
+    });
   }
 };
 

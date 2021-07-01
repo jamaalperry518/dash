@@ -20,7 +20,7 @@ const Add = (props) => {
       setAssetsToChart(props.assets);
     } else {
       const timer = setTimeout(() => {
-        dispatch(setCurrentPool(props.pools["WETH-WBTC"]));
+        dispatch(setCurrentPool(props.pools["Array Collateral Pool"]));
       }, 150);
       return () => clearTimeout(timer);
     }

@@ -3,9 +3,9 @@ const initialState = {
   assetArray: [],
   loaded: false,
   pools: {
-    "WETH-wBTC": {
+    "Array Collateral Pool": {
       address: "0x02e1300A7E6c3211c65317176Cf1795f9bb1DaAb",
-      name: "WETH-WBTC",
+      name: "Array Collateral Pool",
       tokens: {},
     },
   },

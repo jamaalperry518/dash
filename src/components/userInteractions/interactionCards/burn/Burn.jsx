@@ -94,7 +94,11 @@ const Burn = (props) => {
           <p className="section-heading">Total value</p>
           <h1 className="fiat-amount">0.0</h1>
 
-          <button className="burn-button">Burn</button>
+          <button
+            className={arrayToBurn ? "burn-button" : "burn-button inactive"}
+          >
+            Burn
+          </button>
         </div>
       </div>
     </motion.div>
