@@ -51,8 +51,8 @@ const addProviderEvents = (provider, userData) => {
 
   // Subscribe to provider disconnection
   provider.on("disconnect", (error) => {
-    window.location.reload();
     console.log("web3 connection interrupted: ", error);
+    window.location.reload();
   });
 };
 let signer;
@@ -61,7 +61,9 @@ const getUserAccount = async (provider) => {
   let account;
   if (provider || window.ethereum) {
     eth = new ethers.providers.Web3Provider(provider || window.ethereum);
-    const accounts = await eth.listAccounts();
+    const accounts = await eth.listAccounts().catch((err) => {
+      console.log(err);
+    });
     signer = eth.getSigner();
     account = accounts[0];
   }
@@ -69,14 +71,18 @@ const getUserAccount = async (provider) => {
   return account || undefined;
 };
 export const connectUserWallet = () => async (dispatch) => {
-  const provider = await web3Modal.connect();
+  const provider = await web3Modal.connect().catch((err) => {
+    console.log(err);
+  });
   if (window.ethereum) {
     window.web3 = new Web3(window.ethereum);
   } else {
     window.web3 = new Web3(rpcProvider);
   }
 
-  const userData = await getUserAccount(provider);
+  const userData = await getUserAccount(provider).catch((err) => {
+    console.log(err);
+  });
   if (provider.isMetaMask) {
     addProviderEvents(provider, userData);
   }
@@ -88,50 +94,6 @@ export const connectUserWallet = () => async (dispatch) => {
     signer: signer,
   });
 };
-// this can be moved into poolActions, will make more sense.
-export const getBalance =
-  (vaults, provider, address, poolAddress) => async (dispatch) => {
-    let result = {};
-    const assetArray = Object.values(vaults);
-    //eslin-disable-next-line
-
-    assetArray?.map(async (asset) => {
-      if (asset) {
-        const contract = new ethers.Contract(
-          asset.address,
-          ERC20_ABI,
-          provider
-        );
-
-        const balance = ethers.utils.formatUnits(
-          await contract.balanceOf(address)
-        );
-        const allowance = ethers.utils.formatUnits(
-          await contract.allowance(address, asset.address)
-        );
-
-        if (balance > 0 && balance < 1) {
-          result[`${asset.name}`] = asset;
-          result[`${asset.name}`]["user_balance"] = balance;
-          result[`${asset.name}`]["allowance"] = allowance;
-        } else if (balance > 1) {
-          result[`${asset.name}`] = asset;
-          result[`${asset.name}`]["user_balance"] = parseInt(balance);
-          result[`${asset.name}`]["allowance"] = allowance;
-        } else {
-          result[`${asset.name}`] = asset;
-          result[`${asset.name}`]["user_balance"] = 0;
-          result[`${asset.name}`]["allowance"] = allowance;
-        }
-      }
-    });
-
-    return dispatch({
-      type: "UPDATE_VAULTS",
-      item: result.symbol,
-      payload: result,
-    });
-  };
 
 export const getTokenPrice = (token) => {
   axios
@@ -156,13 +118,7 @@ export const approveAsset =
     } else {
       const contract = new ethers.Contract(asset.address, ERC20_ABI, signer);
 
-      // let allowance = await contract
-      //   .allowance(address, poolAddress)
-      //   .catch((err) => {
-      //     console.log(err);
-      //   });
       let amt = amount >= 0 ? amount : ethers.constants.MaxUint256;
-      // let amt = 0;
       let approveTx;
       approveTx = await contract.approve(poolAddress, amt).catch((err) => {
         func(false);
@@ -219,7 +175,7 @@ export const checkForApproval =
 
         asset.allowance = ethers.utils.formatUnits(allowance);
       });
-      console.log(assets);
+
       dispatch({
         type: "SET_ASSET_ARRAY",
         payload: arr,

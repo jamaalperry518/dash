@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import { connect, useDispatch } from "react-redux";
 import { approveAsset } from "../../../../Redux/actions/WalletActions";
+import { mintArray } from "../../../../Redux/actions/poolActions";
 import { motion, AnimatePresence } from "framer-motion";
 
 import scss from "./mint.module.scss";
@@ -46,7 +47,14 @@ const Mint = (props) => {
             parseFloat(props.asset.allowance) > 0 ? (
               <motion.button
                 className={scss["mint-button"]}
-                onClick={handleApprove}
+                onClick={() =>
+                  mintArray(
+                    props.address,
+                    props.assetAmount,
+                    props.asset,
+                    props.provider
+                  )
+                }
                 initial={buttonVariants.initial}
                 animate={buttonVariants.visible}
               >
@@ -82,6 +90,7 @@ const Mint = (props) => {
 const mapStateToProps = (state) => {
   return {
     address: state.wallet.address,
+    provider: state.wallet.provider,
     poolAddress: state.wallet.poolAddress,
     signer: state.wallet.signer,
     asset: state.wallet.selectedAsset,

@@ -9,7 +9,6 @@ import {
 
 const AssetSelect = (props) => {
   const [active, setActive] = useState("");
-  let assetArray = Object.values(props.assets);
   const [currentAssets, setCurrentAssets] = useState(props.ARRAY);
   const dispatch = useDispatch();
   useEffect(() => {
@@ -22,7 +21,6 @@ const AssetSelect = (props) => {
           props.signer
         )
       );
-      console.log(assetArray);
     }
     //eslint-disable-next-line
   }, [props.assets, props.ARRAY, props.address]);
@@ -31,7 +29,7 @@ const AssetSelect = (props) => {
     setCurrentAssets(props.ARRAY);
     if (props.selected) {
       setActive(`${props.selected.symbol}`);
-      console.log(props.assets[`${props.selected.symbol}`]);
+
       dispatch(selectAsset(props.assets[`${props.selected.symbol}`]));
     }
     //eslint-disable-next-line

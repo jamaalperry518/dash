@@ -1,7 +1,7 @@
 import rpcProvider from "../../helpers/provider";
 const initialState = {
   address: "",
-  provider: undefined,
+  provider: rpcProvider,
   signer: undefined,
   network: undefined,
   selectedAsset: "",
@@ -22,11 +22,11 @@ const walletReducer = (state = initialState, action) => {
         network: action.network,
       };
 
-    case "SET_PROVIDER":
-      return {
-        ...state,
-        provider: rpcProvider,
-      };
+    // case "SET_PROVIDER":
+    //   return {
+    //     ...state,
+    //     provider: rpcProvider,
+    //   };
     case "SET_GAS_PRICE":
       return {
         ...state,
