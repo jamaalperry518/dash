@@ -142,7 +142,7 @@ export const mintArray = async (address, amount, token, provider) => {
   let formattedAmount = ethers.utils.formatUnits(tempAmount);
 
   const curve = new ethers.Contract(arrayCurve, Curve_ABI, provider);
-
+  console.log(arrayToken, formattedAmount);
   if (amount > "0.0") {
     const tokenInLp = await curve.isTokenInLP(token.address).catch((err) => {
       console.log(err);
