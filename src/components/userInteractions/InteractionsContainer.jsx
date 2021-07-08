@@ -2,12 +2,8 @@ import React, { useEffect, lazy, Suspense } from "react";
 import { Switch, Route } from "react-router-dom";
 import { useHistory } from "react-router-dom";
 import { connect, useDispatch } from "react-redux";
-import {
-  getBalance,
-  setProvider,
-  getGasPrice,
-} from "../../Redux/actions/WalletActions";
-import { getPoolInfo } from "../../Redux/actions/poolActions";
+import { getGasPrice } from "../../Redux/actions/WalletActions";
+import { getPoolInfo, getTokenBalance } from "../../Redux/actions/poolActions";
 import { checkForApproval } from "../../Redux/actions/WalletActions";
 
 //components
@@ -30,11 +26,7 @@ const InteractionsContainer = (props) => {
   const history = useHistory();
   const dispatch = useDispatch();
   useEffect(() => {
-    if (!props.provider) {
-      dispatch(setProvider());
-    } else {
-      dispatch(getGasPrice(props.provider));
-    }
+    dispatch(getGasPrice(props.provider));
 
     if (props.address === "") {
       history.push("/");
@@ -48,15 +40,17 @@ const InteractionsContainer = (props) => {
     const poolArray = Object.values(props.pools);
 
     if (props.provider) {
-      if (props.address !== "") {
-        dispatch(getBalance(props.vaults, props.provider, props.address));
-      }
-      if (poolArray.length !== 0) {
+      if (poolArray.length > 0) {
         poolArray.map((pool) => {
           return dispatch(
             getPoolInfo(pool.name, pool.address, props.provider, props.address)
           );
         });
+      }
+      if (props.address && props.currentPool.tokens !== undefined) {
+        dispatch(
+          getTokenBalance(props.currentPool, props.address, props.provider)
+        );
       }
       const assetArray = Object.values(props.assets);
 
