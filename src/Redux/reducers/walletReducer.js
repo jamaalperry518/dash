@@ -7,7 +7,7 @@ const initialState = {
   selectedAsset: "",
   assetAmount: 0,
   gasPrice: 0,
-  arrayBalance: 420,
+  arrayBalance: 500,
   poolAddress: "",
 };
 
